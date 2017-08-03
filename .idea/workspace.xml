@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b6ab2eff-4ac0-4d6a-b583-6574496a82a4" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/part.rb" afterPath="$PROJECT_DIR$/app/models/part.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/pattern.rb" afterPath="$PROJECT_DIR$/app/models/pattern.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/problem.rb" afterPath="$PROJECT_DIR$/app/models/problem.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/migrate/20170803063539_create_patterns.rb" afterPath="$PROJECT_DIR$/db/migrate/20170803063539_create_patterns.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/migrate/20170803063553_create_problems.rb" afterPath="$PROJECT_DIR$/db/migrate/20170803063553_create_problems.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/migrate/20170803063753_create_parts.rb" afterPath="$PROJECT_DIR$/db/migrate/20170803063753_create_parts.rb" />
-    </list>
+    <list default="true" id="b6ab2eff-4ac0-4d6a-b583-6574496a82a4" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
     <ignored path="$PROJECT_DIR$/public/system/" />
@@ -73,7 +66,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="20170803063553_create_problems.rb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="20170803063553_create_problems.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/db/migrate/20170803063553_create_problems.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="108">
@@ -83,11 +76,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="20170803063753_create_parts.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="20170803063753_create_parts.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/db/migrate/20170803063753_create_parts.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="4" column="40" lean-forward="false" selection-start-line="4" selection-start-column="40" selection-end-line="4" selection-end-column="40" />
+            <state relative-caret-position="180">
+              <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -505,12 +498,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1501741297869</updated>
-      <workItem from="1501741307156" duration="2301000" />
+      <workItem from="1501741307156" duration="2721000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2301000" />
+    <option name="totallyTimeSpent" value="2721000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
@@ -602,6 +595,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/db/migrate/20170803063753_create_parts.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/db/migrate/20170803063539_create_patterns.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
@@ -614,14 +615,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
           <caret line="6" column="27" lean-forward="false" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20170803063753_create_parts.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="40" lean-forward="false" selection-start-line="4" selection-start-column="40" selection-end-line="4" selection-end-column="40" />
           <folding />
         </state>
       </provider>
