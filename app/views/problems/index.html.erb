@@ -1,0 +1,9 @@
+<h2>problems list</h2>
+<% @problems.each do |problem| %>
+    <div>
+      <h3>name: <%= problem.name %></h3>
+      <p>difficulty: <%= problem.difficulty %></p>
+      <%= link_to "view more ", problem_path(problem)%>
+
+    </div>
+<% end %>

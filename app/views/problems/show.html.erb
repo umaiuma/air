@@ -1,0 +1,10 @@
+<h2>patterns</h2>
+<div>
+  <p><%= @problem.problem_html %></p>
+</div>
+<% @patterns.each do |pattern| %>
+    <div>
+      <p><%=pattern.name%></p>
+    </div>
+<% end %>
+<%= link_to "to problems list", problems_path%>
