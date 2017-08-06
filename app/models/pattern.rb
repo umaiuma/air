@@ -1,4 +1,4 @@
 class Pattern < ApplicationRecord
   has_many :parts
-  has_may :problems, through: :parts
+  has_many :problems, through: :parts
 end

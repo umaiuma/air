@@ -29,8 +29,8 @@ ActiveRecord::Schema.define(version: 20170803063753) do
 
   create_table "problems", force: :cascade do |t|
     t.string "name"
-    t.string "problem_image"
-    t.string "solution_image"
+    t.string "problem_html"
+    t.string "solution_html"
     t.integer "difficulty"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
