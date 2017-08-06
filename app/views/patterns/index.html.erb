@@ -1,0 +1,11 @@
+<h2>patterns list </h2>
+<% @patterns.each do |pattern| %>
+    <div>
+      <p><%=pattern.name %></p>
+      <%= link_to "view more", pattern_path(pattern) %>
+    </div>
+<% end %>
+
+<div>
+  <%= link_to "problems list", problems_path %>
+</div>

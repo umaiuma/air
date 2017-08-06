@@ -1,0 +1,14 @@
+<h2>Single Pattern: <%=@pattern.name%></h2>
+<%@problems.each do |problem| %>
+    <div>
+      <p><%=problem.name %></p>
+      =<%= link_to "view more", problem_path(problem) %>
+    </div>
+<% end %>
+<div>
+  <%= link_to "patterns list", patterns_path %>
+</div>
+
+<div>
+<%= link_to "problems list", problems_path %>
+</div>
