@@ -4,6 +4,8 @@ class PatternsController < ApplicationController
   end
   def show
     @pattern = Pattern.find(params[:id])
+
+
     @problems = @pattern.problems
   end
 end

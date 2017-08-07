@@ -10,7 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170803063753) do
+ActiveRecord::Schema.define(version: 20170807095855) do
+
+  create_table "chapters", force: :cascade do |t|
+    t.integer "subject_id"
+    t.string "name"
+    t.boolean "check"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["subject_id"], name: "index_chapters_on_subject_id"
+  end
+
+  create_table "exams", force: :cascade do |t|
+    t.string "name"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_exams_on_user_id"
+  end
 
   create_table "parts", force: :cascade do |t|
     t.integer "pattern_id"
@@ -32,6 +49,22 @@ ActiveRecord::Schema.define(version: 20170803063753) do
     t.string "problem_html"
     t.string "solution_html"
     t.integer "difficulty"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "subjects", force: :cascade do |t|
+    t.integer "exam_id"
+    t.string "name"
+    t.boolean "check"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exam_id"], name: "index_subjects_on_exam_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "username"
+    t.string "userpw"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
