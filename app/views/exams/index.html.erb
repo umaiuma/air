@@ -1,0 +1,11 @@
+<% @exams.each do |exam| %>
+    <div>
+      <p><%= exam.name %></p>
+      <% exam.subjects.each do |subject| %>
+        <div>
+          <p><%= subject.name %></p>
+          <p><%= subject.check %></p>
+        </div>
+      <% end %>
+    </div>
+<% end %>

@@ -9,6 +9,8 @@ Rails.application.routes.draw do
       resources :subjects do
         resources :chapters do
           resources :patterns, concerns: :partable
+
+
         end
       end
     end

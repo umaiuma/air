@@ -1,0 +1,7 @@
+<% @chapters.each do |chapter| %>
+    <div>
+      <% chapter.patterns.each do |pattern| %>
+        <p><%= pattern.name %></p>
+      <% end %>
+    </div>
+<% end %>

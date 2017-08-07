@@ -1,0 +1,27 @@
+<h2>users list</h2>
+<% @users.each do |user| %>
+    <div>
+      <p><%=user.username %></p>
+      <% user.exams.each do |exam| %>
+        <div>
+          <p>&emsp;<%= exam.name %></p>
+          <% exam.subjects.each do |subject| %>
+            <div>
+              <p> &emsp;&emsp;<%=subject.name%> <%=subject.check%></p>
+              <% subject.chapters.each do |chapter| %>
+                <div>
+                  <p>&emsp;&emsp;&emsp;<%=chapter.name %> <%= chapter.check %></p>
+                  <% chapter.patterns.each do |pattern| %>
+                    <div>
+                      <p>&emsp;&emsp;&emsp;&emsp; <%= pattern.name %></p>
+                    </div>
+                  <% end %>
+                </div>
+              <%end %>
+            </div>
+          <% end %>
+        </div>
+
+      <% end%>
+    </div>
+<% end %>
