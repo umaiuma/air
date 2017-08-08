@@ -8,7 +8,6 @@ Rails.application.routes.draw do
     resources :exams do
       resources :subjects do
         resources :chapters do
-          resources :patterns, concerns: :partable
 
 
         end
@@ -16,7 +15,10 @@ Rails.application.routes.draw do
     end
 
   end
+  resources :patterns, concerns: :partable
+
   resources :problems, concerns: :partable
+  get '/debugs' , to:"debugs#index"
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

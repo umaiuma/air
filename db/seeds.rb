@@ -6,33 +6,22 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 u01= User.create(username:"umaiuma", userpw:"name")
-e01= Exam.new(name: "시험1 ", user: u01)
-e01.save
+u01.generate_exam("exam1")
+u01.generate_exam("exam2")
 
-s01 = Subject.new( name: "일반물리학", check: 0, exam: e01)
-s01.save
+u02= User.create(username:"alex", userpw:"hdmi")
+u02.generate_exam("exam1")
 
-c01 = Chapter.new( name: "전기장과전위", check: 0, subject: s01 )
-c01.save
 
-c02 = Chapter.new( name: "전기용량과유전체", check: 0, subject: s01)
-c02.save
 
-c03 = Chapter.new( name: "회로", check: 0, subject: s01)
-c03.save
-
-c04 = Chapter.new( name: "자기장", check: 0, subject: s01)
-c04.save
-
-pt01 = Pattern.new(name: "전기력", chapter: c01)
+pt01 = Pattern.new(name: "전기력")
 pt01.save
-pt02 = Pattern.new(name: "가우스", chapter: c01)
+pt02 = Pattern.new(name: "가우스")
 pt02.save
-pt03 = Pattern.new(name: "W&U", chapter: c01)
+pt03 = Pattern.new(name: "W&U")
 pt03.save
-pt04 = Pattern.new(name: "평면E", chapter: c01)
+pt04 = Pattern.new(name: "평면E")
 pt04.save
-
 
 p0101 = Problem.create(name: "01.01", difficulty: 1, problem_html:"밀리컨의 기름 방울 실험에서는 먼저 고른 전기장  를 가하여 반지름  , 질량  인 방울을 움직이지 않도록 한 다음, 전기장을 없애고 방울이 공기 중 중에서 종단속도  로 떨어지도록 한다. 유체의 마찰은 스토크스 법칙  을 따른다고 한다.  는 점성이다. 기름과 공기의 밀도를 각각  ,  라고 하고, 중력 가속도를  라고 할 때 방울의 전하량을 구하라")
 p0102 = Problem.create(name: "01.02", difficulty: 1, problem_html:"반지름  인 구형의 풍선이 있다. 이제 풍선의 표면에 면 전하밀도  로 고르게 전하르 대전시킨다고 하자.

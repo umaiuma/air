@@ -40,10 +40,8 @@ ActiveRecord::Schema.define(version: 20170807095855) do
 
   create_table "patterns", force: :cascade do |t|
     t.string "name"
-    t.integer "chapter_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["chapter_id"], name: "index_patterns_on_chapter_id"
   end
 
   create_table "problems", force: :cascade do |t|

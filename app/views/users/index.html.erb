@@ -11,11 +11,7 @@
               <% subject.chapters.each do |chapter| %>
                 <div>
                   <p>&emsp;&emsp;&emsp;<%=chapter.name %> <%= chapter.check %></p>
-                  <% chapter.patterns.each do |pattern| %>
-                    <div>
-                      <p>&emsp;&emsp;&emsp;&emsp; <%= pattern.name %></p>
-                    </div>
-                  <% end %>
+
                 </div>
               <%end %>
             </div>
