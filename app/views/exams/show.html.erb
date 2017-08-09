@@ -1,0 +1,6 @@
+<h2>problems list in exam</h2>
+<% @problems.each do |p| %>
+  <div>
+    <p>subject name : <%=p.subject_name%> chapter name : <%=p.chapter_name%> problem name <%= p.name %></p>
+  </div>
+<% end %>

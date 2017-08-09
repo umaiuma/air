@@ -46,6 +46,8 @@ ActiveRecord::Schema.define(version: 20170807095855) do
 
   create_table "problems", force: :cascade do |t|
     t.string "name"
+    t.string "subject_name"
+    t.string "chapter_name"
     t.string "problem_html"
     t.string "solution_html"
     t.integer "difficulty"

@@ -5,6 +5,7 @@
       <% user.exams.each do |exam| %>
         <div>
           <p>&emsp;<%= exam.name %></p>
+          <%= link_to "view problems",user_exam_path(user,exam) %>
           <% exam.subjects.each do |subject| %>
             <div>
               <p> &emsp;&emsp;<%=subject.name%> <%=subject.check%></p>
