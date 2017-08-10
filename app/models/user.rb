@@ -1,9 +1,9 @@
 class User < ApplicationRecord
   has_many :exams
   validates :username, presence:true, uniqueness: true
-  validates :userpw, presence:true, uniqueness: true
-  attr_accessor :a
-  @a=3
+  validates :password, presence:true
+  validates :password_confirmation, presence: true
+  has_secure_password
 
   def generate_exam(name)
 

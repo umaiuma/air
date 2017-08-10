@@ -5,11 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-u01= User.create(username:"umaiuma", userpw:"name")
+u01= User.create(username:"umaiuma", password:"name", password_confirmation:"name")
 u01.generate_exam("exam1")
 u01.generate_exam("exam2")
 
-u02= User.create(username:"alex", userpw:"hdmi")
+u02= User.create(username:"alex", password:"hdmi", password_confirmation:"hdmi")
 u02.generate_exam("exam1")
 
 

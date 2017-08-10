@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+</head>
+
+<body style="background-color: #d8f4ff">
+
+<div class="center-align">
+  <div class="container">
+    <img src="img/logo_front.png" alt="logo_front" style="width:10%; margin:60px;">
+    <div class="row" style="width: auto;">
+      <a href="login" style="color: inherit;"class="col s2 offset-s1" >로  그  인</a>
+      <!-- <a href="http://naver.com" class="col s2 offset-s4"style="color: inherit; width:180px">아 이 디   찾 기</a> <div class="col s1" id = "bar">|</div> <a href="http://naver.com" style="color: inherit; width: 180px"class="col s2">비 밀 번 호   찾 기</a> -->
+    </div>
+    <div class="submit_form" style="margin: 30px;">
+      <%= form_for(@user) do |f| %>
+          <div><%= f.text_field :username, :placeholder => "id",id:"submit_space"%></div>
+          <div><%= f.password_field :password, :placeholder => "Password", id:"submit_space"%></div>
+          <div><%= f.password_field :password_confirmation, :placeholder => "password_confirmation", id:"submit_space" %></div>
+          <%= f.submit "회  원  가  입", id: "submit_button" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>
+
+
+<!-- stylesheet -->
+<style media="screen">
+  #bar {
+    width: 10px;
+  }
+  #submit_space {
+    height: auto;
+    width: 859px;
+    background-color: white;
+
+
+    display: inline-block;
+    padding: 25px 50px ;
+    margin: 10px;
+    font-size: 32px;
+    text-align: left;
+    color: black;
+
+    border: none;
+    border-radius: 10px;
+    box-shadow: 5px 5px #02aad1;
+  }
+  #submit_space:hover {box-shadow:5px 5px #00008B;}
+
+  #submit_button {
+    display: inline-block;
+    padding: 5px 420px ;
+    font-size: 32px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #02aad1;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 5px 5px #999;
+    margin: 30px;
+  }
+
+  #submit_button:hover {background-color: #00008B;box-shadow: 5px 5px #02aad1;}
+</style>

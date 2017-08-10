@@ -1,46 +1,36 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <!--Import Google Icon Font-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!--Import materialize.css-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
-    <!--Let browser know website is optimized for mobile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  </head>
 
-  <body>
-    <div class="container center-align">
+<div><img src="img/logo_front.png" alt="logo_front" style="width:30%"></div>
+<p class = "img_src" style="font-size: 170%">AIR와 함께 맞춤형 문제들을 통해 효과적인 공부를 해보세요!</p>
 
+<!-- <a href="http://naver.com"><img src="img/button_start.png" style="width:70%" class="hoverable"></a> -->
+<a href="http://naver.com"><div id="start_button">학 습 시 작</div></a>
+<!-- Page Content goes here -->
+</div>
+<!--Import jQuery before materialize.js-->
 
+<!-- stylesheet -->
+<style media="screen">
+  #start_button {
+    display: inline-block;
+    padding: 5px 420px ;
+    font-size: 32px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #02aad1;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 5px 5px #999;
+  }
 
-      <div class="row">
-        <div class="section center-align">
-          <h4 style="margin: 60px 0px 0px 0px">A   I   R</h4>
-          <p style="margin: 0px 0px 0px 0px"><strong>AI</strong>   <strong>P</strong>roblem   <strong>R</strong>ecomender</p>
-        </div>
-        <div class="divider black"></div>
-        <div class="main_buttons">
-          <a href="http://naver.com" style="color: inherit;"><div class="col s2 hoverable " style="padding-bottom: 20px;padding-top: 20px;">홈</div></a>
-          <a href="http://naver.com" style="color: inherit;"><div class="col s2 hoverable " style="padding-bottom: 20px;padding-top: 20px;">시험범위</div></a>
-          <a href="http://naver.com" style="color: inherit;"><div class="col s2 hoverable " style="padding-bottom: 20px;padding-top: 20px;">문제풀기</div></a>
-          <a href="http://naver.com" style="color: inherit;"><div class="col s2 hoverable " style="padding-bottom: 20px;padding-top: 20px;">내성취도</div></a>
-          <a href="http://naver.com" style="color: inherit;"><div class="col s2 hoverable " style="padding-bottom: 20px;padding-top: 20px;">MY PAGE</div></a>
-          <a href="http://naver.com" style="color: inherit;"><div class="col s2 hoverable " style="padding-bottom: 20px;padding-top: 20px;">로그인/회원가입</div></a>
-
-        </div>
-      </div>
-      <div><img src="img/logo_front.png" alt="logo_front" style="width:30%"></div>
-      <p class = "img_src" style="font-size: 170%">AIR와 함께 맞춤형 문제들을 통해 효과적인 공부를 해보세요!</p>
-
-      <a href="http://naver.com"><img src="img/button_start.png" style="width:70%" class="hoverable"></a>
-     <!-- Page Content goes here -->
-   </div>
-    <!--Import jQuery before materialize.js-->
-
-
-
-  </body>
-</html>
+  #start_button:hover {background-color: #00008B;}
+  img{
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+  p{
+    padding: 20px 20px 20px 20px;
+  }
+</style>
