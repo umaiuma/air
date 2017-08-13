@@ -11,10 +11,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 
-<body>
+<body style="font-family: AppleSDGothicNeo; height: 100%;" >
 
 <div class="row" style="background-color: #d8f4ff">
-  <div class="left-align" style="border:0%; font-size:1vw;">
+  <div class="left-align" style="border:0%; font-size:1vw;height:1vh;">
     <% if current_user %>
         <%= current_user.username %><%= link_to "Log out", logout_path, method: :destroy %>
     <% else %>
@@ -22,26 +22,31 @@
     <% end %>
   </div>
 
-  <div class="center-align">
-    <a href="/" style="color: inherit;"><div class="col s2 " style="padding-bottom: 0%;padding-top: 0.5%; font-size: 3vw;">A   I   R</div></a>
-    <a href="http://naver.com" style="color: inherit;"><div class="col s2 hoverable air_nav" style="padding-bottom: 2%;padding-top: 1.5%;">홈</div></a>
-    <a href="http://naver.com" style="color: inherit;"><div class="col s2 hoverable air_nav" style="padding-bottom: 2%;padding-top: 1.5%;">시험범위</div></a>
-    <a href="http://naver.com" style="color: inherit;"><div class="col s2 hoverable air_nav" style="padding-bottom: 2%;padding-top: 1.5%;">문제풀기</div></a>
-    <a href="http://naver.com" style="color: inherit;"><div class="col s2 hoverable air_nav" style="padding-bottom: 2%;padding-top: 1.5%;">내성취도</div></a>
-    <a href="/login" style="color: inherit;"><div class="col s2 hoverable air_nav" style="padding-bottom: 2%;padding-top: 1.5%;">로그인/회원가입</div></a>
+  <div class="center-align"style="height:7vh; margin-right:6.25vw; margin-left:6.25vw;padding:0;">
+    <a href="/"><div class="col s2 air_nav" style="font-size: 2vw;width:25vw padding:0;">A   I   R</div></a>
+    <a href="http://naver.com" ><div class="col s2 hoverable air_nav" >홈</div></a>
+    <a href="http://naver.com"><div class="col s2 hoverable air_nav">시험범위</div></a>
+    <a href="http://naver.com"><div class="col s2 hoverable air_nav">문제풀기</div></a>
+    <a href="http://naver.com"><div class="col s2 hoverable air_nav">내성취도</div></a>
+    <a href="/login"><div class="col s2 hoverable air_nav">로그인/회원가입</div></a>
   </div>
 </div>
-<div class="container center-align">
   <%= yield %>
-</div>
 </body>
 </html>
 
 
 <style>
 .air_nav{
-  padding-bottom: 1.5rem;
-  padding-top: 2rem;
+  width: 12.5vw;
+   height:6vh;
+   padding:0;
+  color: inherit;
+  display: flex;justify-content: center;align-items:center;/*Vertical centering*/
+  height: 100%;
+  text-align: center;
+      /*padding-bottom: 1.5rem;
+  padding-top: 2rem;*/
   font-size: 1.5vw;
   color: black;
 }
