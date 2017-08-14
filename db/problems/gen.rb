@@ -11,7 +11,7 @@ def file_gen id, subject_num, chapter_num, difficulty, patterns
     f.puts name
     patterns.each do |pattern|
       f.print 'pt'
-      f.print format("%02d",pattern)
+      f.print format("%03d",pattern)
       if pattern != patterns[-1]
         f.print','
       else
@@ -30,7 +30,7 @@ def file_gen id, subject_num, chapter_num, difficulty, patterns
 end
 subject=1
 (1..8).each do |chapter|
-  (1..10).each do |pattern|
+  ((chapter-1)*10+1..(chapter-1)*10+10).each do |pattern|
     #single pattern
     patterns = [pattern]
     (1..7).each do
@@ -47,7 +47,7 @@ subject=1
     end
 
     #double pattern
-    (pattern+1..10).each do |pattern_second|
+    (pattern+1..(chapter-1)*10+10).each do |pattern_second|
       patterns =[pattern, pattern_second]
       (1..4).each do
         file_gen(problem_id, subject, chapter,  2, patterns)
@@ -59,7 +59,7 @@ subject=1
       end
 
       #triple pattern
-      (pattern_second+1..10).each do |pattern_third|
+      (pattern_second+1..(chapter-1)*10+10).each do |pattern_third|
         patterns=[pattern,pattern_second,pattern_third]
         (1..3).each do
           file_gen(problem_id, subject, chapter,  3, patterns)

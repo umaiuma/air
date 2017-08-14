@@ -50,7 +50,8 @@ ActiveRecord::Schema.define(version: 20170807095855) do
     t.string "chapter_name"
     t.string "problem_html"
     t.string "solution_html"
-    t.integer "difficulty"
+    t.string "difficulty"
+    t.string "answer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
