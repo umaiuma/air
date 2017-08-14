@@ -7,4 +7,6 @@ class ProblemsController < ApplicationController
     @patterns = @problem.patterns
 
   end
+  def front
+  end
 end

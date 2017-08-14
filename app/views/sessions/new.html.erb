@@ -12,69 +12,58 @@
 
 </head>
 
-<body style="background-color: #d8f4ff">
+<body style="background-color: #d8f4ff" >
 
-<div class="center-align">
-  <div class="container">
-    <img src="img/logo_front.png" alt="logo_front" style="width:10%; margin:60px;">
-    <div class="row" style="width: auto;">
-      <a href="signup" style="color: inherit;"class="col s2 offset-s1" >회 원 가 입</a>
-      <a href="http://naver.com" class="col s2 offset-s4"style="color: inherit; width:180px">아 이 디   찾 기</a> <div class="col s1" id = "bar">|</div> <a href="http://naver.com" style="color: inherit; width: 180px"class="col s2">비 밀 번 호   찾 기</a>
-    </div>
-    <div class="submit_form" >
+  <div class="container center-align row flow-text">
+    <a href="/"><img src="img/logo_front.png" alt="logo_front" style="width:150px; margin:5%;"></a>
+    <div class="submit_form col s10 offset-s1">
+      <div style="margin-left: 5%;"><a href="signup" style="color: inherit; " class="left" >회  원  가  입</a><a href="#" style="color: inherit; font-size: 1em;" class="right" >아 이 디   찾 기</a><a href="#" style="color: inherit; font-size: 1em; margin-left: 2%; margin-right: 2%;" class="right" >|</a><a href="login" style="color: inherit;" class="right" >비 밀 번 호   찾 기</a></div>
       <%= form_for(:session, url: login_path) do |f| %>
-          <div><%= f.text_field :username, :placeholder => "id",id:"submit_space"%></div>
-          <div><%= f.password_field :password, :placeholder => "Password", id:"submit_space"%></div>
-          <%= f.submit "로  그  인", id: "submit_button" %>
+        <%= f.text_field :username, :placeholder => "id",id:"submit_space"%>
+        <%= f.password_field :password, :placeholder => "Password", id:"submit_space"%>
+        <%= f.submit "로  그  인", id: "submit_button" %>
       <% end %>
+      </div>
     </div>
-  </div>
-</div>
 
 
 </body>
 </html>
 
-
 <!-- stylesheet -->
 <style media="screen">
-  #bar {
-    width: 10px;
-  }
-  #submit_space {
-    height: auto;
-    width: 859px;
-    background-color: white;
+#submit_space {
+  height: auto;
+  width: 85%;
+  background-color: white;
+  /*display: inline-block;*/
+  padding: 2%;
+  margin: 1%;
+  font-size: 32px;
+  color: black;
+  border-radius: 10px;
+  box-shadow: 5px 5px #02aad1;
+  text-overflow: ellipsis;
+}
+#submit_space:hover {box-shadow:5px 5px #00008B;}
 
+#submit_button {
+  display: inline-block;
+  /*padding: 5px 420px ;*/
+  width: 90%;
+  padding: 2%;
+  font-size: 110%;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #02aad1;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 5px 5px #999;
+  margin: 3%;
+}
 
-    display: inline-block;
-    padding: 25px 50px ;
-    margin: 10px;
-    font-size: 32px;
-    text-align: left;
-    color: black;
-
-    border: none;
-    border-radius: 10px;
-    box-shadow: 5px 5px #02aad1;
-  }
-  #submit_space:hover {box-shadow:5px 5px #00008B;}
-
-  #submit_button {
-    display: inline-block;
-    padding: 5px 420px ;
-    font-size: 32px;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    outline: none;
-    color: #fff;
-    background-color: #02aad1;
-    border: none;
-    border-radius: 10px;
-    box-shadow: 5px 5px #999;
-    margin: 30px;
-  }
-
-  #submit_button:hover {background-color: #00008B;box-shadow: 5px 5px #02aad1;}
+#submit_button:hover {background-color: #00008B;box-shadow: 5px 5px #02aad1;}
 </style>
