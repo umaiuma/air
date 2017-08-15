@@ -18,7 +18,7 @@ def file_gen id, subject_num, chapter_num, difficulty, patterns
         f.puts ''
       end
     end
-    f.print 'df'
+
     f.puts difficulty
     f.puts answer
     f.puts subject_name
