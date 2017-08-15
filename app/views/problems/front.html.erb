@@ -8,13 +8,20 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="col s8 round_button box_shadow"id="input_box">답  입  력
-      </div>
-      <a href="problems"><div class="col s4 round_button box_shadow"id="submit_button">제  출
-      </div></a>
+      <%= form_for(:problem, url: mark_path) do |f| %>
+        <div class="row">
+          <div class="col s8 round_button box_shadow",id=input_box" >
+            <%= f.text_field :user_answer, :placeholder => 'answer'  %>
+          </div>
+          <div class="col s4 round_button box_shadow",id=submit_button">
+            <%= f.submit '제출' %>
+          </div>
 
-    </div>
+
+        </div>
+
+  <% end%>
+
     <div class="row">
       <a href="problems"><div class="col s12 round_button box_shadow" id="answer_button">정  답  보  기
 
