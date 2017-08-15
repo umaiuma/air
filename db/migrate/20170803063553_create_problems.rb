@@ -6,7 +6,7 @@ class CreateProblems < ActiveRecord::Migration[5.1]
       t.string :chapter_name
       t.string :problem_html
       t.string :solution_html
-      t.string :difficulty
+      t.integer :difficulty
       t.string :answer
 
       t.timestamps

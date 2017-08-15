@@ -1,6 +1,8 @@
-answer: <%=@text%>
-<% if(@text == @problem.answer) %>
-<%= 'CORRECT!!!' %>
-<% else %>
-<%= 'INCORRECT!!!'%>
+<%@user.meters.each do |meter|%>
+    <p>
+      pattern name: <%=meter.pattern_name%>
+      pattern score: <%= meter.score%>
+    </p>
+    <%=link_to 'back to problems ', problems_path%>
 <%end%>
+

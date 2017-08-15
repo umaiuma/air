@@ -14,7 +14,7 @@
   end
 end
 
-total =730
+total =50
 query = []
 
 (1..total).each do |file_num|
@@ -46,3 +46,5 @@ end
 
 
 
+user = User.create(username: "umaiuma", password:"air", password_confirmation:"air")
+user.generate_exam("exam1")

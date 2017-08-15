@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170807095855) do
+ActiveRecord::Schema.define(version: 20170815072451) do
 
   create_table "chapters", force: :cascade do |t|
     t.integer "subject_id"
@@ -27,6 +27,17 @@ ActiveRecord::Schema.define(version: 20170807095855) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_exams_on_user_id"
+  end
+
+  create_table "meters", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "pattern_name"
+    t.float "score"
+    t.float "combo"
+    t.float "sign"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_meters_on_user_id"
   end
 
   create_table "parts", force: :cascade do |t|
@@ -50,7 +61,7 @@ ActiveRecord::Schema.define(version: 20170807095855) do
     t.string "chapter_name"
     t.string "problem_html"
     t.string "solution_html"
-    t.string "difficulty"
+    t.integer "difficulty"
     t.string "answer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
