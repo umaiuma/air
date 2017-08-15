@@ -24,5 +24,8 @@ class Meter < ApplicationRecord
 
 
   end
+  def first
+    return self
+  end
 end
 

@@ -48,6 +48,40 @@ class ProblemsController < ApplicationController
       meter.set_score(diff)
     end
 
+    score_minimum= @user.meters.minimum("score")
+    recommend_meter= @user.meters.find_by(score: score_minimum)
+    if score_minimum<-2
+      recommend_diff = 1
+    elsif score_minimum < 2
+      recommend_diff =2
+    else
+      recommend_diff =3
+    end
+    recommend_pattern =Pattern.find_by(name: recommend_meter.pattern_name)
+    recommend_problems = recommend_pattern.problems.where(difficulty: recommend_diff)
+    recommend_problems.each do |pb|
+      if ! @user.history_problems.find_by(problem_id:pb.id)
+        @recommend_problem = pb
+        break
+      end
+
+    end
+
+    if !@recommend_problem
+      recommend_pattern.problems.each do |pb|
+        if ! @user.history_problems.find_by(problem_id:pb.id)
+          @recommend_problem = pb
+          break
+        end
+      end
+    end
+
+    if @recommend_problem
+      #redirect_to problem_path(@recommend_problem)
+    end
+
+
+
 
 
 
