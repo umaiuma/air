@@ -1,1 +1,6 @@
 answer: <%=@text%>
+<% if(@text == @problem.answer) %>
+<%= 'CORRECT!!!' %>
+<% else %>
+<%= 'INCORRECT!!!'%>
+<%end%>

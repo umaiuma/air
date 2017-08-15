@@ -8,9 +8,13 @@ class ProblemsController < ApplicationController
 
   end
   def front
+
   end
   def mark
-    @text = params[:problem][:user_answer]
+    @text = params[:mark][:user_answer]
+    @problem =Problem.find(params[:id])
+
+
 
   end
 end

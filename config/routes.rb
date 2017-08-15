@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   get 'logout' => 'sessions#destroy'
   get 'signup' => 'users#new'
   get 'problemsfront' => 'problems#front'
-  post 'mark' => 'problems#mark'
+  post 'mark/:id' => 'problems#mark', as:'mark'
 
 
 

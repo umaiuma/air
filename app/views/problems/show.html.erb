@@ -1,19 +1,114 @@
-<h2>Single Problem: <%=@problem.name%></h2>
-<div>
-  <p><%= @problem.problem_html %></p>
-</div>
-<h2>patterns</h2>
-<% @patterns.each do |pattern| %>
-    <div>
-      <p><%=pattern.name%></p>
-      <%= link_to "view more", pattern_path(pattern) %>
+<div class="row" style="margin-top: 10vh;">
+  <div class="col s4 offset-s1">
+    <div class="row">
+      <div class="image_box box_shadow" id="problem_box">
+        <div class="scroll_problem ">
+          <%=@problem.problem_html%>
+        </div>
+      </div>
     </div>
-<% end %>
 
-<div>
-  <%= link_to "patterns list", patterns_path %>
-</div>
+    <%= form_for(:mark, url: mark_path(@problem) )do |f| %>
+        <div class="row">
+          <div class="col s8 round_button box_shadow",id=input_box" >
+            <%= f.text_field :user_answer, :placeholder => 'answer'  %>
+          </div>
+          <div class="col s4 round_button box_shadow",id=submit_button">
+            <%= f.submit '제출' %>
+          </div>
 
-<div>
-  <%= link_to "problems list", problems_path %>
+
+        </div>
+
+    <% end%>
+
+
+
+    <div class="row">
+      <a href="problems"><div class="col s12 round_button box_shadow" id="answer_button">정  답  보  기
+
+      </div></a>
+
+    </div>
+  </div>
+  <div class="col s5">
+    <div class="image_box box_shadow" id="answer_box">
+
+      <div class="scroll_problem ">
+        <%= @problem.solution_html%>
+      </div>
+    </div>
+  </div>
+
+
 </div>
+<!-- stylesheet -->
+<style media="screen">
+  /*
+  #input_answer {
+    height: auto;
+    width: 85%;
+    background-color: white;
+    padding: 2%;
+    margin: 1%;
+    font-size: 32px;
+    color: black;
+    border-radius: 10px;
+    box-shadow: 5px 5px #02aad1;
+    text-overflow: ellipsis;
+  }*/
+  .row{
+    margin:0;
+  }
+  .scroll_problem{
+    margin: 0;
+    overflow-x: hidden;
+    word-wrap: break-word;
+    height: 100%;
+  }
+  .image_box{
+    width: 100%;
+    border: 1px solid black;
+    padding: 10px;
+    margin-bottom: 0;
+  }
+  #problem_box{
+    height:50vh;
+  }
+  #answer_box{
+    height:69.5vh;
+    margin-left: 5vw;
+  }
+  .box_shadow{
+    border-radius: 10px;
+    box-shadow: 5px 5px #999;
+  }
+  .round_button{
+    height:6.25vh;
+    margin-top: 3.25vh;
+    font-size: 2em;
+    cursor: pointer;
+  }
+
+  #input_box{
+    display: flex;align-items:center;
+    color: gray;
+    box-shadow: 5px 5px #02aad1;
+    cursor: text;
+  }
+  #submit_button{
+    display: flex;justify-content: center;align-items:center;
+    color: white;
+    background-color: yellowgreen;
+    box-shadow: 5px 5px #02aad1;
+  }
+  #answer_button{
+    display: flex;justify-content: center;align-items:center;
+    color: white;
+    background-color: red;
+  }
+  #input_box:hover {box-shadow: 5px 5px #00008B;}
+  #submit_button:hover {background-color: green;box-shadow: 5px 5px #00008B;}
+  #answer_button:hover {background-color: black;box-shadow: 5px 5px #02aad1;}
+
+</style>
