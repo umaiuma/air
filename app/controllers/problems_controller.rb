@@ -11,15 +11,33 @@ class ProblemsController < ApplicationController
 
   end
   def mark
+
     @user = User.find(session[:user_id])
     diff = 0
     text = params[:mark][:user_answer]
     @problem =Problem.find(params[:id])
     if text != @problem.answer
       diff = -(4-@problem.difficulty)
+
     else
       diff = @problem.difficulty
     end
+
+    if last_problem = @user.history_problems.find_by(problem_id: @problem.id)
+    else
+      last_problem = HistoryProblem.new(user: @user, problem_id: @problem.id, correct: false)
+    end
+
+    if diff>0
+      last_problem.correct = true
+    else
+      last_problem.correct = false
+    end
+
+    last_problem.save
+    last_problem.user.save
+
+
     @problem.patterns.each do |pattern|
       if meter = @user.meters.find_by(pattern_name:pattern.name)
       else
@@ -29,6 +47,7 @@ class ProblemsController < ApplicationController
       end
       meter.set_score(diff)
     end
+
 
 
 

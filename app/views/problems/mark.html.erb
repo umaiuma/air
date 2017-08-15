@@ -1,3 +1,4 @@
+
 <%@user.meters.each do |meter|%>
     <p>
       pattern name: <%=meter.pattern_name%>
@@ -6,3 +7,8 @@
     <%=link_to 'back to problems ', problems_path%>
 <%end%>
 
+
+<% @user.history_problems.each do |hpb| %>
+    <% pb_in_db=Problem.find(hpb.problem_id) %>
+    <p> name: <%=pb_in_db.name%> correctness: <%=hpb.correct%></p>
+<% end %>
