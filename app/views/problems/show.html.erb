@@ -10,11 +10,11 @@
 
     <%= form_for(:mark, url: mark_path(@problem) )do |f| %>
         <div class="row">
-          <div class="col s8 round_button box_shadow",id=input_box" >
-            <%= f.text_field :user_answer, :placeholder => 'answer'  %>
+          <div class="col s8 round_button box_shadow"id="input_box" >
+            <%= f.text_field :user_answer, :placeholder => '답  입 력', id:"textarea"  %>
           </div>
-          <div class="col s4 round_button box_shadow",id=submit_button">
-            <%= f.submit '제출' %>
+          <div class="col s4">
+            <%= f.submit '제  출', class:" round_button box_shadow", id:"submit_button" %>
           </div>
 
 
@@ -57,6 +57,21 @@
     box-shadow: 5px 5px #02aad1;
     text-overflow: ellipsis;
   }*/
+  #textarea {
+    border-bottom: none !important;
+    margin: 0 ;
+    font-size: 1.5rem;
+
+  }
+  #textarea::placeholder {
+    color: red;
+  }
+  #textarea:focus{
+    border: black;
+    color: black;
+    background-color: red;
+
+  }
   .row{
     margin:0;
   }
@@ -81,13 +96,14 @@
   }
   .box_shadow{
     border-radius: 10px;
-    box-shadow: 5px 5px #999;
+    box-shadow: 5px 5px #999 ;
   }
   .round_button{
     height:6.25vh;
     margin-top: 3.25vh;
-    font-size: 2em;
-    cursor: pointer;
+    font-size: 1.5em;
+    /*cursor: pointer;*/
+
   }
 
   #input_box{
@@ -95,12 +111,15 @@
     color: gray;
     box-shadow: 5px 5px #02aad1;
     cursor: text;
+    border:1px solid gray;
   }
   #submit_button{
     display: flex;justify-content: center;align-items:center;
     color: white;
     background-color: yellowgreen;
-    box-shadow: 5px 5px #02aad1;
+    border: none;
+    box-shadow: 5px 5px #02aad1 ;
+    width: 100%;
   }
   #answer_button{
     display: flex;justify-content: center;align-items:center;
