@@ -4,45 +4,104 @@
     학습시작
   </li>
   <li class="hyegun_box tests" id="new_test" style="font-family:fontello">
-    <div class="list">&#xe802</div> 새로운 시험 만들기
+    <div class="icon">&#xe802</div> 새로운 시험 만들기
   </li>
-  <li class="hyegun_box studies tests">
-    <div class="list">&#xe800</div> 시험A
+  <li>
+    <div class="hyegun_box studies tests"><div class="icon">&#xe801</div> 시험A</div>
+    <ul>
+      <li>
+        <div class="hyegun_box studies subjects"><div class="icon">&#xe801</div> 아두이노</div>
+        <ul>
+          <li>
+            <div class="hyegun_box studies chapters"> 1단원</div>
+          </li>
+          <li>
+            <div class="hyegun_box studies chapters"> 2단원</div>
+          </li>
+          <li>
+            <div class="hyegun_box studies chapters"> 3단원</div>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <div class="hyegun_box studies subjects"><div class="icon">&#xe801</div> 디자이노</div>
+        <ul>
+          <li>
+            <div class="hyegun_box studies chapters"> 1단원</div>
+          </li>
+          <li>
+            <div class="hyegun_box studies chapters"> 2단원</div>
+          </li>
+          <li>
+            <div class="hyegun_box studies chapters"> 3단원</div>
+          </li>
+        </ul>
+      </li>
+    </ul>
   </li>
-  <li class="hyegun_box studies tests">
-    <div class="list">&#xe801</div> 시험B
+  <li>
+    <div class="hyegun_box studies tests"><div class="icon">&#xe801</div> 시험B</div>
+    <ul>
+      <li>
+        <div class="hyegun_box studies subjects"><div class="icon">&#xe801</div> 수학</div>
+        <ul>
+          <li>
+            <div class="hyegun_box studies chapters"> 1단원</div>
+          </li>
+          <li>
+            <div class="hyegun_box studies chapters"> 2단원</div>
+          </li>
+          <li>
+            <div class="hyegun_box studies chapters"> 3단원</div>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <div class="hyegun_box studies subjects"><div class="icon">&#xe801</div> 물리학</div>
+        <ul>
+          <li>
+            <div class="hyegun_box studies chapters"> 1단원</div>
+          </li>
+          <li>
+            <div class="hyegun_box studies chapters"> 2단원</div>
+          </li>
+          <li>
+            <div class="hyegun_box studies chapters"> 3단원</div>
+          </li>
+        </ul>
+      </li>
+    </ul>
   </li>
-  <ul>
-    <li>
-      <div class="hyegun_box studies subjects"><div class="list">&#xe801</div> 수학</div>
-      <ul>
-        <li>
-          <div class="hyegun_box studies chapters"> 1단원</div>
-        </li>
-      </ul>
-    </li>
-    <li class="hyegun_box studies subjects">
-      <div class="list">&#xe800</div> 물리학
-    </li>
-  </ul>
+
   <li class="hyegun_box studies subjects" id="new_subject">
-    <div class="list">&#xe802</div> 과목 추가하기
+    <div class="icon_plus">&#xe802</div> 과목 추가하기
   </li>
 </ul>
-<!--
-<div class="row" style="margin-top: 10vh;">
-
-    <div class="row">
-      <a href="problems"><div class="col s12 round_button box_shadow" id="answer_button">정  답  보  기
-
-      </div></a>
-
-    </div> -->
 
 
-<!-- stylesheet -->
 
+
+
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+$('.icon').click(function(){
+  var display_check=$(this).parent().parent().children('ul');
+  if(display_check.css("display")=="none"){
+    display_check.slideDown();
+    $(this).html('&#xe801')
+  }
+  else{
+    display_check.slideUp();
+    $(this).html('&#xe800')
+  }
+})
+
+</script>
 <style media="screen">
+.icon{
+  width: 5rem;
+}
 *{
   font-family: fontello;
   box-sizing: border-box;
@@ -73,6 +132,9 @@
 .studies{
   margin-top: 2vh;
   box-shadow: 5px 5px #02aad1;
+}
+.studies:hover{
+
 }
 .tests{
   padding-left:4rem;
