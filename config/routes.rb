@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'list/index'
+
   get 'welcome/index'
   root 'welcome#index'
   concern :partable do
@@ -26,6 +28,8 @@ Rails.application.routes.draw do
   get 'signup' => 'users#new'
   get 'problemsfront' => 'problems#front'
   post 'mark/:id' => 'problems#mark', as:'mark'
+  get 'list' => 'list#index'
+  get 'tree' => 'list#tree'
 
 
 

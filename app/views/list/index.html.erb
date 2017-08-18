@@ -1,0 +1,171 @@
+<link rel="stylesheet" href="list_fontello/css/fontello.css">
+<ul class="container center-align">
+  <li class="hyegun_box" id="start_study">
+    학습시작
+  </li>
+  <li class="hyegun_box tests" id="new_test" style="font-family:fontello">
+    <div class="list">&#xe802</div> 새로운 시험 만들기
+  </li>
+  <li class="hyegun_box studies tests">
+    <div class="list">&#xe800</div> 시험A
+  </li>
+  <li class="hyegun_box studies tests">
+    <div class="list">&#xe801</div> 시험B
+  </li>
+  <ul>
+    <li>
+      <div class="hyegun_box studies subjects"><div class="list">&#xe801</div> 수학</div>
+      <ul>
+        <li>
+          <div class="hyegun_box studies chapters"> 1단원</div>
+        </li>
+      </ul>
+    </li>
+    <li class="hyegun_box studies subjects">
+      <div class="list">&#xe800</div> 물리학
+    </li>
+  </ul>
+  <li class="hyegun_box studies subjects" id="new_subject">
+    <div class="list">&#xe802</div> 과목 추가하기
+  </li>
+</ul>
+<!--
+<div class="row" style="margin-top: 10vh;">
+
+    <div class="row">
+      <a href="problems"><div class="col s12 round_button box_shadow" id="answer_button">정  답  보  기
+
+      </div></a>
+
+    </div> -->
+
+
+<!-- stylesheet -->
+
+<style media="screen">
+*{
+  font-family: fontello;
+  box-sizing: border-box;
+}
+.hyegun_box{
+  height: 6vh;
+  border-radius: 10px;
+  box-shadow: 5px 5px #999 ;
+  display: flex;justify-content: center;align-items:center;
+  font-size: 2rem;
+  letter-spacing: 1rem;
+
+}
+#start_study{
+  background-color: yellowgreen;
+  font-weight: bold;
+  color: white;
+  margin-top: 6vh;
+}
+#new_test{
+  background-color: #02aad1;
+  font-weight: bold;
+  color: white;
+  box-shadow: 5px 5px #999 ;
+  margin-top: 3vh;
+
+}
+.studies{
+  margin-top: 2vh;
+  box-shadow: 5px 5px #02aad1;
+}
+.tests{
+  padding-left:4rem;
+  font-weight: bold;
+  justify-content: left;
+
+}
+.subjects{
+  padding-left:12rem;
+  font-weight: normal;
+  justify-content: left;
+
+}
+.chapters{
+  padding-left:20rem;
+  font-weight: normal;
+  justify-content: left;
+  left: 2rem;
+}
+#new_subject{
+  color: #02aad1;
+}
+  #textarea {
+    border-bottom: none !important;
+    margin: 0 ;
+    font-size: 1.5rem;
+
+  }
+  #textarea::placeholder {
+    border: blue;
+  }
+  #textarea:focus{
+    border: black;
+    color: black;
+    border-top: blue;
+
+  }
+  .row{
+    margin:0;
+  }
+  .scroll_problem{
+    margin: 0;
+    overflow-x: hidden;
+    word-wrap: break-word;
+    height: 100%;
+  }
+  .image_box{
+    width: 100%;
+    border: 1px solid black;
+    padding: 10px;
+    margin-bottom: 0;
+  }
+  #problem_box{
+    height:50vh;
+  }
+  #answer_box{
+    height:69.5vh;
+    margin-left: 5vw;
+  }
+  .box_shadow{
+    border-radius: 10px;
+    box-shadow: 5px 5px #999 ;
+  }
+  .round_button{
+    height:6.25vh;
+    margin-top: 3.25vh;
+    font-size: 1.5em;
+    /*cursor: pointer;*/
+
+  }
+
+  #input_box{
+    display: flex;align-items:center;
+    color: gray;
+    box-shadow: 5px 5px #02aad1;
+    cursor: text;
+    border:1px solid gray;
+  }
+  #submit_button{
+    display: flex;justify-content: center;align-items:center;
+    color: white;
+    background-color: yellowgreen;
+    border: none;
+    box-shadow: 5px 5px #02aad1 ;
+    width: 100%;
+  }
+  #answer_button{
+    display: flex;justify-content: center;align-items:center;
+    color: white;
+    background-color: red;
+  }
+  #input_box:hover {box-shadow: 5px 5px #00008B;}
+  #submit_button:hover {background-color: green;box-shadow: 5px 5px #00008B;}
+  #answer_button:hover {background-color: black;box-shadow: 5px 5px #02aad1;}
+
+</style>
