@@ -29,6 +29,8 @@ Rails.application.routes.draw do
   get 'problemsfront' => 'problems#front'
   post 'mark/:id' => 'problems#mark', as:'mark'
   get 'list' => 'list#index'
+  get 'list2' => 'list#index2'
+  get 'list3' => 'list#index3'
   get 'tree' => 'list#tree'
 
 
