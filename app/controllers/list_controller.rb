@@ -6,5 +6,7 @@ class ListController < ApplicationController
   def index3
   end
   def tree
+    @user = User.find(session[:user_id])
+
   end
 end

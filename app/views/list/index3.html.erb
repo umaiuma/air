@@ -1,4 +1,6 @@
 <link rel="stylesheet" href="list_fontello/css/fontello.css">
+
+
 <ul class="container center-align">
   <li class="hyegun_box" id="start_study">
     학습시작
@@ -77,6 +79,27 @@ var fullSubjectHtml=function(Subject){
   subject_html+='</ul></li>';
   return subject_html;
 }
+var Chapter={
+    'name':'',
+    'onStudy':0,
+}
+var Subject={
+    'name':'',
+    'onExam':0,
+    'onStudy':0,
+    'chapters':[]
+}
+var Test={
+    'name':'',
+    'onExam':0,
+    'onStudy':0,
+    'subjects':[]
+
+}
+var User={
+
+}
+
 var subjectMath={
   'name':'math',
   'title':"수학",

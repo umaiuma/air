@@ -43,9 +43,88 @@
       font-family: fontello;
     }
   </style>
+
+    <script>
+        function A(){
+            this.name = '';
+            this.bs=[];
+        }
+        function B(){
+            this.name = '';
+        }
+        var a= new A();
+        a.name ='c';
+        var b = new B();
+        b.name ='d';
+        a.bs.push(b);
+        alert(a.name);
+
+        function Chapter(){
+            this.name ='';
+        }
+        function Subject(){
+            this.name ='';
+            this.chapters =[];
+        }
+        function Test(){
+            this.name='';
+            this.subjects =[];
+        }
+        function User(){
+            this.name='' ;
+            this.tests =[];
+
+        }
+        var current_user = new User();
+        current_user.name= '<%= @user.username%>';
+        var test_js;
+        var subject_js;
+        var chapter_js;
+        <% @user.exams.each do |exam| %>
+          test_js = new Test();
+          test_js.name = '<%=exam.name%>';
+          alert(test_js.name);
+          <% exam.subjects.each do |subject| %>
+            subject_js=new Subject();
+            subject_js.name = '<%= subject.name %>';
+            alert(subject_js.name);
+              <% subject.chapters.each do |chapter| %>
+                chapter_js=new Chapter();
+                chapter_js.name = '<%= chapter.name %>';
+                alert(chapter_js.name);
+                subject_js.chapters.push(chapter_js);
+
+              <%end%>
+            test_js.subjects.push(subject_js);
+          <% end %>
+          current_user.tests.push(test_js);
+
+
+        <% end %>
+
+        for (var i=0; i<current_user.tests.length;i++){
+            var test = current_user.tests[i];
+            alert(test.name);
+            for(var j=0;j<test.subjects.length;j++){
+                var subject = test.subjects[j];
+                alert(subject.name);
+                for(var k=0;k<subject.chapters.length;k++){
+                    var chapter = subject.chapters[k];
+                    alert(chapter.name);
+                }
+            }
+        }
+
+
+
+    </script>
+
+
 </head>
 
 <body>
+
+
   <ul class="tree">
     <li>
       <li>새로운 시험 만들기</li>
@@ -102,44 +181,6 @@
             </li>
           </ul>
         </li>
-<!--
-        <li><a href="https://opentutorials.org">node2</a></li>
-        <li>
-          <input type="checkbox" id="node3">
-          <label for="node3">node3</label>
-          <ul>
-            <li><a href="https://opentutorials.org">node31</a></li>
-            <li><a href="https://opentutorials.org">node32</a></li>
-            <li><a href="https://opentutorials.org">node33</a></li>
-          </ul>
-        </li>
-      </ul>
-    </li>
-
-
-
-
-
-
-
-  </ul>  <ul class="tree">
-      <li>
-        <div>ROOT</div>
-        <ul>
-          <li><a href="https://opentutorials.org">node1</a></li>
-          <li><a href="https://opentutorials.org">node2</a></li>
-          <li>
-            <input type="checkbox" id="node3">
-            <label for="node3">node3</label>
-            <ul>
-              <li><a href="https://opentutorials.org">node31</a></li>
-              <li><a href="https://opentutorials.org">node32</a></li>
-              <li><a href="https://opentutorials.org">node33</a></li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul> -->
 
 </body>
 
