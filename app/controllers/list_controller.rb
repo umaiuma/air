@@ -9,4 +9,8 @@ class ListController < ApplicationController
     @user = User.find(session[:user_id])
 
   end
+  def index4
+    @user = User.find(session[:user_id])
+
+  end
 end

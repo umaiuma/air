@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   get 'list' => 'list#index'
   get 'list2' => 'list#index2'
   get 'list3' => 'list#index3'
+  get 'list4' => 'list#index4'
   get 'tree' => 'list#tree'
 
 
