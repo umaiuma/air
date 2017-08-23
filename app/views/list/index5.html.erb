@@ -126,11 +126,11 @@ for (var i=0; i<current_user.tests.length;i++){
 
 $(document).ready(function(){
   for( var i=0; i<current_user.tests.length;i++){
-    alert("load1");
+    // alert("load1");
 
     $('.container').append(fullTestHtml(current_user.tests[i]));
   }
-  alert("load2");
+  // alert("load2");
 });
 
 
@@ -186,11 +186,11 @@ var dialog_checked = function(){
   var checks= $( ".dialog ul li div" );
   checks.each(function(i){
     if($(this).hasClass('checked')==true){
-      alert("hi "+$(this).parent().text());
+      // alert("hi "+$(this).parent().text());
       checked_list.push(i);
     }
   });
-  alert(checked_list);
+  // alert(checked_list);
   return checked_list;
 }
 $('.dialog').on("click",'.check',(function(){
