@@ -47,4 +47,5 @@ end
 
 
 user = User.create(username: "umaiuma", password:"air", password_confirmation:"air")
-user.generate_exam("exam1")
+user.generate_exam
+

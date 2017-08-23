@@ -8,9 +8,10 @@ class ListController < ApplicationController
   def tree
     @user = User.find(session[:user_id])
 
+
+
   end
   def index4
     @user = User.find(session[:user_id])
-
   end
 end
