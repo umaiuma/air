@@ -110,14 +110,55 @@
         }
 
 
+
         $.ajax({
-            url :'<%= debug_path %>',
+            url : '<%= exam_update_path %>',
+            type: 'post',
+            data: {
+                update_test_id: 0,
+                user_info : current_user
+
+              },
+            success: function(){
+                alert('success');
+            }
+        });
+        /*
+
+
+
+        $.ajax({
+            url : '<%= exam_generate_path %>',
             type: 'post',
             data: {
                 user_info : current_user
 
-              }
+              },
+            success: function(){
+                alert('success');
+            }
         });
+
+
+        /*
+
+
+
+
+        $.ajax({
+            url : '<%= exam_destroy_path %>',
+            type: 'post',
+            data: {
+                destroy_test_id : 0,
+                user_info : current_user
+
+              },
+            success: function(){
+                alert('success');
+            }
+        });
+        */
+
 
     </script>
 
