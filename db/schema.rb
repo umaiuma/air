@@ -15,7 +15,8 @@ ActiveRecord::Schema.define(version: 20170815112725) do
   create_table "chapters", force: :cascade do |t|
     t.integer "subject_id"
     t.string "name"
-    t.boolean "check"
+    t.boolean "onExam"
+    t.boolean "onStudy"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["subject_id"], name: "index_chapters_on_subject_id"
@@ -79,7 +80,8 @@ ActiveRecord::Schema.define(version: 20170815112725) do
   create_table "subjects", force: :cascade do |t|
     t.integer "exam_id"
     t.string "name"
-    t.boolean "check"
+    t.boolean "onExam"
+    t.boolean "onStudy"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["exam_id"], name: "index_subjects_on_exam_id"

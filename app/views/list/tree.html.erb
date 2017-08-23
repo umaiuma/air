@@ -1,4 +1,5 @@
 <!doctype html>
+
 <html>
 
 <head>
@@ -45,28 +46,20 @@
   </style>
 
     <script>
-        function A(){
-            this.name = '';
-            this.bs=[];
-        }
-        function B(){
-            this.name = '';
-        }
-        var a= new A();
-        a.name ='c';
-        var b = new B();
-        b.name ='d';
-        a.bs.push(b);
-        alert(a.name);
 
         function Chapter(){
             this.name ='';
+            this.onStudy=0;
+            this.onExam=0;
         }
         function Subject(){
             this.name ='';
             this.chapters =[];
+            this.onStudy=0;
+            this.onExam=0;
         }
         function Test(){
+            this.id=0;
             this.name='';
             this.subjects =[];
         }
@@ -83,18 +76,22 @@
         <% @user.exams.each do |exam| %>
           test_js = new Test();
           test_js.name = '<%=exam.name%>';
-          alert(test_js.name);
+          test_js.id = <%=exam.id%>
           <% exam.subjects.each do |subject| %>
             subject_js=new Subject();
             subject_js.name = '<%= subject.name %>';
-            alert(subject_js.name);
-              <% subject.chapters.each do |chapter| %>
+            subject_js.onExam = <%= subject.onExam %>;
+            subject_js.onStudy = <%= subject.onStudy %>;
+
+                    <% subject.chapters.each do |chapter| %>
                 chapter_js=new Chapter();
                 chapter_js.name = '<%= chapter.name %>';
-                alert(chapter_js.name);
+                chapter_js.onExam = <%= chapter.onExam %>;
+                chapter_js.onStudy = <%= chapter.onStudy %>;
                 subject_js.chapters.push(chapter_js);
 
-              <%end%>
+
+        <%end%>
             test_js.subjects.push(subject_js);
           <% end %>
           current_user.tests.push(test_js);
@@ -104,17 +101,63 @@
 
         for (var i=0; i<current_user.tests.length;i++){
             var test = current_user.tests[i];
-            alert(test.name);
             for(var j=0;j<test.subjects.length;j++){
                 var subject = test.subjects[j];
-                alert(subject.name);
                 for(var k=0;k<subject.chapters.length;k++){
                     var chapter = subject.chapters[k];
-                    alert(chapter.name);
                 }
             }
         }
 
+
+
+        $.ajax({
+            url : '<%= exam_update_path %>',
+            type: 'post',
+            data: {
+                update_test_id: 0,
+                user_info : current_user
+
+              },
+            success: function(){
+                alert('success');
+            }
+        });
+        /*
+
+
+
+        $.ajax({
+            url : '<%= exam_generate_path %>',
+            type: 'post',
+            data: {
+                user_info : current_user
+
+              },
+            success: function(){
+                alert('success');
+            }
+        });
+
+
+        /*
+
+
+
+
+        $.ajax({
+            url : '<%= exam_destroy_path %>',
+            type: 'post',
+            data: {
+                destroy_test_id : 0,
+                user_info : current_user
+
+              },
+            success: function(){
+                alert('success');
+            }
+        });
+        */
 
 
     </script>
