@@ -1,0 +1,190 @@
+<!doctype html>
+<html>
+
+<head>
+ <link rel="stylesheet" href="tree_fontello/css/fontello.css">
+  <style>
+    *{
+      color:#039be5 !important;
+
+    }
+    .tree{
+      color:#039be5;
+    }
+    .tree, .tree ul{
+      list-style: none;
+      padding-left:17px;
+    }
+    .tree *:before{
+      width:17px;
+      height:17px;
+      display:inline-block;
+    }
+    .tree label{
+      cursor: pointer;
+    }
+    .tree label:before{
+      content:'\e801';
+      font-family: fontello;
+    }
+
+    .tree input[type="checkbox"] + label::before{
+      top:0;left:0;right:0;bottom:0;
+      border: none;
+
+    }
+
+    .tree input[type="checkbox"]:checked~ul {
+      display: none;
+    }
+    .tree input[type="checkbox"]:checked+label::before{
+      transform: none;
+      content:'\e800';
+      font-family: fontello;
+    }
+  </style>
+</head>
+
+<body>
+  <ul class="tree">
+    <li>
+      <li>새로운 시험 만들기</li>
+      <ul>
+        <li>
+          <input type="checkbox" id="test1">
+          <label for="test1">시험A</label>
+          <ul>
+            <li><input type="checkbox" id="subject11" value="off">
+              <label for="subject11">아두이노</label>
+              <ul>
+                <li>과외</li>
+                <li>파이팅</li>
+              </ul>
+            </li>
+
+            <li>
+              <input type="checkbox" id="subject12">
+              <label for="subject12">코딩</label>
+              <ul>
+                <li>열심히</li>
+                <li>하자</li>
+              </ul>
+            </li>
+            <li>
+              <input type="checkbox" id="subject13">
+              <label for="subject13">디자인팀</label>
+              <ul>
+                <li>짱</li>
+                <li>멋져요</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <input type="checkbox" id="test2">
+          <label for="test2">시험B</label>
+          <ul>
+            <li><input type="checkbox" id="subject21">
+              <label for="subject21">수학</label>
+              <ul>
+                <li>단원1</li>
+                <li>단원2</li>
+              </ul>
+            </li>
+
+            <li>
+              <input type="checkbox" id="subject22">
+              <label for="subject22">물리학</label>
+              <ul>
+                <li>열심히</li>
+                <li>하자</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+<!--
+        <li><a href="https://opentutorials.org">node2</a></li>
+        <li>
+          <input type="checkbox" id="node3">
+          <label for="node3">node3</label>
+          <ul>
+            <li><a href="https://opentutorials.org">node31</a></li>
+            <li><a href="https://opentutorials.org">node32</a></li>
+            <li><a href="https://opentutorials.org">node33</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+
+
+
+
+
+
+
+  </ul>  <ul class="tree">
+      <li>
+        <div>ROOT</div>
+        <ul>
+          <li><a href="https://opentutorials.org">node1</a></li>
+          <li><a href="https://opentutorials.org">node2</a></li>
+          <li>
+            <input type="checkbox" id="node3">
+            <label for="node3">node3</label>
+            <ul>
+              <li><a href="https://opentutorials.org">node31</a></li>
+              <li><a href="https://opentutorials.org">node32</a></li>
+              <li><a href="https://opentutorials.org">node33</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul> -->
+
+</body>
+
+</html>
+<!-- <link rel="stylesheet" href="tree_fontello/css/fontello.css">
+
+<style>
+  .tree, .tree ul{
+    list-style: none;
+    padding-left: 1em;
+  }
+  .tree label:before{
+    content: '\e801';
+    font-family: fontello;
+  }
+  .tree a:before{
+    content:'\e800';
+    font-family:fontello;
+  }
+  .tree input[type="checkbox"]{
+    display: none !important;
+  }
+  .tree input[type="checkbox"]:checked~ul{
+    display: none;
+  }
+</style>
+
+
+<ul class="tree">
+  <li>
+    <input type="checkbox"  id="root">
+    <label for="root">ROOT</label>
+    <ul>
+      <li><a href="#">node1</a></li>
+      <li><a href="#">node2</a></li>
+      <li>
+        <input type="checkbox"id="node3">
+        <label for="node3">node3</label>
+        <ul>
+          <li><a href="#">node31</a></li>
+          <li><a href="#">node32</a></li>
+          <li><a href="#">node33</a></li>
+        </ul>
+      </li>
+    </ul>
+
+  </li>
+</ul> -->

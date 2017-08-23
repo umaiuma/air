@@ -1,0 +1,511 @@
+<link rel="stylesheet" href="list_fontello/css/fontello.css">
+
+
+<ul class="container center-align">
+  <li class="hyegun_box" id="start_study">
+    학습시작
+  </li>
+  <li class="hyegun_box tests" id="new_test" style="font-family:fontello">
+    <div class="label"><div class="icon_plus">&#xe802</div> 새로운 시험 만들기</div>
+  </li>
+
+  <!-- <li>
+    <div class="hyegun_box studies tests"><div class="label"><div class="icon">&#xe800</div><text>시험A</text></div><div class="test_control"><div>수정</div></div></div>
+    <ul>
+      <li>
+        <div class="hyegun_box studies subjects"><div class="icon">&#xe800</div> 아두이노</div>
+        <ul>
+          <li>
+            <div class="hyegun_box studies chapters"> 1단원</div>
+          </li>
+          <li>
+            <div class="hyegun_box studies chapters"> 2단원</div>
+          </li>
+          <li>
+            <div class="hyegun_box studies chapters"> 3단원</div>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <div class="hyegun_box studies subjects"><div class="icon">&#xe800</div> 디자이노</div>
+        <ul>
+          <li>
+            <div class="hyegun_box studies chapters"> 1단원</div>
+          </li>
+          <li>
+            <div class="hyegun_box studies chapters"> 2단원</div>
+          </li>
+          <li>
+            <div class="hyegun_box studies chapters"> 3단원</div>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <div class="hyegun_box studies subjects" id="new_subject"><div class="icon_plus">&#xe802</div> 과목 추가하기</div>
+
+      </li>
+    </ul>
+  </li> -->
+</ul>
+
+
+<div class="dialog" title="과목 선택">
+  <ul>
+    <li>수  학 <div class="check">&#xe803</div></li>
+    <li>물  리 <div class="check">&#xe803</div></li>
+    <li>화  학 <div class="check">&#xe803</div></li>
+    <li><div>취소</div><div>|</div><div>확인</div>
+</li>
+  </ul>
+</div>
+
+
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+function Chapter(){
+    this.name ='';
+}
+function Subject(){
+    this.name ='';
+    this.chapters =[];
+}
+function Test(){
+    this.name='';
+    this.subjects =[];
+}
+function User(){
+    this.name='' ;
+    this.tests =[];
+
+}
+var current_user = new User();
+current_user.name= '<%= @user.username%>';
+var test_js;
+var subject_js;
+var chapter_js;
+<% @user.exams.each do |exam| %>
+  test_js = new Test();
+  test_js.name = '<%=exam.name%>';
+  // alert(test_js.name);
+  <% exam.subjects.each do |subject| %>
+    subject_js=new Subject();
+    subject_js.name = '<%= subject.name %>';
+    // alert(subject_js.name);
+      <% subject.chapters.each do |chapter| %>
+        chapter_js=new Chapter();
+        chapter_js.name = '<%= chapter.name %>';
+        // alert(chapter_js.name);
+        subject_js.chapters.push(chapter_js);
+
+      <%end%>
+    test_js.subjects.push(subject_js);
+  <% end %>
+  current_user.tests.push(test_js);
+
+
+<% end %>
+
+for (var i=0; i<current_user.tests.length;i++){
+    var test = current_user.tests[i];
+    // alert(test.name);
+    for(var j=0;j<test.subjects.length;j++){
+        var subject = test.subjects[j];
+        // alert(subject.name);
+        for(var k=0;k<subject.chapters.length;k++){
+            var chapter = subject.chapters[k];
+            // alert(chapter.name);
+        }
+    }
+}
+
+
+
+
+$(document).ready(function(){
+  for( var i=0; i<current_user.tests.length;i++){
+    alert("load1");
+
+    $('.container').append(fullTestHtml(current_user.tests[i]));
+  }
+  alert("load2");
+});
+
+
+
+
+
+
+var simpleSubjectHtml=function(subject_name){
+  return '<li><div class="hyegun_box studies subjects"><div class="icon">&#xe800</div>'+subject_name+'</div><ul></ul></li>'
+}
+var simpleChapterHtml=function(chapter_name){
+  return '<li><div class="hyegun_box studies chapters">'+chapter_name+'</div></li>';
+}
+var fullSubjectHtml=function(Subject){
+  var subject_html = '<li><div class="hyegun_box studies subjects"><div class="hidden_check"><div class="icon">&#xe800</div>'+Subject.name+'</div></div><ul>';
+  for(var i =0; i<Subject.chapters.length; i++){
+    subject_html+=simpleChapterHtml(Subject.chapters[i].name);
+  }
+  subject_html+='</ul></li>';
+  return subject_html;
+}
+
+
+var fullTestHtml=function(Test){
+  var test_html = '<li><div class="hyegun_box studies tests"><div class="label"><div class="icon">&#xe800</div> <text>'+Test.name+'</text></div><div class="test_control">\
+  <div>수정</div></div></div><ul>';
+  for(var i =0; i<Test.subjects.length; i++){
+    test_html+=fullSubjectHtml(Test.subjects[i]);
+  }
+  test_html+='<li><div class="hyegun_box studies subjects" id="new_subject"><div class="hidden_check"><div class="icon_plus">&#xe802</div> 과목 추가하기</div></div></li>\
+  </ul></li>';
+  return test_html;
+}
+
+var subjectMath={
+  'name':'math',
+  'title':"수학",
+  'chapters':["1단원","2단원","3단원"],
+}
+var subjectPhysics={
+  'name':'physics',
+  'title':"물리",
+  'chapters':["1단원","2단원","3단원"],
+}
+var subjectChemistry={
+  'name':'chemistry',
+  'title':"화학",
+  'chapters':["1단원","2단원","3단원"],
+}
+var Subjects=[subjectMath,subjectPhysics,subjectChemistry];
+var dialog_checked = function(){
+  var checked_list=[]
+  var checks= $( ".dialog ul li div" );
+  checks.each(function(i){
+    if($(this).hasClass('checked')==true){
+      alert("hi "+$(this).parent().text());
+      checked_list.push(i);
+    }
+  });
+  alert(checked_list);
+  return checked_list;
+}
+$('.dialog').on("click",'.check',(function(){
+  $(this).html('&#xe804').addClass('checked').removeClass('check');
+}))
+$('.dialog').on("click",'.checked',(function(){
+  $(this).html('&#xe803').addClass('check').removeClass('checked');
+}))
+$('.dialog').on("click", 'div',(function(){
+  // alert($(this).html());
+  if($(this).html()=="취소"){
+    $('.dialog').dialog("close");
+  }
+  if($(this).html()=="확인"){
+    // alert($(this).parents(".dialog").data("mother"));
+    // $(this).parents(".dialog").data("father").parent().prev().after(subjectHtml("test"));
+    var checked_list = dialog_checked();
+    $('.dialog').dialog("close");
+    for( var i = 0; i< checked_list.length;i++){
+      alert($(this).parents(".dialog").data("father").parent().html());
+      $(this).parents(".dialog").data("father").parent().prepend(fullSubjectHtml(Subjects[checked_list[i]]));
+
+    }
+
+  }
+}));
+
+$('.dialog').dialog({
+  autoOpen: false,
+	modal: true,
+  resizable: false,
+	dialogClass: 'no-close success-dialog',
+});
+
+//it doesn't have ul!
+$('#new_test').click(function(){
+  var test_cnt=$(this).nextAll().length;
+  $(this).parent().append('<li><div class="hyegun_box studies tests"><div class="label"><div class="icon">&#xe800</div> <text>시험&#'+(65+test_cnt)+'</text></div><div class="test_control"><div>수정</div></div></div><ul>\
+  <ul><li><div class="hyegun_box studies subjects" id="new_subject"><div class="icon_plus">&#xe802</div> 과목 추가하기</div></li>\
+  </ul></li>');
+  $( ".dialog" ).dialog({
+     autoOpen: false,
+  });
+});
+cnt=0;
+$('.container').on("click",'.icon',function(){
+  var display_check=$(this).closest('li').children('ul');
+// for debugging
+  // if(cnt%2==1){
+  //   $(display_check).css('background-color','yellow');
+  // }else{
+  //   $(display_check).css('background-color','blue');
+  //
+  // }
+  cnt+=1;
+  if(display_check.css("display")=="none"){
+    display_check.slideDown();
+    $(this).html('&#xe801')
+  }
+  else{
+    display_check.slideUp();
+    $(this).html('&#xe800')
+  }
+});
+$('.container').on("click",'#new_subject',function(){
+  $('.dialog').data('mother',"kano").data('father',$(this)).dialog("open");
+});
+$(window).resize(function(){
+  $('.dialog').dialog('option','position',{my: "center", at: "center", of: window});
+});
+
+
+</script>
+<style media="screen">
+
+.dialog{
+  display: flex;justify-content: center;align-items:center;
+  width: 30vw!important;
+  height: 10vh;
+}
+.dialog ul{
+  width: 38vw;
+  margin-bottom: 0.5rem;
+}
+.dialog ul>li{
+  border-top-style: dotted;
+  font-size: 2rem;
+  padding:0.5rem 2rem 0.5rem 2rem;
+}
+.check{
+  float:right;
+  margin:auto;
+  color: gray;
+}
+.checked{
+  float:right;
+  margin:auto;
+  color: black;
+}
+.dialog div{
+display: inline;
+float: right;
+}
+.dialog ul li:last-child div{
+  font-size: 1.5rem;
+  padding-bottom: 0;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.dialog ul li:last-child{
+  font-size: 1.5rem;
+  padding-bottom: 0;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+
+
+
+.ui-widget.success-dialog {
+    font-size: 1.2em;
+}
+
+.ui-widget-content.success-dialog {
+    background: #F9F9F9;
+    width: 33vw !important;
+    border: 0.2rem solid blue;
+    border-radius: 20px;
+    color: #222222;
+}
+
+.ui-dialog.success-dialog {
+  display: flex;justify-content: center;align-items:center;
+
+    left: 0;
+    outline: 0 none;
+    padding: 0 !important;
+    position: relative;
+    top: 0;
+}
+
+.ui-dialog.success-dialog .ui-dialog-content {
+    background: none repeat scroll 0 0 transparent;
+    border: 0 none;
+    overflow: auto;
+    position: relative;
+    padding: 0 !important;
+    margin: 0;
+}
+
+.ui-dialog.success-dialog .ui-widget-header {
+    display: none;
+}
+
+.ui-dialog.success-dialog .ui-dialog-titlebar {
+    padding: 0.1em .5em;
+    position: relative;
+    font-size: 1em;
+}
+
+
+
+
+
+
+
+.hidden_check{
+  display: inline-flex;
+}
+
+.label{
+  display: inline-flex;
+
+}
+
+.studies{
+  display: inherit;
+}
+.tests{
+  justify-content: space-between !important;
+
+}
+.tests +ul, .subjects +ul{
+  display: none;
+}
+.icon , .icon_plus{
+  width: 5rem;
+  cursor:pointer;
+  margin-right: 4rem;
+}
+*{
+  font-family: fontello;
+  box-sizing: border-box;
+}
+.hyegun_box{
+  height: 6vh;
+  border-radius: 10px;
+  box-shadow: 5px 5px #999 ;
+  display: flex;  justify-content: center;align-items:center;
+  font-size: 2rem;
+  letter-spacing: 1rem;
+
+}
+#start_study{
+  background-color: yellowgreen;
+  font-weight: bold;
+  color: white;
+  margin-top: 6vh;
+}
+#new_test{
+  background-color: #02aad1;
+  font-weight: bold;
+  color: white;
+  box-shadow: 5px 5px #999 ;
+  margin-top: 3vh;
+
+}
+.studies{
+  margin-top: 2vh;
+  box-shadow: 5px 5px #02aad1;
+}
+.studies:hover{
+
+}
+.tests{
+  padding-left:4rem;
+  font-weight: bold;
+
+}
+.subjects{
+  padding-left:12rem;
+  font-weight: normal;
+  justify-content: left;
+
+}
+.chapters{
+  padding-left:20rem;
+  font-weight: normal;
+  justify-content: left;
+  left: 2rem;
+}
+#new_subject{
+  color: #02aad1;
+}
+  #textarea {
+    border-bottom: none !important;
+    margin: 0 ;
+    font-size: 1.5rem;
+
+  }
+  #textarea::placeholder {
+    border: blue;
+  }
+  #textarea:focus{
+    border: black;
+    color: black;
+    border-top: blue;
+
+  }
+  .row{
+    margin:0;
+  }
+  .scroll_problem{
+    margin: 0;
+    overflow-x: hidden;
+    word-wrap: break-word;
+    height: 100%;
+  }
+  .image_box{
+    width: 100%;
+    border: 1px solid black;
+    padding: 10px;
+    margin-bottom: 0;
+  }
+  #problem_box{
+    height:50vh;
+  }
+  #answer_box{
+    height:69.5vh;
+    margin-left: 5vw;
+  }
+  .box_shadow{
+    border-radius: 10px;
+    box-shadow: 5px 5px #999 ;
+  }
+  .round_button{
+    height:6.25vh;
+    margin-top: 3.25vh;
+    font-size: 1.5em;
+    /*cursor: pointer;*/
+
+  }
+
+  #input_box{
+    display: flex;align-items:center;
+    color: gray;
+    box-shadow: 5px 5px #02aad1;
+    /*cursor: text;*/
+    border:1px solid gray;
+  }
+  #submit_button{
+    display: flex;justify-content: center;align-items:center;
+    color: white;
+    background-color: yellowgreen;
+    border: none;
+    box-shadow: 5px 5px #02aad1 ;
+    width: 100%;
+  }
+  #answer_button{
+    display: flex;justify-content: center;align-items:center;
+    color: white;
+    background-color: red;
+  }
+  #input_box:hover {box-shadow: 5px 5px #00008B;}
+  #submit_button:hover {background-color: green;box-shadow: 5px 5px #00008B;}
+  #answer_button:hover {background-color: black;box-shadow: 5px 5px #02aad1;}
+
+</style>
