@@ -237,7 +237,7 @@ function save_edited_subjects(ul,test_id){
   alert(Subjects.onExam);
   check_list=check_list_array(ul);
   for(var i = 0; i<check_list.length;i++){
-    current_user.tests[test_id].subjects.onExam=check_list[i];
+    Subjects[i].onExam=check_list[i];
   }
   $.ajax({
       url : '<%= exam_update_path %>',
@@ -249,6 +249,7 @@ function save_edited_subjects(ul,test_id){
         },
       success: function(){
           alert('success');
+          location.reload();
       }
   });
   alert('saved');
