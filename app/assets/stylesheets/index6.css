@@ -1,10 +1,9 @@
+/*body{
+  background-color: lime;
+}*/
+.hidden_subject, .hidden_chapter{
+  display: none ;
 
-<style media="screen">
-body{
-  background-color: lime !important;
-}
-.hidden_subject{
-  display: none;
 }
 .show_for_edit{
   display: inherit;
@@ -276,6 +275,3 @@ body{
       position: relative;
       font-size: 1em;
   }
-
-
-</style>

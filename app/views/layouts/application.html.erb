@@ -13,7 +13,9 @@
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
-
+<!-- 왠지는 모르는데, 이 아래있는거 stackoverflow에서는 남기라고 하는데 나는 남기면 두번나오더라 ㅠㅠ -->
+  <!-- <%= javascript_include_tag "application" %> -->
+  <%= yield :javascript_includes %>
 </head>
 
 <body style="font-family: AppleSDGothicNeo; height: 100%;" >

@@ -1,5 +1,15 @@
+<script type="text/javascript">
+window.alert = function() { };
+</script>
+
 <link rel="stylesheet" href="list_fontello/css/fontello.css">
 <%= stylesheet_link_tag "index6.css" %>
+
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag "chapter_mng.js" %>
+<% end %>
+
+
 
 <ul class="container center-align">
   <li class="hyegun_box unstartable" id="start_study">
@@ -102,10 +112,15 @@ $(document).ready(function(){
 
 
 
-var simpleChapterHtml=function(chapter_name,test_cnt,subject_cnt,chapter_cnt){
+var simpleChapterHtml=function(Chapter,test_cnt,subject_cnt,chapter_cnt){
   var chapter_id = 't'+test_cnt+'s'+subject_cnt+'c'+chapter_cnt;
-  return '<li id="'+chapter_id+'"><div class="hyegun_box studies chapters">'+chapter_name+'</div></li>';
-
+  var chapter_html='<li ';
+  if(!Chapter.onExam){
+    chapter_html += 'class="hidden_chapter"';
+  }
+  chapter_html += ' id="'+chapter_id+'"><div class="hyegun_box studies chapters"><div class="label"><text>'+Chapter.name+'</text></div>\
+  <div class="chapter_control"></div></div></li>';
+  return chapter_html;
 }
 var editSubjectHtml=function(Subject,test_cnt,subject_cnt){
   var subject_id = 't'+test_cnt+'s'+subject_cnt;
@@ -114,7 +129,7 @@ var editSubjectHtml=function(Subject,test_cnt,subject_cnt){
     subject_html += 'class="hidden_subject"';
   }
   subject_html += ' id="'+subject_id+'"><div class="hyegun_box studies subjects"><div class="label"><div class="icon">&#xe800</div><text>'+Subject.name+'</text></div>';
-  subject_html +='<div class="subject_control"></div>'
+  subject_html +='<div class="subject_control"></div>';
   subject_html+='</div><ul></ul></li>';
   return subject_html;
 }
@@ -125,17 +140,18 @@ var fullSubjectHtml=function(Subject,test_cnt,subject_cnt){
   if(!Subject.onExam){
     subject_html += 'class="hidden_subject"';
   }
-  subject_html += ' id="'+subject_id+'"><div class="hyegun_box studies subjects"><div class="label"><div class="icon">&#xe800</div><text>'+Subject.name+'</text></div><div class="subject_control"></div></div><ul>';
+  subject_html += ' id="'+subject_id+'"><div class="hyegun_box studies subjects"><div class="label"><div class="icon">&#xe800</div><text>'+Subject.name+'</text></div>\
+  <div class="subject_control"><div class="edit_chapter">단원수정</div></div></div><ul>';
 
   for(var i =0; i<Subject.chapters.length; i++){
-    subject_html+=simpleChapterHtml(Subject.chapters[i].name, test_cnt,subject_cnt,i);
+    subject_html+=simpleChapterHtml(Subject.chapters[i], test_cnt,subject_cnt,i);
   }
   subject_html+='</ul></li>';
   return subject_html;
 }
 var fullTestHtml=function(Test,test_cnt){
-  var test_html = '<li id="t'+test_cnt+'"><div class="hyegun_box studies tests"><div class="label"><div class="icon">&#xe800</div> <text>'+Test.name+'</text></div><div class="test_control">\
-  <div class="edit_subject">과목수정</div><div> | </div><div class="delete_test">삭제</div></div></div><ul>';
+  var test_html = '<li id="t'+test_cnt+'"><div class="hyegun_box studies tests"><div class="label"><div class="icon">&#xe800</div> <text>'+Test.name+'</text></div>\
+  <div class="test_control"><div class="edit_subject">과목수정</div><div> | </div><div class="delete_test">삭제</div></div></div><ul>';
   for(var i =0; i<Test.subjects.length; i++){
   test_html+=fullSubjectHtml(Test.subjects[i],test_cnt,i);
 
@@ -228,13 +244,14 @@ $('.container').on('click','.edit_subject', function(){
 })
 function hide_others(ul){
   $('.test_control div').hide();
+  $('.subject_control div').hide();
   ul.find('.icon').hide();
 
 }
 function save_edited_subjects(ul,test_id){
   alert("saving");
   var Subjects = current_user.tests[test_id].subjects;
-  alert(Subjects.onExam);
+  // alert(Subjects.onExam);
   check_list=check_list_array(ul);
   for(var i = 0; i<check_list.length;i++){
     Subjects[i].onExam=check_list[i];
@@ -249,18 +266,18 @@ function save_edited_subjects(ul,test_id){
         },
       success: function(){
           alert('success');
-          location.reload();
+          // location.reload();
       }
   });
-  alert('saved');
-  alert(JSON.stringify(Subjects));
+  // alert('saved');
+  // alert(JSON.stringify(Subjects));
 }
 function check_list_array(ul){
   alert('checking');
   var checks=ul.find('.subject_control').toArray();
   var array_len = checks.length;
   var result = [];
-  alert('length ='+array_len);
+  // alert('length ='+array_len);
   for(var i = 0; i<array_len;i++){
     if($(checks[i]).find('.checked').length){
       result.push(true);
@@ -270,22 +287,22 @@ function check_list_array(ul){
       $(checks[i]).closest('li').addClass('hidden_subject');
     }
   }
-  alert('check result='+result);
+  // alert('check result='+result);
   return result;
 }
 function return_others(ul){
   $('.test_control div').show();
   ul.find('.icon').show();
-
+  console.log(test_control);
   test_control.html('<div class="edit_subject">과목수정</div><div> | </div><div class="delete_test">삭제</div>');
-  test_control.closest('li').children('ul').slideUp().find('.subject_control').html('');
+  test_control.closest('li').children('ul').slideUp().find('.subject_control').html('<div class="edit_chapter">단원수정</div>');
   ul.find(".hidden_subject").removeClass('show_for_edit')
 }
 function edit_subjects(ul, test_id){
   alert("editting");
-  alert(test_id);
+  // alert(test_id);
   Subjects = current_user.tests[test_id].subjects;
-  alert(Subjects);
+  // alert(Subjects);
   //여기서부터 작업. 체크 여부 체크하기.
   ul.find('.subject_control').html(check_or_checked(true));
   ul.find(".hidden_subject").addClass('show_for_edit').find('.subject_control').html(check_or_checked(false));
@@ -302,8 +319,28 @@ function check_or_checked(checked){
 }
 function get_test_id(father){
   var list = father.closest('.tests');
+  alert('list: '+list.html());
   var index = $('.tests').index(list);
+  alert('index: '+index);
   var id = index-1;
+  return id;
+}
+function get_test_id2(father){
+  var list = father.closest('ul').prev();
+  var index = $('.tests').index(list);
+  alert('index: '+index);
+  var id = index-1;
+  return id;
+}
+function get_subject_id(father){
+  var list = father.closest('.subjects');
+  alert('list html: '+list.html());
+  var indexer = list.closest('ul').find('.subjects');
+  alert('indexer html: '+indexer.html());
+  alert('indexer length: '+indexer.length);
+  var index = indexer.index(list);
+  var id = index;
+  alert(id);
   return id;
 }
 
@@ -438,6 +475,111 @@ $('.dialog').dialog({
 	dialogClass: 'no-close success-dialog',
 });
 
+
+
+
+
+
+
+
+
+// ㅅㄷㄴㅅ
+alert("js end!");
+
+
+$('.container').on('click','.edit_chapter', function(){
+  alert("clicked");
+  subject_control = $(this).closest('.subject_control');
+  ul = subject_control.closest('li').children('ul')
+  test_id =  get_test_id2($(this));
+  subject_id = get_subject_id($(this));
+  alert('subject_id: '+subject_id);  alert('test_id:'+test_id);
+
+
+  hide_others(ul);
+  subject_control.html('<div class="save_chapter">저장</div><div> | </div><div class="cancel_edit_chapter">취소</div>');
+
+  edit_chapters(ul,test_id,subject_id);
+}).on('click','.cancel_edit_chapter',function(){
+  subject_control = $(this).closest('.subject_control');
+  ul = subject_control.closest('li').children('ul')
+  test_id =  get_test_id2($(this));
+  subject_id = get_subject_id($(this));
+  return_others2(ul);
+
+}).on('click','.save_chapter',function(){
+  subject_control = $(this).closest('.subject_control');
+  ul = subject_control.closest('li').children('ul')
+  test_id =  get_test_id2($(this));
+  subject_id = get_subject_id($(this));
+  save_edited_chapters(ul,test_id,subject_id);
+  return_others2(ul);
+
+})
+
+function save_edited_chapters(ul,test_id,subject_id){
+  alert("saving");
+  alert('test/subject id: '+test_id+'and '+subject_id);
+  var Chapters = current_user.tests[test_id].subjects[subject_id].chapters;
+  // alert(Subjects.onExam);
+  check_list=check_list_array2(ul);
+  for(var i = 0; i<check_list.length;i++){
+    Chapters[i].onExam=check_list[i];
+  }
+  $.ajax({
+      url : '<%= exam_update_path %>',
+      type: 'post',
+      data: {
+          update_test_id: test_id,
+          user_info : current_user
+
+        },
+      success: function(){
+          alert('success');
+          // location.reload();
+      }
+  });
+  // alert('saved');
+  // alert(JSON.stringify(Subjects));
+}
+
+function check_list_array2(ul){
+  alert('checking');
+  var checks=ul.find('.chapter_control').toArray();
+  var array_len = checks.length;
+  var result = [];
+  // alert('length ='+array_len);
+  for(var i = 0; i<array_len;i++){
+    if($(checks[i]).find('.checked').length){
+      result.push(true);
+      $(checks[i]).closest('li').removeClass('hidden_chapter')
+    }else{
+      result.push(false);
+      $(checks[i]).closest('li').addClass('hidden_chapter');
+    }
+  }
+  // alert('check result='+result);
+  return result;
+}
+function return_others2(ul){
+  $('.subject_control div').show();
+  ul.find('.icon').show();
+
+  subject_control.html('<div class="edit_chapter">단원수정</div>');
+  subject_control.closest('li').children('ul').slideUp().find('.chapter_control').html('');
+  ul.find(".hidden_chapter").removeClass('show_for_edit')
+}
+function edit_chapters(ul, test_id,subject_id){
+  alert("edit chapters");
+  alert(subject_id);
+  var Chapters = current_user.tests[test_id].subjects[subject_id].chapters;
+  // alert(Subjects);
+  //여기서부터 작업. 체크 여부 체크하기.
+  ul.find('.chapter_control').html(check_or_checked(true));
+  ul.find(".hidden_chapter").addClass('show_for_edit').find('.chapter_control').html(check_or_checked(false));
+  ul.slideDown();
+  // ul.find('.studies').find('.subject_control').css('background-color','red').html('<div class="check">&#xe803</div>');
+}
 
 
 </script>
