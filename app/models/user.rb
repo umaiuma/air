@@ -13,13 +13,14 @@ class User < ApplicationRecord
 
     self.exams << new_exam
     (1..3).each do |i|
-      s = Subject.new(name: 's'+format("%d",i), exam: new_exam, onStudy: 0, onExam:0)
+      s = Subject.new(name: 's'+format("%d",i), exam: new_exam, onStudy: 0, onExam:1)
       (1..8).each do |j|
         c = Chapter.new(name: 's'+format("%d",i)+'c'+format("%d",j), subject:s, onStudy: 0, onExam: 0)
         c.save
       end
       s.save
     end
+
 
 
 
