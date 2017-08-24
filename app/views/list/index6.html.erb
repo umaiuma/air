@@ -232,22 +232,17 @@ $('.container').on('click','.edit_subject', function(){
   test_control = $(this).closest('.test_control');
   ul = test_control.closest('li').children('ul')
   test_id =  get_test_id($(this));
-  return_others(ul);
+  return_others(ul,test_control);
 
 }).on('click','.save_subject',function(){
   test_control = $(this).closest('.test_control');
   ul = test_control.closest('li').children('ul')
   test_id =  get_test_id($(this));
   save_edited_subjects(ul,test_id);
-  return_others(ul);
+  return_others(ul,test_control);
 
 })
-function hide_others(ul){
-  $('.test_control div').hide();
-  $('.subject_control div').hide();
-  ul.find('.icon').hide();
 
-}
 function save_edited_subjects(ul,test_id){
   alert("saving");
   var Subjects = current_user.tests[test_id].subjects;
@@ -290,13 +285,30 @@ function check_list_array(ul){
   // alert('check result='+result);
   return result;
 }
-function return_others(ul){
+function hide_others(ul){
+  $('.test_control div').hide();
+  $('.subject_control div').hide();
+  ul.find('.icon').hide();
+
+}
+
+function return_others(ul,control){
   $('.test_control div').show();
+  $('.subject_control div').show();
   ul.find('.icon').show();
-  console.log(test_control);
-  test_control.html('<div class="edit_subject">과목수정</div><div> | </div><div class="delete_test">삭제</div>');
-  test_control.closest('li').children('ul').slideUp().find('.subject_control').html('<div class="edit_chapter">단원수정</div>');
+  if(control.hasClass('test_control')){
+      console.log('test');
+      control.html('<div class="edit_subject">과목수정</div><div> | </div><div class="delete_test">삭제</div>');
+      control.closest('li').children('ul').slideUp().find('.subject_control').html('<div class="edit_chapter">단원수정</div>');
+  }
+  if(control.hasClass('subject_control')){
+    console.log('subject');
+    control.html('<div class="edit_chapter">단원수정</div>');
+    control.closest('li').children('ul').slideUp().find('.chapter_control').html('');
+  }
   ul.find(".hidden_subject").removeClass('show_for_edit')
+  ul.find(".hidden_chapter").removeClass('show_for_edit')
+
 }
 function edit_subjects(ul, test_id){
   alert("editting");
@@ -505,7 +517,7 @@ $('.container').on('click','.edit_chapter', function(){
   ul = subject_control.closest('li').children('ul')
   test_id =  get_test_id2($(this));
   subject_id = get_subject_id($(this));
-  return_others2(ul);
+  return_others(ul,subject_control);
 
 }).on('click','.save_chapter',function(){
   subject_control = $(this).closest('.subject_control');
@@ -513,7 +525,7 @@ $('.container').on('click','.edit_chapter', function(){
   test_id =  get_test_id2($(this));
   subject_id = get_subject_id($(this));
   save_edited_chapters(ul,test_id,subject_id);
-  return_others2(ul);
+  return_others(ul,subject_control);
 
 })
 
@@ -561,14 +573,7 @@ function check_list_array2(ul){
   // alert('check result='+result);
   return result;
 }
-function return_others2(ul){
-  $('.subject_control div').show();
-  ul.find('.icon').show();
 
-  subject_control.html('<div class="edit_chapter">단원수정</div>');
-  subject_control.closest('li').children('ul').slideUp().find('.chapter_control').html('');
-  ul.find(".hidden_chapter").removeClass('show_for_edit')
-}
 function edit_chapters(ul, test_id,subject_id){
   alert("edit chapters");
   alert(subject_id);
