@@ -214,9 +214,16 @@ $('.container').on("click",'.icon',function(){
 });
 
 
-$('.container').on("click",'.label text',function(){
-  $(this).closest('.hyegun_box').toggleClass("selected_for_test");
-  check_startable();
+$('.container').on("click",'.subjects .label text',function(){
+  if($(this).parents('.show_for_edit').length==0){
+    $(this).closest('.hyegun_box').toggleClass("selected_for_test");
+    check_startable();
+  }
+}).on("click",'.chapters .label text', function(){
+  if($(this).parents('.show_for_edit').length==0){
+    $(this).closest('.hyegun_box').toggleClass("selected_for_test");
+    check_startable();
+  }
 })
 
 
@@ -224,6 +231,7 @@ $('.container').on('click','.edit_subject', function(){
   test_control = $(this).closest('.test_control');
   ul = test_control.closest('li').children('ul')
   test_id =  get_test_id($(this));
+  icon_down($(this).closest('.hyegun_box').find('.icon'));
   hide_others(ul);
   test_control.html('<div class="save_subject">저장</div><div> | </div><div class="cancel_edit_subject">취소</div>');
   // alert($(this).html());
@@ -242,7 +250,11 @@ $('.container').on('click','.edit_subject', function(){
   return_others(ul,test_control);
 
 })
-
+function erase_all_chapters(Subject){
+  for(var i = 0; i<Subject.chapters.length;i++){
+    Subject.chapters[i].onExam=false;
+  }
+}
 function save_edited_subjects(ul,test_id){
   alert("saving");
   var Subjects = current_user.tests[test_id].subjects;
@@ -250,6 +262,9 @@ function save_edited_subjects(ul,test_id){
   check_list=check_list_array(ul);
   for(var i = 0; i<check_list.length;i++){
     Subjects[i].onExam=check_list[i];
+    if(check_list[i]==0){
+      erase_all_chapters(Subjects[i]);
+    }
   }
   $.ajax({
       url : '<%= exam_update_path %>',
@@ -276,19 +291,23 @@ function check_list_array(ul){
   for(var i = 0; i<array_len;i++){
     if($(checks[i]).find('.checked').length){
       result.push(true);
-      $(checks[i]).closest('li').removeClass('hidden_subject')
+      var icon=$(checks[i]).closest('li').removeClass('hidden_subject').removeClass('show_for_edit').find('.icon');
+      console.log(icon);
+      icon_up(icon);
     }else{
       result.push(false);
-      $(checks[i]).closest('li').addClass('hidden_subject');
+      $(checks[i]).closest('li').addClass('hidden_subject').find('li').addClass('hidden_chapter');
+
     }
   }
   // alert('check result='+result);
   return result;
 }
 function hide_others(ul){
-  $('.test_control div').hide();
-  $('.subject_control div').hide();
-  ul.find('.icon').hide();
+  $('.test_control div').slideUp();
+  $('.subject_control div').slideUp();
+  $('.subjects').next('ul').slideUp();
+  ul.find('.icon').hide ();
 
 }
 
@@ -296,6 +315,8 @@ function return_others(ul,control){
   $('.test_control div').show();
   $('.subject_control div').show();
   ul.find('.icon').show();
+  icon_up(control.closest('.hyegun_box').find('.icon'));
+
   if(control.hasClass('test_control')){
       console.log('test');
       control.html('<div class="edit_subject">과목수정</div><div> | </div><div class="delete_test">삭제</div>');
@@ -506,8 +527,7 @@ $('.container').on('click','.edit_chapter', function(){
   test_id =  get_test_id2($(this));
   subject_id = get_subject_id($(this));
   alert('subject_id: '+subject_id);  alert('test_id:'+test_id);
-
-
+  icon_down($(this).closest('.hyegun_box').find('.icon'));
   hide_others(ul);
   subject_control.html('<div class="save_chapter">저장</div><div> | </div><div class="cancel_edit_chapter">취소</div>');
 
@@ -564,7 +584,7 @@ function check_list_array2(ul){
   for(var i = 0; i<array_len;i++){
     if($(checks[i]).find('.checked').length){
       result.push(true);
-      $(checks[i]).closest('li').removeClass('hidden_chapter')
+      $(checks[i]).closest('li').removeClass('hidden_chapter').removeClass('show_for_edit');
     }else{
       result.push(false);
       $(checks[i]).closest('li').addClass('hidden_chapter');
@@ -585,6 +605,20 @@ function edit_chapters(ul, test_id,subject_id){
   ul.slideDown();
   // ul.find('.studies').find('.subject_control').css('background-color','red').html('<div class="check">&#xe803</div>');
 }
+function icon_down(icon){
+  icon.html('&#xe801')
+}
+function icon_up(icon){
+  icon.html('&#xe800')
+}
 
+function icon_trigger(icon){
+  if(icon.html()=='&#xe801'){
+    icon.html('&#xe800')
+  }
+  else{
+    icon.html('&#xe801')
+  }
+}
 
 </script>

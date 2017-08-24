@@ -1,6 +1,10 @@
 /*body{
   background-color: lime;
 }*/
+.subject_control, .test_control{
+  font-weight: normal;
+  font-size: 70%;
+}
 .hidden_subject, .hidden_chapter{
   display: none ;
 
