@@ -146,6 +146,7 @@ var fullSubjectHtml=function(Subject,test_cnt,subject_cnt){
   for(var i =0; i<Subject.chapters.length; i++){
     subject_html+=simpleChapterHtml(Subject.chapters[i], test_cnt,subject_cnt,i);
   }
+  subject_html+='<li class="hidden_add"><div class="hyegun_box studies chapters" id="new_chapter"><div class="chapter_check"><div class="icon_plus">&#xe802</div> 단원 추가하기</div></div></li>';
   subject_html+='</ul></li>';
   return subject_html;
 }
@@ -156,8 +157,8 @@ var fullTestHtml=function(Test,test_cnt){
   test_html+=fullSubjectHtml(Test.subjects[i],test_cnt,i);
 
   }
-  test_html+='<li><div class="hyegun_box studies subjects" id="new_subject"><div class="subject_check"><div class="icon_plus">&#xe802</div> 과목 추가하기</div></div></li>\
-  </ul></li>';
+  test_html+='<li class="hidden_add"><div class="hyegun_box studies subjects" id="new_subject"><div class="subject_check"><div class="icon_plus">&#xe802</div> 과목 추가하기</div></div></li>';
+  test_html+='</ul></li>';
   return test_html;
 }
 
@@ -198,21 +199,49 @@ $('#new_test').click(function(){
   // </ul></li>');
   create_test();
 });
-cnt=0;
+
 $('.container').on("click",'.icon',function(){
   var display_check=$(this).closest('li').children('ul');
 
-  cnt+=1;
   if(display_check.css("display")=="none"){
+    something($(this));
+
     display_check.slideDown();
-    $(this).html('&#xe801')
-  }
-  else{
+    $(this).html('&#xe801');
+  }else{
+
     display_check.slideUp();
-    $(this).html('&#xe800')
+    $(this).html('&#xe800');
+    something($(this));
+
   }
 });
+function something(father){
 
+  if(isSubject(father)){
+    var test_id = get_test_id(father);
+    var subject_id = get_subject_id(father);
+    console.log(subject_id);
+    var Subject = current_user.tests[test_id].subjects[subject_id];
+    if(is_empty_dom(father.closest('.subjects'))){
+      father.closest('li').find('li:last-child').removeClass('hidden_add');
+    }else{
+      father.closest('li').find('li:last-child').addClass('hidden_add');
+    }
+  }else if(isTest(father)){
+    console.log('it isays it is test');
+    var test_id = get_test_id(father);
+    var Test = current_user.tests[test_id];
+    if(is_empty_dom(father.closest('.tests'))){
+      father.closest('li').find('li:last-child').removeClass('hidden_add');
+    }else{
+      father.closest('li').find('li:last-child').addClass('hidden_add');
+    }
+  }
+  else{
+    console.log("error in something");
+  }
+}
 
 $('.container').on("click",'.subjects .label text',function(){
   if($(this).parents('.show_for_edit').length==0){
@@ -248,11 +277,12 @@ $('.container').on('click','.edit_subject', function(){
   test_id =  get_test_id($(this));
   save_edited_subjects(ul,test_id);
   return_others(ul,test_control);
-
+  // ul.find('#new_subject').slideUp();
 })
 function erase_all_chapters(Subject){
   for(var i = 0; i<Subject.chapters.length;i++){
     Subject.chapters[i].onExam=false;
+    Subject.chapters[i].onSudy=false;
   }
 }
 function save_edited_subjects(ul,test_id){
@@ -351,21 +381,53 @@ function check_or_checked(checked){
   }
 }
 function get_test_id(father){
-  var list = father.closest('.tests');
-  alert('list: '+list.html());
+  var list;
+  if(isTest(father)){
+    list = father.closest('.tests');
+  }else{
+    list = father.closest('ul').prev();
+  }
   var index = $('.tests').index(list);
   alert('index: '+index);
   var id = index-1;
   return id;
 }
-function get_test_id2(father){
-  var list = father.closest('ul').prev();
-  var index = $('.tests').index(list);
-  alert('index: '+index);
-  var id = index-1;
-  return id;
+
+function isTest(father){
+  if(father.closest('.tests').length){
+    return true;
+  }else{
+    return false;
+  }
 }
+
+function isSubject(father){
+  if(father.closest('.subjects').length){
+    return true;
+  }else{
+    return false;
+  }
+}
+//  deprecated
+// function get_test_id1(father){
+//   var list = father.closest('.tests');
+//   alert('list: '+list.html());
+//   var index = $('.tests').index(list);
+//   alert('index: '+index);
+//   var id = index-1;
+//   return id;
+// }
+// function get_test_id2(father){
+//   var list = father.closest('ul').prev();
+//   var index = $('.tests').index(list);
+//   alert('index: '+index);
+//   var id = index-1;
+//   return id;
+// }
+
+
 function get_subject_id(father){
+  console.log('finding sub id');
   var list = father.closest('.subjects');
   alert('list html: '+list.html());
   var indexer = list.closest('ul').find('.subjects');
@@ -374,6 +436,8 @@ function get_subject_id(father){
   var index = indexer.index(list);
   var id = index;
   alert(id);
+  console.log('found it!');
+  console.log('id: '+id);
   return id;
 }
 
@@ -450,10 +514,13 @@ function check_startable(){
 
 //dialog control
 
+$('.container').on("click",'#new_chapter',function(){
+  var trigger = $(this).closest('ul').prev().find('.edit_chapter');
+  trigger.trigger('click');
+});
 $('.container').on("click",'#new_subject',function(){
-  $('.dialog').data('father',$(this)).dialog("open");
-  //여기서 dialog 생성 작업
-
+  var trigger = $(this).closest('ul').prev().find('.edit_subject');
+  trigger.trigger('click');
 });
 
 $(window).resize(function(){
@@ -517,14 +584,13 @@ $('.dialog').dialog({
 
 
 // ㅅㄷㄴㅅ
-alert("js end!");
 
 
 $('.container').on('click','.edit_chapter', function(){
   alert("clicked");
   subject_control = $(this).closest('.subject_control');
   ul = subject_control.closest('li').children('ul')
-  test_id =  get_test_id2($(this));
+  test_id =  get_test_id($(this));//was2
   subject_id = get_subject_id($(this));
   alert('subject_id: '+subject_id);  alert('test_id:'+test_id);
   icon_down($(this).closest('.hyegun_box').find('.icon'));
@@ -535,14 +601,14 @@ $('.container').on('click','.edit_chapter', function(){
 }).on('click','.cancel_edit_chapter',function(){
   subject_control = $(this).closest('.subject_control');
   ul = subject_control.closest('li').children('ul')
-  test_id =  get_test_id2($(this));
+  test_id =  get_test_id($(this));//was2
   subject_id = get_subject_id($(this));
   return_others(ul,subject_control);
 
 }).on('click','.save_chapter',function(){
   subject_control = $(this).closest('.subject_control');
   ul = subject_control.closest('li').children('ul')
-  test_id =  get_test_id2($(this));
+  test_id =  get_test_id($(this));//was2
   subject_id = get_subject_id($(this));
   save_edited_chapters(ul,test_id,subject_id);
   return_others(ul,subject_control);
@@ -557,6 +623,9 @@ function save_edited_chapters(ul,test_id,subject_id){
   check_list=check_list_array2(ul);
   for(var i = 0; i<check_list.length;i++){
     Chapters[i].onExam=check_list[i];
+    if(Check_list[i]==false){
+      Chapters[i].onStudy=false;
+    }
   }
   $.ajax({
       url : '<%= exam_update_path %>',
@@ -612,6 +681,7 @@ function icon_up(icon){
   icon.html('&#xe800')
 }
 
+
 function icon_trigger(icon){
   if(icon.html()=='&#xe801'){
     icon.html('&#xe800')
@@ -620,5 +690,49 @@ function icon_trigger(icon){
     icon.html('&#xe801')
   }
 }
+
+function create_empty(onElements){
+  var zero_array = [];
+  for(var i = 0; i< onElements.length;i++){
+    zero_array.push(false);
+  }
+  return zero_array;
+}
+function is_empty_exam(onElements){
+  var zero_array = create_empty(onElements);
+  if(arraysEqual(onElements,zero_array)){
+    return true;
+  }
+  return false;
+}
+function is_empty_dom(father){
+  if(father.siblings('ul').children('li').length == father.siblings('ul').children('.hidden_chapter').length+father.siblings('ul').children('.hidden_add').length){
+    return true;
+  }else if(father.siblings('ul').children('li').length == father.siblings('ul').children('.hidden_subject').length+father.siblings('ul').children('.hidden_add').length){
+    return true;
+  }else{
+    return false;
+  }
+}
+
+
+function arraysEqual(a, b) {
+  if (a === b) return true;
+  if (a == null || b == null) return false;
+  if (a.length != b.length) return false;
+
+  // If you don't care about the order of the elements inside
+  // the array, you should sort both arrays here.
+
+  for (var i = 0; i < a.length; ++i) {
+    if (a[i] !== b[i]) return false;
+  }
+  return true;
+}
+
+$(document).ready(function(){
+  // is_empty([false,false,false]);
+});
+
 
 </script>
