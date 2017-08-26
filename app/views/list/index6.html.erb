@@ -103,6 +103,7 @@ $(document).ready(function(){
 
     $('.container').append(fullTestHtml(current_user.tests[i],i));
   }
+  check_startable();
   // alert("load2");
 });
 
@@ -118,7 +119,11 @@ var simpleChapterHtml=function(Chapter,test_cnt,subject_cnt,chapter_cnt){
   if(!Chapter.onExam){
     chapter_html += 'class="hidden_chapter"';
   }
-  chapter_html += ' id="'+chapter_id+'"><div class="hyegun_box studies chapters"><div class="label"><text>'+Chapter.name+'</text></div>\
+  chapter_html += ' id="'+chapter_id+'"><div class="hyegun_box studies chapters ';
+  if(Chapter.onStudy){
+    chapter_html +='selected_for_test';
+  }
+  chapter_html+='"><div class="label"><text>'+Chapter.name+'</text></div>\
   <div class="chapter_control"></div></div></li>';
   return chapter_html;
 }
@@ -167,27 +172,77 @@ var fullTestHtml=function(Test,test_cnt){
 
 
 
-//test subjects
-var subjectMath={
-  'name':'math',
-  'title':"수학",
-  'chapters':["1단원","2단원","3단원"],
-}
-var subjectPhysics={
-  'name':'physics',
-  'title':"물리",
-  'chapters':["1단원","2단원","3단원"],
-}
-var subjectChemistry={
-  'name':'chemistry',
-  'title':"화학",
-  'chapters':["1단원","2단원","3단원"],
-}
-var Subjects=[subjectMath,subjectPhysics,subjectChemistry];
-
-//it doesn't have <ul!></ul!>
 
 
+
+
+//editting onStudy Control
+// $('.container').on("click",'.subjects .label text',function(){
+//   if($(this).parents('.show_for_edit').length==0){
+//     $(this).closest('.hyegun_box').toggleClass("selected_for_test");
+//     check_startable();
+//   }
+// })
+
+function get_chapter_id(father){
+  var list = father.closest('.chapters');
+  var indexer = list.closest('ul').find('.chapters');
+  var index = indexer.index(list);
+  var id = index;
+  return id;
+}
+
+
+
+$('.container').on("click",'.chapters .label text', function(){
+  var subject_id = get_subject_id($(this));
+  var test_id = get_test_id($(this));
+  var chapter_id = get_chapter_id($(this));
+  var box = $(this).closest('.hyegun_box');
+  var Chapter = current_user.tests[test_id].subjects[subject_id].chapters[chapter_id];
+
+  if($(this).parents('.show_for_edit').length==0){
+    if(isSelectedForTest($(this))){
+      box.removeClass('selected_for_test');
+      Chapter.onStudy=false;
+    }else{
+      box.addClass('selected_for_test');
+      Chapter.onStudy = true;
+    }
+    check_startable();
+  }
+})
+function isSelectedForTest(father){
+  if(father.closest('.hyegun_box').hasClass('selected_for_test')){
+    return true;
+  }
+  else{
+    return false;
+  }
+}
+
+
+$('#start_study').click(function(){
+  if($(this).hasClass('unstartable')){
+    return 0;
+  }
+  var subject_id = get_subject_id($(this));
+  var test_id = get_test_id($(this));
+
+  $.ajax({
+      url : '<%= exam_update_path %>',
+      type: 'post',
+      data: {
+          update_test_id: 0,
+          user_info : current_user
+
+        },
+      success: function(){
+          alert('success');
+          location.href='/problems';
+      }
+  });
+})
 
 
 
@@ -201,7 +256,7 @@ $('#new_test').click(function(){
 });
 
 $('.container').on("click",'.icon',function(){
-  
+
   var display_check=$(this).closest('li').children('ul');
 
   if(display_check.css("display")=="none"){
@@ -244,18 +299,6 @@ function something(father){
   }
 }
 
-$('.container').on("click",'.subjects .label text',function(){
-  if($(this).parents('.show_for_edit').length==0){
-    $(this).closest('.hyegun_box').toggleClass("selected_for_test");
-    check_startable();
-  }
-}).on("click",'.chapters .label text', function(){
-  if($(this).parents('.show_for_edit').length==0){
-    $(this).closest('.hyegun_box').toggleClass("selected_for_test");
-    check_startable();
-  }
-})
-
 
 $('.container').on('click','.edit_subject', function(){
   test_control = $(this).closest('.test_control');
@@ -266,6 +309,8 @@ $('.container').on('click','.edit_subject', function(){
   test_control.html('<div class="save_subject">저장</div><div> | </div><div class="cancel_edit_subject">취소</div>');
   // alert($(this).html());
   edit_subjects(ul,test_id);
+  check_startable();
+
 }).on('click','.cancel_edit_subject',function(){
   test_control = $(this).closest('.test_control');
   ul = test_control.closest('li').children('ul')
@@ -280,6 +325,10 @@ $('.container').on('click','.edit_subject', function(){
   return_others(ul,test_control);
   // ul.find('#new_subject').slideUp();
 })
+
+
+
+
 function erase_all_chapters(Subject){
   for(var i = 0; i<Subject.chapters.length;i++){
     Subject.chapters[i].onExam=false;
@@ -385,12 +434,17 @@ function get_test_id(father){
   var list;
   if(isTest(father)){
     list = father.closest('.tests');
-  }else{
+  }else if(isSubject(father)){
     list = father.closest('ul').prev();
+  }else{
+    list = father.closest('ul').parent().closest('ul').prev();
+    console.log(list);
   }
   var index = $('.tests').index(list);
   alert('index: '+index);
   var id = index-1;
+  console.log(id);
+
   return id;
 }
 
@@ -428,17 +482,15 @@ function isSubject(father){
 
 
 function get_subject_id(father){
-  console.log('finding sub id');
-  var list = father.closest('.subjects');
-  alert('list html: '+list.html());
+  if(isSubject(father)){
+    list = father.closest('.subjects');
+  }else{
+    list = father.closest('ul').prev();
+    console.log(list);
+  }
   var indexer = list.closest('ul').find('.subjects');
-  alert('indexer html: '+indexer.html());
-  alert('indexer length: '+indexer.length);
   var index = indexer.index(list);
   var id = index;
-  alert(id);
-  console.log('found it!');
-  console.log('id: '+id);
   return id;
 }
 
@@ -599,6 +651,8 @@ $('.container').on('click','.edit_chapter', function(){
   subject_control.html('<div class="save_chapter">저장</div><div> | </div><div class="cancel_edit_chapter">취소</div>');
 
   edit_chapters(ul,test_id,subject_id);
+  check_startable();
+
 }).on('click','.cancel_edit_chapter',function(){
   subject_control = $(this).closest('.subject_control');
   ul = subject_control.closest('li').children('ul')
@@ -626,7 +680,11 @@ function save_edited_chapters(ul,test_id,subject_id){
     Chapters[i].onExam=check_list[i];
     if(check_list[i]==false){
       Chapters[i].onStudy=false;
+
     }
+  }
+  function chapter_to_id(chapter){
+
   }
   $.ajax({
       url : '<%= exam_update_path %>',
@@ -651,7 +709,7 @@ function check_list_array2(ul){
   var array_len = checks.length;
   var result = [];
   // alert('length ='+array_len);
-  for(var i = 0; i<array_len;i++){
+  for(var i = 0; i<array_len-1;i++){
     if($(checks[i]).find('.checked').length){
       result.push(true);
       $(checks[i]).closest('li').removeClass('hidden_chapter').removeClass('show_for_edit');
@@ -670,6 +728,12 @@ function edit_chapters(ul, test_id,subject_id){
   var Chapters = current_user.tests[test_id].subjects[subject_id].chapters;
   // alert(Subjects);
   //여기서부터 작업. 체크 여부 체크하기.
+  console.log('chapters length: '+Chapters.length);
+  for(var i = 0; i< Chapters.length;i++){
+    Chapters[i].onStudy = false;
+    console.log('onstudy became ffalse');
+  }
+  ul.find('.selected_for_test').removeClass('selected_for_test');
   ul.find('.chapter_control').html(check_or_checked(true));
   ul.find(".hidden_chapter").addClass('show_for_edit').find('.chapter_control').html(check_or_checked(false));
   ul.slideDown();
