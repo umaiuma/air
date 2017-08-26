@@ -201,6 +201,7 @@ $('#new_test').click(function(){
 });
 
 $('.container').on("click",'.icon',function(){
+  
   var display_check=$(this).closest('li').children('ul');
 
   if(display_check.css("display")=="none"){
@@ -623,7 +624,7 @@ function save_edited_chapters(ul,test_id,subject_id){
   check_list=check_list_array2(ul);
   for(var i = 0; i<check_list.length;i++){
     Chapters[i].onExam=check_list[i];
-    if(Check_list[i]==false){
+    if(check_list[i]==false){
       Chapters[i].onStudy=false;
     }
   }
