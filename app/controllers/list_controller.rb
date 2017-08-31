@@ -1,4 +1,6 @@
 class ListController < ApplicationController
+  before_action :require_user
+
   def index
   end
   def index2
@@ -13,5 +15,13 @@ class ListController < ApplicationController
   end
   def index4
     @user = User.find(session[:user_id])
+  end
+  def index5
+    @user = User.find(session[:user_id])
+
+  end
+  def index6
+    @user = User.find(session[:user_id])
+
   end
 end

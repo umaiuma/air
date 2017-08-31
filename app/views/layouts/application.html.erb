@@ -9,6 +9,13 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
   <!--Let browser know website is optimized for mobile-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <!-- including jQuery and jQuery-ui(for dialog) -->
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+<!-- 왠지는 모르는데, 이 아래있는거 stackoverflow에서는 남기라고 하는데 나는 남기면 두번나오더라 ㅠㅠ -->
+  <!-- <%= javascript_include_tag "application" %> -->
+  <%= yield :javascript_includes %>
 </head>
 
 <body style="font-family: AppleSDGothicNeo; height: 100%;" >
@@ -25,9 +32,8 @@
   <!--"font-size: 2vw;width:25vw ;padding:0;"-->
 
   <div class="center-align"style="height:7vh; margin-right:6.25vw; margin-left:6.25vw;padding:0;">
-    <a href="/"><div class="col s2 air_nav" style=>A   I   R</div></a>
-    <a href="http://naver.com" ><div class="col s2 hoverable air_nav" >홈</div></a>
-    <a href="http://naver.com"><div class="col s2 hoverable air_nav">시험범위</div></a>
+    <a href="/"><div class="col s4 air_nav" style="width: 26.333%">A   I   R</div></a>
+    <a href="/list6"><div class="col s2 hoverable air_nav">시험범위</div></a>
     <a href="/problems"><div class="col s2 hoverable air_nav">문제풀기</div></a>
     <a href="http://naver.com"><div class="col s2 hoverable air_nav">내성취도</div></a>
     <a href="/login"><div class="col s2 hoverable air_nav">로그인/회원가입</div></a>

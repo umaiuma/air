@@ -1,0 +1,281 @@
+/*body{
+  background-color: lime;
+}*/
+.subject_control, .test_control{
+  font-weight: normal;
+  font-size: 70%;
+}
+.hidden_subject, .hidden_chapter, .hidden_add{
+  display: none ;
+
+}
+.show_for_edit{
+  display: inherit;
+}
+.test_control, .subject_control{
+  display: inherit;
+}
+.unstartable{
+  background-color: gray !important;
+
+}
+.unstartable :hover{
+  box-shadow: 5px 5px #999 !important;
+}
+
+.selected_for_test{
+  background-color: yellow !important;
+}
+
+.selected_for_test:hover{
+  background-color: orange !important;
+}
+
+
+
+.subject_check, .chapter_check{
+  display: inline-flex;
+}
+
+.label{
+  display: inline-flex;
+
+}
+
+.studies{
+  display: inherit;
+  justify-content: space-between !important;
+}
+.tests{
+  justify-content: space-between !important;
+
+}
+.tests +ul, .subjects +ul{
+  display: none;
+}
+.icon , .icon_plus{
+  width: 5rem;
+  cursor:pointer;
+  margin-right: 4rem;
+}
+*{
+  font-family: fontello;
+  box-sizing: border-box;
+}
+.hyegun_box{
+  height: 6vh;
+  border-radius: 10px;
+  box-shadow: 5px 5px #999 ;
+  display: flex;  justify-content: center;align-items:center;
+  font-size: 2rem;
+  letter-spacing: 1rem;
+
+}
+.studies:hover{
+  box-shadow: 5px 5px #00008B;
+}
+#start_study{
+  background-color: yellowgreen;
+  font-weight: bold;
+  color: white;
+  margin-top: 6vh;
+}
+#start_study :hover{
+  box-shadow: 5px 5px #00008B !important;
+}
+#new_test{
+  background-color: #02aad1;
+  font-weight: bold;
+  color: white;
+  box-shadow: 5px 5px #999 ;
+  margin-top: 3vh;
+
+}
+.studies{
+  margin-top: 2vh;
+  box-shadow: 5px 5px #02aad1;
+}
+.tests{
+  padding-left:4rem;
+  font-weight: bold;
+
+}
+.subjects{
+  padding-left:12rem;
+  font-weight: normal;
+  justify-content: left;
+
+}
+
+.chapters{
+  padding-left:20rem;
+  font-weight: normal;
+  justify-content: left;
+  left: 2rem;
+}
+#new_subject{
+  color: #02aad1;
+}
+  #textarea {
+    border-bottom: none !important;
+    margin: 0 ;
+    font-size: 1.5rem;
+
+  }
+  #textarea::placeholder {
+    border: blue;
+  }
+  #textarea:focus{
+    border: black;
+    color: black;
+    border-top: blue;
+
+  }
+  .row{
+    margin:0;
+  }
+  .scroll_problem{
+    margin: 0;
+    overflow-x: hidden;
+    word-wrap: break-word;
+    height: 100%;
+  }
+  .image_box{
+    width: 100%;
+    border: 1px solid black;
+    padding: 10px;
+    margin-bottom: 0;
+  }
+  #problem_box{
+    height:50vh;
+  }
+  #answer_box{
+    height:69.5vh;
+    margin-left: 5vw;
+  }
+  .box_shadow{
+    border-radius: 10px;
+    box-shadow: 5px 5px #999 ;
+  }
+  .round_button{
+    height:6.25vh;
+    margin-top: 3.25vh;
+    font-size: 1.5em;
+    /*cursor: pointer;*/
+
+  }
+
+  #input_box{
+    display: flex;align-items:center;
+    color: gray;
+    box-shadow: 5px 5px #02aad1;
+    /*cursor: text;*/
+    border:1px solid gray;
+  }
+  #submit_button{
+    display: flex;justify-content: center;align-items:center;
+    color: white;
+    background-color: yellowgreen;
+    border: none;
+    box-shadow: 5px 5px #02aad1 ;
+    width: 100%;
+  }
+  #answer_button{
+    display: flex;justify-content: center;align-items:center;
+    color: white;
+    background-color: red;
+  }
+  #input_box:hover {box-shadow: 5px 5px #00008B;}
+  #submit_button:hover {background-color: green;box-shadow: 5px 5px #00008B;}
+  #answer_button:hover {background-color: black;box-shadow: 5px 5px #02aad1;}
+
+
+
+/*for Dialogs*/
+
+
+  .dialog{
+    display: none;
+    display: flex;justify-content: center;align-items:center;
+    width: 30vw!important;
+    height: 10vh;
+  }
+  .dialog ul{
+    width: 38vw;
+    margin-bottom: 0.5rem;
+  }
+  .dialog ul>li{
+    border-top-style: dotted;
+    font-size: 2rem;
+    padding:0.5rem 2rem 0.5rem 2rem;
+  }
+  .check{
+    float:right;
+    margin:auto;
+    color: gray;
+  }
+  .checked{
+    float:right;
+    margin:auto;
+    color: black;
+  }
+  .dialog div{
+  display: inline;
+  float: right;
+  }
+  .dialog ul li:last-child div{
+    font-size: 1.5rem;
+    padding-bottom: 0;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .dialog ul li:last-child{
+    font-size: 1.5rem;
+    padding-bottom: 0;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+
+
+
+  .ui-widget.success-dialog {
+      font-size: 1.2em;
+  }
+
+  .ui-widget-content.success-dialog {
+      background: #F9F9F9;
+      width: 33vw !important;
+      border: 0.2rem solid blue;
+      border-radius: 20px;
+      color: #222222;
+  }
+
+  .ui-dialog.success-dialog {
+    display: flex;justify-content: center;align-items:center;
+
+      left: 0;
+      outline: 0 none;
+      padding: 0 !important;
+      position: relative;
+      top: 0;
+  }
+
+  .ui-dialog.success-dialog .ui-dialog-content {
+      background: none repeat scroll 0 0 transparent;
+      border: 0 none;
+      overflow: auto;
+      position: relative;
+      padding: 0 !important;
+      margin: 0;
+  }
+
+  .ui-dialog.success-dialog .ui-widget-header {
+      display: none;
+  }
+
+  .ui-dialog.success-dialog .ui-dialog-titlebar {
+      padding: 0.1em .5em;
+      position: relative;
+      font-size: 1em;
+  }

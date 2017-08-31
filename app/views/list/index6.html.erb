@@ -1,0 +1,803 @@
+<script type="text/javascript">
+window.alert = function() { };
+</script>
+
+<link rel="stylesheet" href="list_fontello/css/fontello.css">
+<%= stylesheet_link_tag "index6.css" %>
+
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag "chapter_mng.js" %>
+<% end %>
+
+
+
+<ul class="container center-align">
+  <li class="hyegun_box unstartable" id="start_study">
+    학습시작
+  </li>
+  <li class="hyegun_box tests" id="new_test" style="font-family:fontello">
+    <div class="label"><div class="icon_plus">&#xe802</div> 새로운 시험 만들기</div>
+  </li>
+</ul>
+
+
+<div class="dialog" title="과목 선택">
+  <ul>
+    <!-- <li>수  학 <div class="check">&#xe803</div></li>
+    <li>물  리 <div class="check">&#xe803</div></li>
+    <li>화  학 <div class="check">&#xe803</div></li> -->
+    <li><div>취소</div><div>|</div><div>확인</div>
+</li>
+  </ul>
+</div>
+
+
+
+<script type="text/javascript">
+
+//User control
+function Chapter(){
+    this.name ='';
+}
+function Subject(){
+    this.name ='';
+    this.chapters =[];
+}
+function Test(){
+    this.name='';
+    this.subjects =[];
+}
+function User(){
+    this.name='' ;
+    this.tests =[];
+
+}
+var current_user = new User();
+current_user.name= '<%= @user.username%>';
+var test_js;
+var subject_js;
+var chapter_js;
+<% @user.exams.each do |exam| %>
+  test_js = new Test();
+  test_js.name = '<%=exam.name%>';
+  test_js.id = <%=exam.id%>
+  <% exam.subjects.each do |subject| %>
+    subject_js=new Subject();
+    subject_js.name = '<%= subject.name %>';
+    subject_js.onExam = <%= subject.onExam %>;
+    subject_js.onStudy = <%= subject.onStudy %>;
+
+            <% subject.chapters.each do |chapter| %>
+        chapter_js=new Chapter();
+        chapter_js.name = '<%= chapter.name %>';
+        chapter_js.onExam = <%= chapter.onExam %>;
+        chapter_js.onStudy = <%= chapter.onStudy %>;
+        subject_js.chapters.push(chapter_js);
+
+
+<%end%>
+    test_js.subjects.push(subject_js);
+  <% end %>
+  current_user.tests.push(test_js);
+
+
+<% end %>
+
+for (var i=0; i<current_user.tests.length;i++){
+    var test = current_user.tests[i];
+    // alert(test.name);
+    for(var j=0;j<test.subjects.length;j++){
+        var subject = test.subjects[j];
+        // alert(subject.name);
+        for(var k=0;k<subject.chapters.length;k++){
+            var chapter = subject.chapters[k];
+            // alert(chapter.name);
+        }
+    }
+}
+
+
+$(document).ready(function(){
+  for( var i=0; i<current_user.tests.length;i++){
+    // alert("load1");
+
+    $('.container').append(fullTestHtml(current_user.tests[i],i));
+  }
+  check_startable();
+  // alert("load2");
+});
+
+
+
+
+
+
+
+var simpleChapterHtml=function(Chapter,test_cnt,subject_cnt,chapter_cnt){
+  var chapter_id = 't'+test_cnt+'s'+subject_cnt+'c'+chapter_cnt;
+  var chapter_html='<li ';
+  if(!Chapter.onExam){
+    chapter_html += 'class="hidden_chapter"';
+  }
+  chapter_html += ' id="'+chapter_id+'"><div class="hyegun_box studies chapters ';
+  if(Chapter.onStudy){
+    chapter_html +='selected_for_test';
+  }
+  chapter_html+='"><div class="label"><text>'+Chapter.name+'</text></div>\
+  <div class="chapter_control"></div></div></li>';
+  return chapter_html;
+}
+var editSubjectHtml=function(Subject,test_cnt,subject_cnt){
+  var subject_id = 't'+test_cnt+'s'+subject_cnt;
+  var subject_html='<li ';
+  if(!Subject.onExam){
+    subject_html += 'class="hidden_subject"';
+  }
+  subject_html += ' id="'+subject_id+'"><div class="hyegun_box studies subjects"><div class="label"><div class="icon">&#xe800</div><text>'+Subject.name+'</text></div>';
+  subject_html +='<div class="subject_control"></div>';
+  subject_html+='</div><ul></ul></li>';
+  return subject_html;
+}
+
+var fullSubjectHtml=function(Subject,test_cnt,subject_cnt){
+  var subject_id = 't'+test_cnt+'s'+subject_cnt;
+  var subject_html='<li ';
+  if(!Subject.onExam){
+    subject_html += 'class="hidden_subject"';
+  }
+  subject_html += ' id="'+subject_id+'"><div class="hyegun_box studies subjects"><div class="label"><div class="icon">&#xe800</div><text>'+Subject.name+'</text></div>\
+  <div class="subject_control"><div class="edit_chapter">단원수정</div></div></div><ul>';
+
+  for(var i =0; i<Subject.chapters.length; i++){
+    subject_html+=simpleChapterHtml(Subject.chapters[i], test_cnt,subject_cnt,i);
+  }
+  subject_html+='<li class="hidden_add"><div class="hyegun_box studies chapters" id="new_chapter"><div class="chapter_check"><div class="icon_plus">&#xe802</div> 단원 추가하기</div></div></li>';
+  subject_html+='</ul></li>';
+  return subject_html;
+}
+var fullTestHtml=function(Test,test_cnt){
+  var test_html = '<li id="t'+test_cnt+'"><div class="hyegun_box studies tests"><div class="label"><div class="icon">&#xe800</div> <text>'+Test.name+'</text></div>\
+  <div class="test_control"><div class="edit_subject">과목수정</div><div> | </div><div class="delete_test">삭제</div></div></div><ul>';
+  for(var i =0; i<Test.subjects.length; i++){
+  test_html+=fullSubjectHtml(Test.subjects[i],test_cnt,i);
+
+  }
+  test_html+='<li class="hidden_add"><div class="hyegun_box studies subjects" id="new_subject"><div class="subject_check"><div class="icon_plus">&#xe802</div> 과목 추가하기</div></div></li>';
+  test_html+='</ul></li>';
+  return test_html;
+}
+
+
+
+
+
+
+
+
+
+
+//editting onStudy Control
+// $('.container').on("click",'.subjects .label text',function(){
+//   if($(this).parents('.show_for_edit').length==0){
+//     $(this).closest('.hyegun_box').toggleClass("selected_for_test");
+//     check_startable();
+//   }
+// })
+
+function get_chapter_id(father){
+  var list = father.closest('.chapters');
+  var indexer = list.closest('ul').find('.chapters');
+  var index = indexer.index(list);
+  var id = index;
+  return id;
+}
+
+
+
+$('.container').on("click",'.chapters .label text', function(){
+  var subject_id = get_subject_id($(this));
+  var test_id = get_test_id($(this));
+  var chapter_id = get_chapter_id($(this));
+  var box = $(this).closest('.hyegun_box');
+  var Chapter = current_user.tests[test_id].subjects[subject_id].chapters[chapter_id];
+
+  if($(this).parents('.show_for_edit').length==0){
+    if(isSelectedForTest($(this))){
+      box.removeClass('selected_for_test');
+      Chapter.onStudy=false;
+    }else{
+      box.addClass('selected_for_test');
+      Chapter.onStudy = true;
+    }
+    check_startable();
+  }
+})
+function isSelectedForTest(father){
+  if(father.closest('.hyegun_box').hasClass('selected_for_test')){
+    return true;
+  }
+  else{
+    return false;
+  }
+}
+
+
+$('#start_study').click(function(){
+  if($(this).hasClass('unstartable')){
+    return 0;
+  }
+  var subject_id = get_subject_id($(this));
+  var test_id = get_test_id($(this));
+
+  $.ajax({
+      url : '<%= exam_update_path %>',
+      type: 'post',
+      data: {
+          update_test_id: 0,
+          user_info : current_user
+
+        },
+      success: function(){
+          alert('success');
+          location.href='/problems';
+      }
+  });
+})
+
+
+
+
+$('#new_test').click(function(){
+  var test_cnt=$(this).nextAll().length;
+  // $(this).parent().append('<li><div class="hyegun_box studies tests"><div class="label"><div class="icon">&#xe800</div> <text>시험&#'+(65+test_cnt)+'</text></div><div class="test_control"><div>수정</div></div></div><ul>\
+  // <ul><li><div class="hyegun_box studies subjects" id="new_subject"><div class="icon_plus">&#xe802</div> 과목 추가하기</div></li>\
+  // </ul></li>');
+  create_test();
+});
+
+$('.container').on("click",'.icon',function(){
+
+  var display_check=$(this).closest('li').children('ul');
+
+  if(display_check.css("display")=="none"){
+    something($(this));
+
+    display_check.slideDown();
+    $(this).html('&#xe801');
+  }else{
+
+    display_check.slideUp();
+    $(this).html('&#xe800');
+    something($(this));
+
+  }
+});
+function something(father){
+
+  if(isSubject(father)){
+    var test_id = get_test_id(father);
+    var subject_id = get_subject_id(father);
+    console.log(subject_id);
+    var Subject = current_user.tests[test_id].subjects[subject_id];
+    if(is_empty_dom(father.closest('.subjects'))){
+      father.closest('li').find('li:last-child').removeClass('hidden_add');
+    }else{
+      father.closest('li').find('li:last-child').addClass('hidden_add');
+    }
+  }else if(isTest(father)){
+    console.log('it isays it is test');
+    var test_id = get_test_id(father);
+    var Test = current_user.tests[test_id];
+    if(is_empty_dom(father.closest('.tests'))){
+      father.closest('li').find('li:last-child').removeClass('hidden_add');
+    }else{
+      father.closest('li').find('li:last-child').addClass('hidden_add');
+    }
+  }
+  else{
+    console.log("error in something");
+  }
+}
+
+
+$('.container').on('click','.edit_subject', function(){
+  test_control = $(this).closest('.test_control');
+  ul = test_control.closest('li').children('ul')
+  test_id =  get_test_id($(this));
+  icon_down($(this).closest('.hyegun_box').find('.icon'));
+  hide_others(ul);
+  test_control.html('<div class="save_subject">저장</div><div> | </div><div class="cancel_edit_subject">취소</div>');
+  // alert($(this).html());
+  edit_subjects(ul,test_id);
+  check_startable();
+
+}).on('click','.cancel_edit_subject',function(){
+  test_control = $(this).closest('.test_control');
+  ul = test_control.closest('li').children('ul')
+  test_id =  get_test_id($(this));
+  return_others(ul,test_control);
+
+}).on('click','.save_subject',function(){
+  test_control = $(this).closest('.test_control');
+  ul = test_control.closest('li').children('ul')
+  test_id =  get_test_id($(this));
+  save_edited_subjects(ul,test_id);
+  return_others(ul,test_control);
+  // ul.find('#new_subject').slideUp();
+})
+
+
+
+
+function erase_all_chapters(Subject){
+  for(var i = 0; i<Subject.chapters.length;i++){
+    Subject.chapters[i].onExam=false;
+    Subject.chapters[i].onSudy=false;
+  }
+}
+function save_edited_subjects(ul,test_id){
+  alert("saving");
+  var Subjects = current_user.tests[test_id].subjects;
+  // alert(Subjects.onExam);
+  check_list=check_list_array(ul);
+  for(var i = 0; i<check_list.length;i++){
+    Subjects[i].onExam=check_list[i];
+    if(check_list[i]==0){
+      erase_all_chapters(Subjects[i]);
+    }
+  }
+  $.ajax({
+      url : '<%= exam_update_path %>',
+      type: 'post',
+      data: {
+          update_test_id: test_id,
+          user_info : current_user
+
+        },
+      success: function(){
+          alert('success');
+          // location.reload();
+      }
+  });
+  // alert('saved');
+  // alert(JSON.stringify(Subjects));
+}
+function check_list_array(ul){
+  alert('checking');
+  var checks=ul.find('.subject_control').toArray();
+  var array_len = checks.length;
+  var result = [];
+  // alert('length ='+array_len);
+  for(var i = 0; i<array_len;i++){
+    if($(checks[i]).find('.checked').length){
+      result.push(true);
+      var icon=$(checks[i]).closest('li').removeClass('hidden_subject').removeClass('show_for_edit').find('.icon');
+      console.log(icon);
+      icon_up(icon);
+    }else{
+      result.push(false);
+      $(checks[i]).closest('li').addClass('hidden_subject').find('li').addClass('hidden_chapter');
+
+    }
+  }
+  // alert('check result='+result);
+  return result;
+}
+function hide_others(ul){
+  $('.test_control div').slideUp();
+  $('.subject_control div').slideUp();
+  $('.subjects').next('ul').slideUp();
+  ul.find('.icon').hide ();
+
+}
+
+function return_others(ul,control){
+  $('.test_control div').show();
+  $('.subject_control div').show();
+  ul.find('.icon').show();
+  icon_up(control.closest('.hyegun_box').find('.icon'));
+
+  if(control.hasClass('test_control')){
+      console.log('test');
+      control.html('<div class="edit_subject">과목수정</div><div> | </div><div class="delete_test">삭제</div>');
+      control.closest('li').children('ul').slideUp().find('.subject_control').html('<div class="edit_chapter">단원수정</div>');
+  }
+  if(control.hasClass('subject_control')){
+    console.log('subject');
+    control.html('<div class="edit_chapter">단원수정</div>');
+    control.closest('li').children('ul').slideUp().find('.chapter_control').html('');
+  }
+  ul.find(".hidden_subject").removeClass('show_for_edit')
+  ul.find(".hidden_chapter").removeClass('show_for_edit')
+
+}
+function edit_subjects(ul, test_id){
+  alert("editting");
+  // alert(test_id);
+  Subjects = current_user.tests[test_id].subjects;
+  // alert(Subjects);
+  //여기서부터 작업. 체크 여부 체크하기.
+  ul.find('.subject_control').html(check_or_checked(true));
+  ul.find(".hidden_subject").addClass('show_for_edit').find('.subject_control').html(check_or_checked(false));
+  ul.slideDown();
+  // ul.find('.studies').find('.subject_control').css('background-color','red').html('<div class="check">&#xe803</div>');
+}
+function check_or_checked(checked){
+  if(checked){
+    return '<div class="checked">&#xe804</div>'
+  }
+  else{
+    return '<div class="check">&#xe803</div>'
+  }
+}
+function get_test_id(father){
+  var list;
+  if(isTest(father)){
+    list = father.closest('.tests');
+  }else if(isSubject(father)){
+    list = father.closest('ul').prev();
+  }else{
+    list = father.closest('ul').parent().closest('ul').prev();
+    console.log(list);
+  }
+  var index = $('.tests').index(list);
+  alert('index: '+index);
+  var id = index-1;
+  console.log(id);
+
+  return id;
+}
+
+function isTest(father){
+  if(father.closest('.tests').length){
+    return true;
+  }else{
+    return false;
+  }
+}
+
+function isSubject(father){
+  if(father.closest('.subjects').length){
+    return true;
+  }else{
+    return false;
+  }
+}
+//  deprecated
+// function get_test_id1(father){
+//   var list = father.closest('.tests');
+//   alert('list: '+list.html());
+//   var index = $('.tests').index(list);
+//   alert('index: '+index);
+//   var id = index-1;
+//   return id;
+// }
+// function get_test_id2(father){
+//   var list = father.closest('ul').prev();
+//   var index = $('.tests').index(list);
+//   alert('index: '+index);
+//   var id = index-1;
+//   return id;
+// }
+
+
+function get_subject_id(father){
+  if(isSubject(father)){
+    list = father.closest('.subjects');
+  }else{
+    list = father.closest('ul').prev();
+    console.log(list);
+  }
+  var indexer = list.closest('ul').find('.subjects');
+  var index = indexer.index(list);
+  var id = index;
+  return id;
+}
+
+// function show_subjects(father){
+//   var list = father.prev('.tests');
+//   var index = $('.tests').index(list);
+//   var test_id = index-1;
+//   alert(test_id);
+//   var subject_list=  current_user.Test[test_id].subjects;
+//   alert(current_user.Test[test_id]);
+//   var subject_length = subject_list.length;
+//   alert(subject_length);
+//   for(var i =0; i<Test.subjects.length; i++){
+//     test_html+=fullSubjectHtml(Test.subjects[i],index-1,i+100);
+//
+//   }}
+$('.container').on('click','.delete_test', function(){
+  var list = $(this).closest('.tests');
+  var index = $('.tests').index(list);
+  var id = index-1;
+  // alert(id);
+  delete_test(id);
+
+});
+function get_id(){
+  return
+}
+function create_test(){
+  $('body').html('');
+  $.ajax({
+      url : '<%= exam_generate_path %>',
+      type: 'post',
+      data: {
+          user_info : current_user
+
+        },
+      success: function(){
+          location.reload();
+      }
+  });
+}
+
+function delete_test(id){
+  $('body').html('');
+  $.ajax({
+      url : '<%= exam_destroy_path %>',
+      type: 'post',
+      data: {
+          destroy_test_id : id,
+          user_info : current_user
+
+        },
+      success: function(){
+        location.reload();
+      }
+  });
+}
+
+function check_startable(){
+  if($('.container').find('.selected_for_test').length !== 0){
+    $('#start_study').removeClass('unstartable');
+    // alert("checking");
+
+  }else{
+    $('#start_study').addClass('unstartable');
+  }
+}
+
+
+
+
+
+
+
+//dialog control
+
+$('.container').on("click",'#new_chapter',function(){
+  var trigger = $(this).closest('ul').prev().find('.edit_chapter');
+  trigger.trigger('click');
+});
+$('.container').on("click",'#new_subject',function(){
+  var trigger = $(this).closest('ul').prev().find('.edit_subject');
+  trigger.trigger('click');
+});
+
+$(window).resize(function(){
+  $('.dialog').dialog('option','position',{my: "center", at: "center", of: window});
+});
+
+
+$( ".dialog" ).dialog({
+   autoOpen: false,
+});
+
+var dialog_checked = function(){
+  var checked_list=[]
+  var checks= $( ".dialog ul li div" );
+  checks.each(function(i){
+    if($(this).hasClass('checked')==true){
+      // alert("hi "+$(this).parent().text());
+      checked_list.push(i);
+    }
+  });
+  // alert(checked_list);
+  return checked_list;
+}
+$(document).on("click",'.check',(function(){
+  $(this).html('&#xe804').addClass('checked').removeClass('check');
+}))
+$(document).on("click",'.checked',(function(){
+  $(this).html('&#xe803').addClass('check').removeClass('checked');
+}))
+$('.dialog').on("click", 'div',(function(){
+  // alert($(this).html());
+  if($(this).html()=="취소"){
+    $('.dialog').dialog("close");
+  }
+  if($(this).html()=="확인"){
+    // alert($(this).parents(".dialog").data("mother"));
+    // $(this).parents(".dialog").data("father").parent().prev().after(subjectHtml("test"));
+    var checked_list = dialog_checked();
+    $('.dialog').dialog("close");
+    for( var i = 0; i< checked_list.length;i++){
+      $(this).parents(".dialog").data("father").parent().prepend(fullSubjectHtml(Subjects[checked_list[checked_list.length-i-1]]));
+
+    }
+
+  }
+}));
+
+$('.dialog').dialog({
+  autoOpen: false,
+	modal: true,
+  resizable: false,
+	dialogClass: 'no-close success-dialog',
+});
+
+
+
+
+
+
+
+
+
+// ㅅㄷㄴㅅ
+
+
+$('.container').on('click','.edit_chapter', function(){
+  alert("clicked");
+  subject_control = $(this).closest('.subject_control');
+  ul = subject_control.closest('li').children('ul')
+  test_id =  get_test_id($(this));//was2
+  subject_id = get_subject_id($(this));
+  alert('subject_id: '+subject_id);  alert('test_id:'+test_id);
+  icon_down($(this).closest('.hyegun_box').find('.icon'));
+  hide_others(ul);
+  subject_control.html('<div class="save_chapter">저장</div><div> | </div><div class="cancel_edit_chapter">취소</div>');
+
+  edit_chapters(ul,test_id,subject_id);
+  check_startable();
+
+}).on('click','.cancel_edit_chapter',function(){
+  subject_control = $(this).closest('.subject_control');
+  ul = subject_control.closest('li').children('ul')
+  test_id =  get_test_id($(this));//was2
+  subject_id = get_subject_id($(this));
+  return_others(ul,subject_control);
+
+}).on('click','.save_chapter',function(){
+  subject_control = $(this).closest('.subject_control');
+  ul = subject_control.closest('li').children('ul')
+  test_id =  get_test_id($(this));//was2
+  subject_id = get_subject_id($(this));
+  save_edited_chapters(ul,test_id,subject_id);
+  return_others(ul,subject_control);
+
+})
+
+function save_edited_chapters(ul,test_id,subject_id){
+  alert("saving");
+  alert('test/subject id: '+test_id+'and '+subject_id);
+  var Chapters = current_user.tests[test_id].subjects[subject_id].chapters;
+  // alert(Subjects.onExam);
+  check_list=check_list_array2(ul);
+  for(var i = 0; i<check_list.length;i++){
+    Chapters[i].onExam=check_list[i];
+    if(check_list[i]==false){
+      Chapters[i].onStudy=false;
+
+    }
+  }
+  function chapter_to_id(chapter){
+
+  }
+  $.ajax({
+      url : '<%= exam_update_path %>',
+      type: 'post',
+      data: {
+          update_test_id: test_id,
+          user_info : current_user
+
+        },
+      success: function(){
+          alert('success');
+          // location.reload();
+      }
+  });
+  // alert('saved');
+  // alert(JSON.stringify(Subjects));
+}
+
+function check_list_array2(ul){
+  alert('checking');
+  var checks=ul.find('.chapter_control').toArray();
+  var array_len = checks.length;
+  var result = [];
+  // alert('length ='+array_len);
+  for(var i = 0; i<array_len-1;i++){
+    if($(checks[i]).find('.checked').length){
+      result.push(true);
+      $(checks[i]).closest('li').removeClass('hidden_chapter').removeClass('show_for_edit');
+    }else{
+      result.push(false);
+      $(checks[i]).closest('li').addClass('hidden_chapter');
+    }
+  }
+  // alert('check result='+result);
+  return result;
+}
+
+function edit_chapters(ul, test_id,subject_id){
+  alert("edit chapters");
+  alert(subject_id);
+  var Chapters = current_user.tests[test_id].subjects[subject_id].chapters;
+  // alert(Subjects);
+  //여기서부터 작업. 체크 여부 체크하기.
+  console.log('chapters length: '+Chapters.length);
+  for(var i = 0; i< Chapters.length;i++){
+    Chapters[i].onStudy = false;
+    console.log('onstudy became ffalse');
+  }
+  ul.find('.selected_for_test').removeClass('selected_for_test');
+  ul.find('.chapter_control').html(check_or_checked(true));
+  ul.find(".hidden_chapter").addClass('show_for_edit').find('.chapter_control').html(check_or_checked(false));
+  ul.slideDown();
+  // ul.find('.studies').find('.subject_control').css('background-color','red').html('<div class="check">&#xe803</div>');
+}
+function icon_down(icon){
+  icon.html('&#xe801')
+}
+function icon_up(icon){
+  icon.html('&#xe800')
+}
+
+
+function icon_trigger(icon){
+  if(icon.html()=='&#xe801'){
+    icon.html('&#xe800')
+  }
+  else{
+    icon.html('&#xe801')
+  }
+}
+
+function create_empty(onElements){
+  var zero_array = [];
+  for(var i = 0; i< onElements.length;i++){
+    zero_array.push(false);
+  }
+  return zero_array;
+}
+function is_empty_exam(onElements){
+  var zero_array = create_empty(onElements);
+  if(arraysEqual(onElements,zero_array)){
+    return true;
+  }
+  return false;
+}
+function is_empty_dom(father){
+  if(father.siblings('ul').children('li').length == father.siblings('ul').children('.hidden_chapter').length+father.siblings('ul').children('.hidden_add').length){
+    return true;
+  }else if(father.siblings('ul').children('li').length == father.siblings('ul').children('.hidden_subject').length+father.siblings('ul').children('.hidden_add').length){
+    return true;
+  }else{
+    return false;
+  }
+}
+
+
+function arraysEqual(a, b) {
+  if (a === b) return true;
+  if (a == null || b == null) return false;
+  if (a.length != b.length) return false;
+
+  // If you don't care about the order of the elements inside
+  // the array, you should sort both arrays here.
+
+  for (var i = 0; i < a.length; ++i) {
+    if (a[i] !== b[i]) return false;
+  }
+  return true;
+}
+
+$(document).ready(function(){
+  // is_empty([false,false,false]);
+});
+
+
+</script>
