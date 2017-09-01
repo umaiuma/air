@@ -46,6 +46,11 @@ class ProblemsController < ApplicationController
         @user.save
       end
       meter.set_score(diff)
+      subject =  @user.subjects.find_by(name: @problem.subject_name)
+      chapter = subject.chapters.find_by(name: @problem.chapter_name)
+      group = chapter.groups.find_by(name: pattern.name)
+      group.level = meter.score
+      group.save
     end
 
     score_minimum= @user.meters.minimum("score")

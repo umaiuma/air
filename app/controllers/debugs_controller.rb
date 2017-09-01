@@ -1,6 +1,6 @@
 class DebugsController < ApplicationController
   def index
-    @subjects = Subject.all
+    @user = User.find(session[:user_id])
   end
   def update
 
@@ -57,4 +57,11 @@ class DebugsController < ApplicationController
   def view_post
 
   end
+  def status
+    @user = User.find(session[:user_id])
+
+
+  end
+
+
 end

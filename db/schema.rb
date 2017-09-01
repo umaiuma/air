@@ -10,11 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170815112725) do
+ActiveRecord::Schema.define(version: 20170901173043) do
 
   create_table "chapters", force: :cascade do |t|
     t.integer "subject_id"
     t.string "name"
+    t.integer "level"
     t.boolean "onExam"
     t.boolean "onStudy"
     t.datetime "created_at", null: false
@@ -30,6 +31,15 @@ ActiveRecord::Schema.define(version: 20170815112725) do
     t.index ["user_id"], name: "index_exams_on_user_id"
   end
 
+  create_table "groups", force: :cascade do |t|
+    t.integer "chapter_id"
+    t.string "name"
+    t.float "level"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chapter_id"], name: "index_groups_on_chapter_id"
+  end
+
   create_table "history_problems", force: :cascade do |t|
     t.integer "problem_id"
     t.integer "user_id"
@@ -42,6 +52,7 @@ ActiveRecord::Schema.define(version: 20170815112725) do
   create_table "meters", force: :cascade do |t|
     t.integer "user_id"
     t.string "pattern_name"
+    t.string "chapter_name"
     t.float "score"
     t.float "combo"
     t.float "sign"
