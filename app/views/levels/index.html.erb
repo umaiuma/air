@@ -1,5 +1,8 @@
+<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.min.js"></script> -->
+
 <link rel="stylesheet" href="list_fontello/css/fontello.css">
 <%= stylesheet_link_tag "levels" %>
+<%= stylesheet_link_tag "index6" %>
 <% content_for :javascript_includes do %>
   <%= javascript_include_tag "levels" %>
 <% end %>
@@ -10,30 +13,80 @@
     <!-- Grey navigation panel -->
     <div class="">
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     </div>
-  </div>
+  </div>levels
 
   <div class="col s9 m8 l9" style = "height: 100%;">
     <!-- Teal page content  -->
+    Chart comes here
+
+
   </div>
 
 </div>
+
+
+<script type="text/javascript">
+
+//User control
+function Chapter(){
+    this.name ='';
+}
+function Subject(){
+    this.name ='';
+    this.chapters =[];
+}
+function Test(){
+    this.name='';
+    this.subjects =[];
+}
+function User(){
+    this.name='' ;
+    this.tests =[];
+
+}
+var current_user = new User();
+current_user.name= '<%= @user.username%>';
+var test_js;
+var subject_js;
+var chapter_js;
+<% @user.exams.each do |exam| %>
+  test_js = new Test();
+  test_js.name = '<%=exam.name%>';
+  test_js.id = <%=exam.id%>
+  <% exam.subjects.each do |subject| %>
+    subject_js=new Subject();
+    subject_js.name = '<%= subject.name %>';
+    subject_js.onExam = <%= subject.onExam %>;
+    subject_js.onStudy = <%= subject.onStudy %>;
+
+            <% subject.chapters.each do |chapter| %>
+        chapter_js=new Chapter();
+        chapter_js.name = '<%= chapter.name %>';
+        chapter_js.onExam = <%= chapter.onExam %>;
+        chapter_js.onStudy = <%= chapter.onStudy %>;
+        subject_js.chapters.push(chapter_js);
+
+
+<%end%>
+    test_js.subjects.push(subject_js);
+  <% end %>
+  current_user.tests.push(test_js);
+
+
+<% end %>
+
+for (var i=0; i<current_user.tests.length;i++){
+    var test = current_user.tests[i];
+    // alert(test.name);
+    for(var j=0;j<test.subjects.length;j++){
+        var subject = test.subjects[j];
+        // alert(subject.name);
+        for(var k=0;k<subject.chapters.length;k++){
+            var chapter = subject.chapters[k];
+            // alert(chapter.name);
+        }
+    }
+}
+
+</script>
