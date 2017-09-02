@@ -40,6 +40,8 @@ Rails.application.routes.draw do
   post '/exam_generate' => 'debugs#generate', as: 'exam_generate'
   post '/exam_destroy' => 'debugs#destroy', as: 'exam_destroy'
   get '/status' => 'debugs#status'
+  get '/start/:selected_test_id' =>'problems#set', as: 'exam_start'
+
 
 
 
