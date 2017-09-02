@@ -35,6 +35,7 @@ Rails.application.routes.draw do
   get 'list5' => 'list#index5'
   get 'list6' => 'list#index6'
   get 'tree' => 'list#tree'
+  get 'levels' => 'levels#index'
   post '/exam_update' => 'debugs#update', as: 'exam_update'
   post '/exam_generate' => 'debugs#generate', as: 'exam_generate'
   post '/exam_destroy' => 'debugs#destroy', as: 'exam_destroy'
