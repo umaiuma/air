@@ -7,8 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 (1..8).each do |chapter|
-  ((chapter-1)*10+1..(chapter-1)*10+10).each do |pattern|
-    pattern_name = "pt"+format("%03d",pattern)
+  (1..10).each do |pattern|
+    pattern_name ="s01"+"c"+format("%02d",chapter)+"pt"+format("%02d",pattern)
     pt = Pattern.create(name: pattern_name)
 
   end
@@ -17,7 +17,7 @@ end
 total =50
 query = []
 
-(1..total).each do |file_num|
+(0..total).each do |file_num|
   file_dir = "./db/problems/"+'p'+format('%04d', file_num)+'.txt'
   puts file_dir
   File.open(file_dir,"r").each_line do |line|

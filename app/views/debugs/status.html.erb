@@ -1,0 +1,89 @@
+<script>
+    function Pattern(){
+        this.name ='';
+        this.level = 0;
+    }
+
+    function Chapter(){
+        this.name ='';
+        this.patterns = [];
+        this.onStudy = 0;
+        this.onExam = 0;
+        this.level =0 ;
+    }
+    function Subject(){
+        this.name ='';
+        this.chapters =[];
+        this.onExam = 0;
+        this.onStudy = 0;
+    }
+    function Test(){
+        this.id=0;
+        this.name='';
+        this.subjects =[];
+    }
+    function User(){
+        this.name='' ;
+        this.tests =[];
+
+    }
+    var current_user = new User();
+    current_user.name= '<%= @user.username%>';
+    var test_js;
+    var subject_js;
+    var chapter_js;
+    var pattern_js;
+    <% @user.exams.each do |exam| %>
+      test_js = new Test();
+      test_js.name = '<%=exam.name%>';
+      test_js.id = <%=exam.id%>;
+      <% exam.subjects.each do |subject| %>
+        subject_js=new Subject();
+        subject_js.name = '<%= subject.name %>';
+        subject_js.onExam = <%=subject.onExam%>;
+
+        <% subject.chapters.each do |chapter| %>
+          chapter_js=new Chapter();
+          chapter_js.name = '<%= chapter.name %>';
+          chapter_js.level = <%= chapter.level %>;
+          chapter_js.onExam = <%= chapter.onExam %>;
+
+          <% chapter.groups.each do |group| %>
+            pattern_js = new Pattern();
+            pattern_js.name = '<%=group.name%>';
+            pattern_js.level = '<%=group.level%>';
+            chapter_js.patterns.push(pattern_js);
+
+          <% end%>
+
+          subject_js.chapters.push(chapter_js);
+
+        <%end%>
+        test_js.subjects.push(subject_js);
+      <% end %>
+      current_user.tests.push(test_js);
+
+    <% end %>
+    var test;
+    var subject;
+    var chapter;
+    var pattern;
+
+    for (var i=0; i<current_user.tests.length;i++){
+        test = current_user.tests[i];
+        for(var j=0;j<test.subjects.length;j++){
+            subject = test.subjects[j];
+            for(var k=0;k<subject.chapters.length;k++){
+                chapter = subject.chapters[k];
+                for(var l=0;l<chapter.patterns.length;l++){
+                    pattern = chapter.patterns[l];
+
+                }
+            }
+        }
+    }
+</script>
+
+<body>
+
+</body>
