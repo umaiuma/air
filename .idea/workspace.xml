@@ -2,18 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b6ab2eff-4ac0-4d6a-b583-6574496a82a4" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../app/assets/javascripts/levels.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../app/assets/stylesheets/levels.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../app/controllers/levels_controller.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../app/helpers/levels_helper.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../app/views/levels/index.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../test/controllers/levels_controller_test.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../.idea/workspace.xml" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../app/views/layouts/application.html.erb" afterPath="$PROJECT_DIR$/../app/views/layouts/application.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../app/views/list/index.html.erb" afterPath="$PROJECT_DIR$/../app/views/list/index.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../app/views/problems/show.html.erb" afterPath="$PROJECT_DIR$/../app/views/problems/show.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../config/initializers/assets.rb" afterPath="$PROJECT_DIR$/../config/initializers/assets.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../config/routes.rb" afterPath="$PROJECT_DIR$/../config/routes.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../app/controllers/problems_controller.rb" afterPath="$PROJECT_DIR$/../app/controllers/problems_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../app/views/list/index6.html.erb" afterPath="$PROJECT_DIR$/../app/views/list/index6.html.erb" />
     </list>
     <ignored path="$USER_HOME$/.bundle/" />
     <ignored path="$USER_HOME$/components/" />
@@ -30,11 +21,78 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="show.html.erb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="show.html.erb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../app/views/problems/show.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+            <state relative-caret-position="36">
+              <caret line="2" column="12" lean-forward="false" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="status.html.erb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../app/views/debugs/status.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="366">
+              <caret line="59" column="0" lean-forward="true" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index6.html.erb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../app/views/list/index6.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="370">
+              <caret line="235" column="18" lean-forward="false" selection-start-line="235" selection-start-column="18" selection-end-line="235" selection-end-column="18" />
+              <folding>
+                <marker date="1504324671568" expanded="true" signature="3891:4057" ph="..." />
+                <marker date="1504324671568" expanded="true" signature="4528:4778" ph="..." />
+                <marker date="1504324671568" expanded="true" signature="4566:4774" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mark.html.erb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../app/views/problems/mark.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="problems_controller.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../app/controllers/problems_controller.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="699">
+              <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index4.html.erb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../app/views/list/index4.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <marker date="1504174287430" expanded="true" signature="6585:6879" ph="..." />
+                <marker date="1504174287430" expanded="true" signature="6744:6874" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="debugs_controller.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../app/controllers/debugs_controller.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="162">
+              <caret line="9" column="0" lean-forward="true" selection-start-line="6" selection-start-column="4" selection-end-line="9" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -47,6 +105,7 @@
       <find>pwd</find>
       <find>new</find>
       <find>user</find>
+      <find>ajax</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -55,8 +114,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$USER_HOME$/app/views/problems/front.html" />
-        <option value="$USER_HOME$/app/views/problems/front.html.erb" />
         <option value="$USER_HOME$/config/routes.rb" />
         <option value="$USER_HOME$/app/views/problems/show.html.erb" />
         <option value="$USER_HOME$/db/problems/gen.rb" />
@@ -106,6 +163,8 @@
         <option value="$PROJECT_DIR$/../../app/models/user.rb" />
         <option value="$PROJECT_DIR$/../../app/views/debugs/status.html.erb" />
         <option value="$PROJECT_DIR$/../app/views/problems/show.html.erb" />
+        <option value="$PROJECT_DIR$/../app/views/list/index6.html.erb" />
+        <option value="$PROJECT_DIR$/../app/controllers/problems_controller.rb" />
       </list>
     </option>
   </component>
@@ -204,6 +263,68 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="list" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="." />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="air" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="debugs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="." />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="air" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="." />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="air" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controllers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -561,12 +682,12 @@
       <workItem from="1503488562736" duration="1992000" />
       <workItem from="1504173735465" duration="2871000" />
       <workItem from="1504282418740" duration="10684000" />
-      <workItem from="1504323031810" duration="59000" />
+      <workItem from="1504323031810" duration="1639000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="129649000" />
+    <option name="totallyTimeSpent" value="131229000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-11" width="1857" height="1092" extended-state="6" />
@@ -623,12 +744,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/app/controllers/problems_controller.rb" />
-    <entry file="file://$USER_HOME$/app/views/list/tree.html.erb" />
-    <entry file="file://$USER_HOME$/app/controllers/debugs_controller.rb" />
-    <entry file="file://$USER_HOME$/app/controllers/debugs_controller.rb" />
-    <entry file="file://$USER_HOME$/app/views/list/tree.html.erb" />
-    <entry file="file://$USER_HOME$/db/seeds.rb" />
     <entry file="file://$USER_HOME$/app/views/problems/show.html.erb" />
     <entry file="file://$USER_HOME$/app/views/list/tree.html.erb" />
     <entry file="file://$USER_HOME$/db/problems/p0000.txt" />
@@ -673,10 +788,65 @@
     <entry file="file://$PROJECT_DIR$/../../app/views/list/tree.html.erb" />
     <entry file="file://$PROJECT_DIR$/../../app/controllers/debugs_controller.rb" />
     <entry file="file://$PROJECT_DIR$/../../app/views/debugs/status.html.erb" />
+    <entry file="file://$PROJECT_DIR$/../app/views/problems/mark.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../app/views/list/index6.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="370">
+          <caret line="235" column="18" lean-forward="false" selection-start-line="235" selection-start-column="18" selection-end-line="235" selection-end-column="18" />
+          <folding>
+            <marker date="1504324671568" expanded="true" signature="3891:4057" ph="..." />
+            <marker date="1504324671568" expanded="true" signature="4528:4778" ph="..." />
+            <marker date="1504324671568" expanded="true" signature="4566:4774" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../app/controllers/debugs_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="9" column="0" lean-forward="true" selection-start-line="6" selection-start-column="4" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../app/controllers/problems_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="699">
+          <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../app/views/list/index4.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1504174287430" expanded="true" signature="6585:6879" ph="..." />
+            <marker date="1504174287430" expanded="true" signature="6744:6874" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/../app/views/problems/show.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+        <state relative-caret-position="36">
+          <caret line="2" column="12" lean-forward="false" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../app/views/debugs/status.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="366">
+          <caret line="59" column="0" lean-forward="true" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
           <folding />
         </state>
       </provider>

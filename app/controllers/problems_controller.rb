@@ -2,14 +2,62 @@ class ProblemsController < ApplicationController
   def index
     @problems = Problem.all
   end
+
+  def recommend
+    score_minimum= @user.meters.minimum("score")
+    recommend_meter= @user.meters.find_by(score: score_minimum)
+    if score_minimum<-2
+      recommend_diff = 1
+    elsif score_minimum < 2
+      recommend_diff =2
+    else
+      recommend_diff =3
+    end
+    recommend_pattern =Pattern.find_by(name: recommend_meter.pattern_name)
+    recommend_problems = recommend_pattern.problems.where(difficulty: recommend_diff)
+    recommend_problems.each do |pb|
+      if ! @user.history_problems.find_by(problem_id:pb.id)
+        @recommend_problem = pb
+        break
+      end
+
+    end
+
+    if !@recommend_problem
+      recommend_pattern.problems.each do |pb|
+        if ! @user.history_problems.find_by(problem_id:pb.id)
+          @recommend_problem = pb
+          break
+        end
+      end
+    end
+
+    if @recommend_problem
+      #redirect_to problem_path(@recommend_problem)
+    end
+  end
+
+  def set
+    @user = User.find( session[:user_id] )
+
+    user_js= params.to_unsafe_h
+
+    test_js = user_js[:user_info][:tests][format("%d",params[:selected_test_id])]
+    exam = @user.exams.find(test_js[:id])
+    exam.subjects.each |subject| do
+
+  end
+
+  end
+
   def show
     @problem = Problem.find(params[:id])
     @patterns = @problem.patterns
 
-  end
-  def front
 
   end
+
+
   def mark
 
     @user = User.find(session[:user_id])
@@ -53,37 +101,7 @@ class ProblemsController < ApplicationController
       group.save
     end
 
-    score_minimum= @user.meters.minimum("score")
-    recommend_meter= @user.meters.find_by(score: score_minimum)
-    if score_minimum<-2
-      recommend_diff = 1
-    elsif score_minimum < 2
-      recommend_diff =2
-    else
-      recommend_diff =3
-    end
-    recommend_pattern =Pattern.find_by(name: recommend_meter.pattern_name)
-    recommend_problems = recommend_pattern.problems.where(difficulty: recommend_diff)
-    recommend_problems.each do |pb|
-      if ! @user.history_problems.find_by(problem_id:pb.id)
-        @recommend_problem = pb
-        break
-      end
 
-    end
-
-    if !@recommend_problem
-      recommend_pattern.problems.each do |pb|
-        if ! @user.history_problems.find_by(problem_id:pb.id)
-          @recommend_problem = pb
-          break
-        end
-      end
-    end
-
-    if @recommend_problem
-      #redirect_to problem_path(@recommend_problem)
-    end
 
 
 
