@@ -1,16 +1,44 @@
-
-alert("hi");
-console.log("levels.js");
+console.log("levels_list.js");
 
 
 $(document).ready(function(){
   for( var i=0; i<current_user.tests.length;i++){
-    // alert("load1");
 
     $('#nav').append(fullTestHtml(current_user.tests[i],i));
   }
 });
+$(document).on("click",'.icon',function(event){
+  event.stopPropagation();
+  var display_check=$(this).closest('li').children('ul');
 
+  if(display_check.css("display")=="none"){
+    display_check.slideDown();
+    $(this).html('&#xe801');
+  }else{
+
+    display_check.slideUp();
+    $(this).html('&#xe800');
+    something($(this));
+
+  }
+});
+$(document).on("click",'.subjects',function(){
+  console.log("subject box clicked!");
+  $(document).find('.show_chart').removeClass('show_chart');
+  $(this).addClass('show_chart');
+  id = get_id($(this));
+  // alert(id);
+  show_chart(id);
+
+}).on('click','.chapters',function(){
+  console.log("chapter box clicked!");
+  $(document).find('.show_chart').removeClass('show_chart');
+  $(this).addClass('show_chart');
+  id = get_id($(this));
+  // alert(id);
+  show_chart(id);
+
+})
 
 var simpleChapterHtml=function(Chapter,test_cnt,subject_cnt,chapter_cnt){
   var chapter_id = 't'+test_cnt+'s'+subject_cnt+'c'+chapter_cnt;
@@ -19,9 +47,6 @@ var simpleChapterHtml=function(Chapter,test_cnt,subject_cnt,chapter_cnt){
     chapter_html += 'class="hidden_chapter"';
   }
   chapter_html += ' id="'+chapter_id+'"><div class="hyegun_box studies chapters ';
-  if(Chapter.onStudy){
-    chapter_html +='selected_for_test';
-  }
   chapter_html+='"><div class="label"><text>'+Chapter.name+'</text></div>\
   <div class="chapter_control"></div></div></li>';
   return chapter_html;
@@ -89,25 +114,7 @@ function icon_trigger(icon){
     icon.html('&#xe801');
   }
 }
-$(document).ready(function(){
-  alert("ready!");
-})
-$(document).on("click",'.icon',function(){
-  alert('icon clicked');
-  var display_check=$(this).closest('li').children('ul');
 
-  if(display_check.css("display")=="none"){
-    display_check.slideDown();
-    $(this).html('&#xe801');
-  }else{
-
-    display_check.slideUp();
-    $(this).html('&#xe800');
-    something($(this));
-
-  }
-});
-alert("yup");
 function something(father){
 
   if(isSubject(father)){
@@ -151,4 +158,57 @@ function isSubject(father){
   }else{
     return false;
   }
+}
+function get_id(father){
+  var test_id = get_test_id(father);
+  var subject_id = get_subject_id(father);
+  var chapter_id = get_chapter_id(father);
+  return {test:test_id, subject:subject_id, chapter:chapter_id};
+}
+function get_test_id(father){
+  var list;
+  if(isTest(father)){
+    list = father.closest('.tests');
+  }else if(isSubject(father)){
+    list = father.closest('ul').prev();
+  }else{
+    list = father.closest('ul').parent().closest('ul').prev();
+    console.log(list);
+  }
+  var index = $('.tests').index(list);
+  var id = index;
+  console.log(id);
+
+  return id;
+}
+
+function get_subject_id(father){
+  if(isSubject(father)){
+    list = father.closest('.subjects');
+  }else{
+    list = father.closest('ul').prev();
+    console.log(list);
+  }
+  var indexer = list.closest('ul').find('.subjects');
+  var index = indexer.index(list);
+  var id = index;
+  return id;
+}
+function get_chapter_id(father){
+  var list = father.closest('.chapters');
+  var indexer = list.closest('ul').find('.chapters');
+  var index = indexer.index(list);
+  var id = index;
+  return id;
+}
+
+function show_chart(id){
+  var test_id = id.test;
+  var subject_id = id.subject;
+  var chapter_id = id.chapter;
+  var patterns = current_user.tests[test_id].subjects[subject_id].chapters[chapter_id].patterns;
+  console.log(patterns);
+  alert('showing');
+  create_chart(patterns);
+
 }
