@@ -12,7 +12,7 @@
       </div>
     </div>
 
-    <%= form_for(:mark, url: mark_path(@problem) )do |f| %>
+    <%= form_for(:mark, url: mark_path(@problem, ) )do |f| %>
         <div class="row">
           <div class="col s8 round_button box_shadow"id="input_box" >
             <%= f.text_field :user_answer, :placeholder => '답  입 력', id:"textarea"  %>

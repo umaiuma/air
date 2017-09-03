@@ -233,13 +233,14 @@ $('#start_study').click(function(){
       url : '<%= exam_update_path %>',
       type: 'post',
       data: {
-          selected_test_id: 0,
+          update_test_id: 0,
           user_info : current_user
 
         },
       success: function(){
-          alert('success');
-          location.href='/problems';
+          location.href='/start/'+current_user.tests[0].id;
+
+
       }
   });
 })

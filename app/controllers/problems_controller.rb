@@ -4,8 +4,31 @@ class ProblemsController < ApplicationController
   end
 
   def recommend
-    score_minimum= @user.meters.minimum("score")
-    recommend_meter= @user.meters.find_by(score: score_minimum)
+    @exam = @user.exams.find(session[:exam_id])
+
+
+    @problems =[]
+    @groups = []
+
+    @exam.subjects.each do |subject|
+      subject.chapters.each do |chapter|
+        if chapter.onStudy
+          @problems += Problem.all.where( chapter_name: chapter.name )
+          @groups +=chapter.groups
+        end
+      end
+    end
+
+
+    score_minimum= @groups[0].level
+    recommend_group =@groups[0]
+    @groups.each do |group|
+      if score_minimum > group.level
+        score_minimum = group.level
+        recommend_group = group
+      end
+    end
+
     if score_minimum<-2
       recommend_diff = 1
     elsif score_minimum < 2
@@ -13,7 +36,8 @@ class ProblemsController < ApplicationController
     else
       recommend_diff =3
     end
-    recommend_pattern =Pattern.find_by(name: recommend_meter.pattern_name)
+
+    recommend_pattern =Pattern.find_by(name: recommend_group.name)
     recommend_problems = recommend_pattern.problems.where(difficulty: recommend_diff)
     recommend_problems.each do |pb|
       if ! @user.history_problems.find_by(problem_id:pb.id)
@@ -33,20 +57,18 @@ class ProblemsController < ApplicationController
     end
 
     if @recommend_problem
-      #redirect_to problem_path(@recommend_problem)
+      puts @recommend_problem.name
+      redirect_to problem_path(@recommend_problem)
     end
   end
 
   def set
+    puts "hi"
     @user = User.find( session[:user_id] )
+    session[:exam_id] = params[:selected_test_id]
 
-    user_js= params.to_unsafe_h
 
-    test_js = user_js[:user_info][:tests][format("%d",params[:selected_test_id])]
-    exam = @user.exams.find(test_js[:id])
-    exam.subjects.each |subject| do
-
-  end
+    self.recommend
 
   end
 
@@ -61,9 +83,33 @@ class ProblemsController < ApplicationController
   def mark
 
     @user = User.find(session[:user_id])
+    @exam = @user.exams.find(session[:exam_id])
+
+
+    @groups = []
+
+    @exam.subjects.each do |subject|
+      subject.chapters.each do |chapter|
+        if chapter.onStudy
+          @groups +=chapter.groups
+        end
+      end
+    end
+
+
+    @exam.subjects.each do |subject|
+      subject.chapters.each do |chapter|
+        if chapter.onStudy
+          @groups +=chapter.groups
+        end
+      end
+    end
+
+
     diff = 0
     text = params[:mark][:user_answer]
     @problem =Problem.find(params[:id])
+
     if text != @problem.answer
       diff = -(4-@problem.difficulty)
 
@@ -94,17 +140,17 @@ class ProblemsController < ApplicationController
         @user.save
       end
       meter.set_score(diff)
-      subject =  @user.subjects.find_by(name: @problem.subject_name)
-      chapter = subject.chapters.find_by(name: @problem.chapter_name)
-      group = chapter.groups.find_by(name: pattern.name)
-      group.level = meter.score
-      group.save
+
+      @groups.each do |group|
+        if group.name == pattern.name
+          group.level = meter.score
+          group.save
+        end
+      end
+
     end
 
-
-
-
-
+    self.recommend
 
 
 
