@@ -4,7 +4,7 @@ console.log("levels_list.js");
 $(document).ready(function(){
   for( var i=0; i<current_user.tests.length;i++){
 
-    $('#nav').append(fullTestHtml(current_user.tests[i],i));
+    $('#nav ul').append(fullTestHtml(current_user.tests[i],i));
   }
 });
 $(document).on("click",'.icon',function(event){
@@ -206,9 +206,18 @@ function show_chart(id){
   var test_id = id.test;
   var subject_id = id.subject;
   var chapter_id = id.chapter;
-  var patterns = current_user.tests[test_id].subjects[subject_id].chapters[chapter_id].patterns;
-  console.log(patterns);
-  alert('showing');
-  create_chart(patterns);
+  if(chapter_id != -1){
+    console.log("chapter chart showing");
+    var patterns = current_user.tests[test_id].subjects[subject_id].chapters[chapter_id].patterns;
+    draw_chart(patterns);
+  }
+  else if (subject_id != -1) {
+    console.log("subject chart showing");
+    var chapters = current_user.tests[test_id].subjects[subject_id].chapters;
+    draw_chart(chapters);
+  }
+  else{
+    chart_default();
+  }
 
 }

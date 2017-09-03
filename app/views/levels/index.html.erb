@@ -1,18 +1,21 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
 
 <link rel="stylesheet" href="list_fontello/css/fontello.css">
+<%= stylesheet_link_tag "index6" %>
 <%= stylesheet_link_tag "levels" %>
 <%= stylesheet_link_tag "levels_chart" %>
-<%= stylesheet_link_tag "index6" %>
 <% content_for :javascript_includes do %>
   <%= javascript_include_tag "levels_list" %>
   <%= javascript_include_tag "levels_chart" %>
 <% end %>
 
 <div class="row" style="margin-top: -20px;  margin-bottom: 0; height: 92.75vh;">
-  <div class="col s3 m4 l3" style="background-color: green; height: 100%;" id = "nav">
+  <div class="col s3 m4 l3" style="height: 100%;" id = "nav">
     <!-- Grey navigation panel -->
-  </div>levels
+    <ul>
+    </ul>
+  </div>
   <div class="col s9 m8 l9" style = "height: 100%;" id = "content">
     <!-- Teal page content  -->
     <div class="chart_content">

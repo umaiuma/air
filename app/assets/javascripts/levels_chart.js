@@ -2,23 +2,25 @@ console.log("levels_chart.js");
 $(document).ready(function(){
   chart_default();
 })
-function create_chart(patterns){
-  var patterns_data = get_patterns_data(patterns);
-  chart_html(patterns_data);
+
+function draw_chart(element){
+  var chart_data = get_data_for_chart(element);
+  chart_html(chart_data);
 }
-function get_patterns_data(patterns){
+
+function get_data_for_chart(element){
   var names = [];
   var level = [];
-  console.log("patterns length: "+ patterns.length);
-  for(var i = 0; i<patterns.length;i++){
-    names.push(patterns[i].name);
-    level.push(patterns[i].level);
+  console.log("element length: "+ element.length);
+  for(var i = 0; i<element.length;i++){
+    names.push(element[i].name);
+    level.push(element[i].level);
 
   }
   var data ={
       labels: names,
       datasets: [{
-          label: "유형",
+          label: "성취도",
           data: level,
           backgroundColor: [
               "rgba(255, 99, 132, 0.2)",
@@ -31,11 +33,11 @@ function get_patterns_data(patterns){
   }
   return data;
 }
-function chart_html(patterns_data){
+function chart_html(data){
   var ctx = $("#myChart");
   var myChart = new Chart(ctx, {
       type: "line",
-      data: patterns_data,
+      data: data,
       options: {
           legend:{
             display: false,
@@ -48,8 +50,8 @@ function chart_html(patterns_data){
             }
           },
           title: {
-            display: true,
-            text: 'Test Chart!!'
+            display: false,
+            text: 'AIR CHART'
           },
           responsive: true,
           scales: {

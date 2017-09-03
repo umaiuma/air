@@ -4,10 +4,30 @@
 body{
   // background-color: orange;
 }
-
+.row{
+  margin: 0 !important;
+}
 .subjects.show_chart{
   background-color: yellow;
 }
 .chapters.show_chart{
   background-color: lime;
+}
+
+#nav{
+  border-right: 3px solid #d8f4ff;
+  background-color: rgba(216, 244, 255,0.2);
+}
+.tests{
+  padding-left: 2rem;
+}
+.icon{
+  margin-right: 2rem;
+  width: auto;
+}
+.subjects{
+  padding-left: 4rem;
+}
+.chapters{
+  padding-left: 8rem;
 }
