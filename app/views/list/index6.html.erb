@@ -1,5 +1,5 @@
 <script type="text/javascript">
-window.alert = function() { };
+// window.alert = function() { };
 </script>
 
 <link rel="stylesheet" href="list_fontello/css/fontello.css">
@@ -19,18 +19,6 @@ window.alert = function() { };
     <div class="label"><div class="icon_plus">&#xe802</div> 새로운 시험 만들기</div>
   </li>
 </ul>
-
-
-<div class="dialog" title="과목 선택">
-  <ul>
-    <!-- <li>수  학 <div class="check">&#xe803</div></li>
-    <li>물  리 <div class="check">&#xe803</div></li>
-    <li>화  학 <div class="check">&#xe803</div></li> -->
-    <li><div>취소</div><div>|</div><div>확인</div>
-</li>
-  </ul>
-</div>
-
 
 
 <script type="text/javascript">
@@ -256,12 +244,21 @@ $('#new_test').click(function(){
   create_test();
 });
 
+$(document).ready(function(){
+  // alert("hi");
+})
+$(document).on('dblclick','.tests>.label>text',function(){
+  alert("change test name");
+  //
+  // $(this).
+})
+
 $('.container').on("click",'.icon',function(){
 
   var display_check=$(this).closest('li').children('ul');
 
   if(display_check.css("display")=="none"){
-    something($(this));
+    hidden_add_controller($(this));
 
     display_check.slideDown();
     $(this).html('&#xe801');
@@ -269,11 +266,11 @@ $('.container').on("click",'.icon',function(){
 
     display_check.slideUp();
     $(this).html('&#xe800');
-    something($(this));
+    hidden_add_controller($(this));
 
   }
 });
-function something(father){
+function hidden_add_controller(father){
 
   if(isSubject(father)){
     var test_id = get_test_id(father);
@@ -337,7 +334,6 @@ function erase_all_chapters(Subject){
   }
 }
 function save_edited_subjects(ul,test_id){
-  alert("saving");
   var Subjects = current_user.tests[test_id].subjects;
   // alert(Subjects.onExam);
   check_list=check_list_array(ul);
@@ -356,7 +352,6 @@ function save_edited_subjects(ul,test_id){
 
         },
       success: function(){
-          alert('success');
           // location.reload();
       }
   });
@@ -364,7 +359,6 @@ function save_edited_subjects(ul,test_id){
   // alert(JSON.stringify(Subjects));
 }
 function check_list_array(ul){
-  alert('checking');
   var checks=ul.find('.subject_control').toArray();
   var array_len = checks.length;
   var result = [];
@@ -413,7 +407,6 @@ function return_others(ul,control){
 
 }
 function edit_subjects(ul, test_id){
-  alert("editting");
   // alert(test_id);
   Subjects = current_user.tests[test_id].subjects;
   // alert(Subjects);
@@ -442,7 +435,6 @@ function get_test_id(father){
     console.log(list);
   }
   var index = $('.tests').index(list);
-  alert('index: '+index);
   var id = index-1;
   console.log(id);
 
@@ -641,12 +633,10 @@ $('.dialog').dialog({
 
 
 $('.container').on('click','.edit_chapter', function(){
-  alert("clicked");
   subject_control = $(this).closest('.subject_control');
   ul = subject_control.closest('li').children('ul')
   test_id =  get_test_id($(this));//was2
   subject_id = get_subject_id($(this));
-  alert('subject_id: '+subject_id);  alert('test_id:'+test_id);
   icon_down($(this).closest('.hyegun_box').find('.icon'));
   hide_others(ul);
   subject_control.html('<div class="save_chapter">저장</div><div> | </div><div class="cancel_edit_chapter">취소</div>');
@@ -672,8 +662,6 @@ $('.container').on('click','.edit_chapter', function(){
 })
 
 function save_edited_chapters(ul,test_id,subject_id){
-  alert("saving");
-  alert('test/subject id: '+test_id+'and '+subject_id);
   var Chapters = current_user.tests[test_id].subjects[subject_id].chapters;
   // alert(Subjects.onExam);
   check_list=check_list_array2(ul);
@@ -696,7 +684,6 @@ function save_edited_chapters(ul,test_id,subject_id){
 
         },
       success: function(){
-          alert('success');
           // location.reload();
       }
   });
@@ -705,12 +692,11 @@ function save_edited_chapters(ul,test_id,subject_id){
 }
 
 function check_list_array2(ul){
-  alert('checking');
   var checks=ul.find('.chapter_control').toArray();
   var array_len = checks.length;
   var result = [];
   // alert('length ='+array_len);
-  for(var i = 0; i<array_len-1;i++){
+  for(var i = 0; i<array_len;i++){
     if($(checks[i]).find('.checked').length){
       result.push(true);
       $(checks[i]).closest('li').removeClass('hidden_chapter').removeClass('show_for_edit');
@@ -724,8 +710,6 @@ function check_list_array2(ul){
 }
 
 function edit_chapters(ul, test_id,subject_id){
-  alert("edit chapters");
-  alert(subject_id);
   var Chapters = current_user.tests[test_id].subjects[subject_id].chapters;
   // alert(Subjects);
   //여기서부터 작업. 체크 여부 체크하기.

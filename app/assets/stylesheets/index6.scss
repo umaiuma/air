@@ -191,24 +191,6 @@
 
 
 
-/*for Dialogs*/
-
-
-  .dialog{
-    display: none;
-    display: flex;justify-content: center;align-items:center;
-    width: 30vw!important;
-    height: 10vh;
-  }
-  .dialog ul{
-    width: 38vw;
-    margin-bottom: 0.5rem;
-  }
-  .dialog ul>li{
-    border-top-style: dotted;
-    font-size: 2rem;
-    padding:0.5rem 2rem 0.5rem 2rem;
-  }
   .check{
     float:right;
     margin:auto;
@@ -218,64 +200,4 @@
     float:right;
     margin:auto;
     color: black;
-  }
-  .dialog div{
-  display: inline;
-  float: right;
-  }
-  .dialog ul li:last-child div{
-    font-size: 1.5rem;
-    padding-bottom: 0;
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-  .dialog ul li:last-child{
-    font-size: 1.5rem;
-    padding-bottom: 0;
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-
-
-
-
-  .ui-widget.success-dialog {
-      font-size: 1.2em;
-  }
-
-  .ui-widget-content.success-dialog {
-      background: #F9F9F9;
-      width: 33vw !important;
-      border: 0.2rem solid blue;
-      border-radius: 20px;
-      color: #222222;
-  }
-
-  .ui-dialog.success-dialog {
-    display: flex;justify-content: center;align-items:center;
-
-      left: 0;
-      outline: 0 none;
-      padding: 0 !important;
-      position: relative;
-      top: 0;
-  }
-
-  .ui-dialog.success-dialog .ui-dialog-content {
-      background: none repeat scroll 0 0 transparent;
-      border: 0 none;
-      overflow: auto;
-      position: relative;
-      padding: 0 !important;
-      margin: 0;
-  }
-
-  .ui-dialog.success-dialog .ui-widget-header {
-      display: none;
-  }
-
-  .ui-dialog.success-dialog .ui-dialog-titlebar {
-      padding: 0.1em .5em;
-      position: relative;
-      font-size: 1em;
   }
