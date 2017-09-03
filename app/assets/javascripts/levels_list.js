@@ -4,7 +4,7 @@ console.log("levels_list.js");
 $(document).ready(function(){
   for( var i=0; i<current_user.tests.length;i++){
 
-    $('#nav ul').append(fullTestHtml(current_user.tests[i],i));
+    $('#nav>ul').append(fullTestHtml(current_user.tests[i],i));
   }
 });
 $(document).on("click",'.icon',function(event){
@@ -18,7 +18,7 @@ $(document).on("click",'.icon',function(event){
 
     display_check.slideUp();
     $(this).html('&#xe800');
-    something($(this));
+    // something($(this));
 
   }
 });
