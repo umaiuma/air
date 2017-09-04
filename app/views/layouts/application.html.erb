@@ -68,18 +68,23 @@
 
 <div class="row" style="background-color: #d8f4ff">
   <div class="left-align" style="border:0%; font-size:1vw;height:1vh;">
-    <% if current_user %>
+    <!-- <% if current_user %>
         <%= current_user.username %><%= link_to "Log out", logout_path, method: :destroy %>
     <% else %>
         <%= link_to "Login", 'login' %><%= link_to "Signup", 'signup' %>
-    <% end %>
+    <% end %> -->
   </div>
   <div class="center-align"style="height:7vh; margin-right:6.25vw; margin-left:6.25vw;padding:0;">
     <a href="/"><div class="col s4 air_nav" style="width: 26.333%">A   I   R</div></a>
     <a href="/list6"><div class="col s2 hoverable air_nav">시험범위</div></a>
     <a href="/problems"><div class="col s2 hoverable air_nav">문제풀기</div></a>
     <a href="/levels"><div class="col s2 hoverable air_nav">내성취도</div></a>
-    <a href="/login"><div class="col s2 hoverable air_nav">로그인/회원가입</div></a>
+    <% if current_user %>
+      <a href="/logout"><div class="col s2 hoverable air_nav">로그아웃</div></a>
+
+    <% else %>
+      <a href="/login"><div class="col s2 hoverable air_nav">로그인/회원가입</div></a>
+    <% end %>
   </div>
 </div>
   <%= yield %>
