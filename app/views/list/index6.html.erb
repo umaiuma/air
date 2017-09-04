@@ -138,7 +138,7 @@ var fullSubjectHtml=function(Subject,test_cnt,subject_cnt){
 }
 var fullTestHtml=function(Test,test_cnt){
   var test_html = '<li id="t'+test_cnt+'"><div class="hyegun_box studies tests"><div class="label"><div class="icon">&#xe800</div> <text>'+Test.name+'</text></div>\
-  <div class="test_control"><div class="edit_subject">과목수정</div><div> | </div><div class="delete_test">삭제</div></div></div><ul>';
+  <div class="test_control"><div class="edit_subject">수정</div><div> | </div><div class="delete_test">삭제</div></div></div><ul>';
   for(var i =0; i<Test.subjects.length; i++){
   test_html+=fullSubjectHtml(Test.subjects[i],test_cnt,i);
 
@@ -240,7 +240,6 @@ $('#new_test').click(function(){
 $(document).ready(function(){
 })
 $(document).on('dblclick','.tests>.label>text',function(){
-  alert("tests text doubleclicked");
 })
 
 $('.container').on("click",'.icon',function(){
@@ -331,7 +330,6 @@ function save_test_name(test_id){
   });
 }
 function make_test_name_adjustable(father){
-  alert('adjusting');
   var test_label = father.closest('.tests').children('.label');
   var test_text = test_label.children('text');
   var prev_name = test_text.text();
@@ -385,7 +383,6 @@ function check_list_array(ul){
 
     }
   }
-  // alert('check result='+result);
   return result;
 }
 function hide_others(ul){
@@ -404,7 +401,7 @@ function return_others(ul,control){
 
   if(control.hasClass('test_control')){
       console.log('test');
-      control.html('<div class="edit_subject">과목수정</div><div> | </div><div class="delete_test">삭제</div>');
+      control.html('<div class="edit_subject">수정</div><div> | </div><div class="delete_test">삭제</div>');
       control.closest('li').children('ul').slideUp().find('.subject_control').html('<div class="edit_chapter">단원수정</div>');
   }
   if(control.hasClass('subject_control')){
