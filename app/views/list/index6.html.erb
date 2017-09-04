@@ -1,5 +1,4 @@
 <script type="text/javascript">
-// window.alert = function() { };
 </script>
 
 <link rel="stylesheet" href="list_fontello/css/fontello.css">
@@ -73,13 +72,10 @@ var chapter_js;
 
 for (var i=0; i<current_user.tests.length;i++){
     var test = current_user.tests[i];
-    // alert(test.name);
     for(var j=0;j<test.subjects.length;j++){
         var subject = test.subjects[j];
-        // alert(subject.name);
         for(var k=0;k<subject.chapters.length;k++){
             var chapter = subject.chapters[k];
-            // alert(chapter.name);
         }
     }
 }
@@ -87,12 +83,9 @@ for (var i=0; i<current_user.tests.length;i++){
 
 $(document).ready(function(){
   for( var i=0; i<current_user.tests.length;i++){
-    // alert("load1");
-
     $('.container').append(fullTestHtml(current_user.tests[i],i));
   }
   check_startable();
-  // alert("load2");
 });
 
 
@@ -245,12 +238,9 @@ $('#new_test').click(function(){
 });
 
 $(document).ready(function(){
-  // alert("hi");
 })
 $(document).on('dblclick','.tests>.label>text',function(){
-  alert("change test name");
-  //
-  // $(this).
+  alert("tests text doubleclicked");
 })
 
 $('.container').on("click",'.icon',function(){
@@ -302,12 +292,12 @@ $('.container').on('click','.edit_subject', function(){
   test_control = $(this).closest('.test_control');
   ul = test_control.closest('li').children('ul')
   test_id =  get_test_id($(this));
+  make_test_name_adjustable($(this));
   icon_down($(this).closest('.hyegun_box').find('.icon'));
   hide_others(ul);
   test_control.html('<div class="save_subject">저장</div><div> | </div><div class="cancel_edit_subject">취소</div>');
-  // alert($(this).html());
   edit_subjects(ul,test_id);
-  check_startable();
+  check_startable($(this));
 
 }).on('click','.cancel_edit_subject',function(){
   test_control = $(this).closest('.test_control');
@@ -320,11 +310,35 @@ $('.container').on('click','.edit_subject', function(){
   ul = test_control.closest('li').children('ul')
   test_id =  get_test_id($(this));
   save_edited_subjects(ul,test_id);
+  save_test_name(test_id);
   return_others(ul,test_control);
   // ul.find('#new_subject').slideUp();
 })
+function save_test_name(test_id){
+  var new_test_name = $('#new_test_name').val();
+  current_user.tests[test_id].name=new_test_name;
+  $('#new_test_name').prev().text(new_test_name);
+    $.ajax({
+      url : '<%= exam_update_path %>',
+      type: 'post',
+      data: {
+          update_test_id: test_id,
+          user_info : current_user
 
-
+        },
+      success: function(){
+      }
+  });
+}
+function make_test_name_adjustable(father){
+  alert('adjusting');
+  var test_label = father.closest('.tests').children('.label');
+  var test_text = test_label.children('text');
+  var prev_name = test_text.text();
+  test_text.hide();
+  test_label.append('<input id="new_test_name">');
+  $('#new_test_name').val(prev_name);
+}
 
 
 function erase_all_chapters(Subject){
@@ -335,7 +349,6 @@ function erase_all_chapters(Subject){
 }
 function save_edited_subjects(ul,test_id){
   var Subjects = current_user.tests[test_id].subjects;
-  // alert(Subjects.onExam);
   check_list=check_list_array(ul);
   for(var i = 0; i<check_list.length;i++){
     Subjects[i].onExam=check_list[i];
@@ -355,14 +368,11 @@ function save_edited_subjects(ul,test_id){
           // location.reload();
       }
   });
-  // alert('saved');
-  // alert(JSON.stringify(Subjects));
 }
 function check_list_array(ul){
   var checks=ul.find('.subject_control').toArray();
   var array_len = checks.length;
   var result = [];
-  // alert('length ='+array_len);
   for(var i = 0; i<array_len;i++){
     if($(checks[i]).find('.checked').length){
       result.push(true);
@@ -404,12 +414,11 @@ function return_others(ul,control){
   }
   ul.find(".hidden_subject").removeClass('show_for_edit')
   ul.find(".hidden_chapter").removeClass('show_for_edit')
-
+  $('#new_test_name').prev().show();
+  $('#new_test_name').remove();
 }
 function edit_subjects(ul, test_id){
-  // alert(test_id);
   Subjects = current_user.tests[test_id].subjects;
-  // alert(Subjects);
   //여기서부터 작업. 체크 여부 체크하기.
   ul.find('.subject_control').html(check_or_checked(true));
   ul.find(".hidden_subject").addClass('show_for_edit').find('.subject_control').html(check_or_checked(false));
@@ -456,23 +465,6 @@ function isSubject(father){
     return false;
   }
 }
-//  deprecated
-// function get_test_id1(father){
-//   var list = father.closest('.tests');
-//   alert('list: '+list.html());
-//   var index = $('.tests').index(list);
-//   alert('index: '+index);
-//   var id = index-1;
-//   return id;
-// }
-// function get_test_id2(father){
-//   var list = father.closest('ul').prev();
-//   var index = $('.tests').index(list);
-//   alert('index: '+index);
-//   var id = index-1;
-//   return id;
-// }
-
 
 function get_subject_id(father){
   if(isSubject(father)){
@@ -487,24 +479,11 @@ function get_subject_id(father){
   return id;
 }
 
-// function show_subjects(father){
-//   var list = father.prev('.tests');
-//   var index = $('.tests').index(list);
-//   var test_id = index-1;
-//   alert(test_id);
-//   var subject_list=  current_user.Test[test_id].subjects;
-//   alert(current_user.Test[test_id]);
-//   var subject_length = subject_list.length;
-//   alert(subject_length);
-//   for(var i =0; i<Test.subjects.length; i++){
-//     test_html+=fullSubjectHtml(Test.subjects[i],index-1,i+100);
-//
-//   }}
+
 $('.container').on('click','.delete_test', function(){
   var list = $(this).closest('.tests');
   var index = $('.tests').index(list);
   var id = index-1;
-  // alert(id);
   delete_test(id);
 
 });
@@ -545,7 +524,6 @@ function delete_test(id){
 function check_startable(){
   if($('.container').find('.selected_for_test').length !== 0){
     $('#start_study').removeClass('unstartable');
-    // alert("checking");
 
   }else{
     $('#start_study').addClass('unstartable');
@@ -583,11 +561,9 @@ var dialog_checked = function(){
   var checks= $( ".dialog ul li div" );
   checks.each(function(i){
     if($(this).hasClass('checked')==true){
-      // alert("hi "+$(this).parent().text());
       checked_list.push(i);
     }
   });
-  // alert(checked_list);
   return checked_list;
 }
 $(document).on("click",'.check',(function(){
@@ -597,13 +573,10 @@ $(document).on("click",'.checked',(function(){
   $(this).html('&#xe803').addClass('check').removeClass('checked');
 }))
 $('.dialog').on("click", 'div',(function(){
-  // alert($(this).html());
   if($(this).html()=="취소"){
     $('.dialog').dialog("close");
   }
   if($(this).html()=="확인"){
-    // alert($(this).parents(".dialog").data("mother"));
-    // $(this).parents(".dialog").data("father").parent().prev().after(subjectHtml("test"));
     var checked_list = dialog_checked();
     $('.dialog').dialog("close");
     for( var i = 0; i< checked_list.length;i++){
@@ -663,7 +636,6 @@ $('.container').on('click','.edit_chapter', function(){
 
 function save_edited_chapters(ul,test_id,subject_id){
   var Chapters = current_user.tests[test_id].subjects[subject_id].chapters;
-  // alert(Subjects.onExam);
   check_list=check_list_array2(ul);
   for(var i = 0; i<check_list.length;i++){
     Chapters[i].onExam=check_list[i];
@@ -687,15 +659,12 @@ function save_edited_chapters(ul,test_id,subject_id){
           // location.reload();
       }
   });
-  // alert('saved');
-  // alert(JSON.stringify(Subjects));
 }
 
 function check_list_array2(ul){
   var checks=ul.find('.chapter_control').toArray();
   var array_len = checks.length;
   var result = [];
-  // alert('length ='+array_len);
   for(var i = 0; i<array_len;i++){
     if($(checks[i]).find('.checked').length){
       result.push(true);
@@ -705,13 +674,11 @@ function check_list_array2(ul){
       $(checks[i]).closest('li').addClass('hidden_chapter');
     }
   }
-  // alert('check result='+result);
   return result;
 }
 
 function edit_chapters(ul, test_id,subject_id){
   var Chapters = current_user.tests[test_id].subjects[subject_id].chapters;
-  // alert(Subjects);
   //여기서부터 작업. 체크 여부 체크하기.
   console.log('chapters length: '+Chapters.length);
   for(var i = 0; i< Chapters.length;i++){
