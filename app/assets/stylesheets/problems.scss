@@ -41,7 +41,7 @@
     height:50vh;
   }
   #answer_box{
-    height:69.5vh;
+    height:50vh;
     margin-left: 5vw;
   }
   .box_shadow{
@@ -71,11 +71,25 @@
     box-shadow: 5px 5px #02aad1 ;
     width: 100%;
   }
-  #answer_button{
+  .disabled_button{
+    color: white;
+    background-color: grey !important;
+    box-shadow: 5px 5px #999 !important;
+  }
+
+  #see_answer{
+    margin-left: 5vw;
     display: flex;justify-content: center;align-items:center;
     color: white;
     background-color: red;
   }
+  #next_problem{
+    margin-left: 5vw;
+    display: flex;justify-content: center;align-items:center;
+    color: white;
+    background-color: blue;
+  }
+
   #input_box:hover {box-shadow: 5px 5px #00008B;}
   #submit_button:hover {background-color: green;box-shadow: 5px 5px #00008B;}
-  #answer_button:hover {background-color: black;box-shadow: 5px 5px #02aad1;}
+  #see_answer:hover, #next_problem:hover {background-color: black;box-shadow: 5px 5px #02aad1;}
