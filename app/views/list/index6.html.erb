@@ -248,11 +248,9 @@ function hidden_add_controller(father){
     console.log(subject_id);
     var Subject = current_user.tests[test_id].subjects[subject_id];
     if(is_empty_dom(father.closest('.subjects'))){
-      alert("empty");
       father.closest('li').find('li:last-child').show();
       // father.closest('li').find('li:last-child').removeClass('hidden_add');
     }else{
-      alert("not empty");
       father.closest('li').find('li:last-child').hide();
       // father.closest('li').find('li:last-child').addClass('hidden_add');
     }

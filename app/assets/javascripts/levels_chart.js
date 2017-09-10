@@ -11,27 +11,46 @@ function draw_chart(element){
 function get_data_for_chart(element){
   var names = [];
   var level = [];
+  var level_sum = 0;
   console.log("element length: "+ element.length);
   for(var i = 0; i<element.length;i++){
     names.push(element[i].name);
     level.push(element[i].level);
-
+    level_sum += parseFloat(element[i].level);
   }
+  // level_sum /=element.length;
+  console.log(level_sum);
+
+  var color = calculate_color(level_sum);
   var data ={
       labels: names,
       datasets: [{
           label: "성취도",
           data: level,
           backgroundColor: [
-              "rgba(255, 99, 132, 0.2)",
+              // "rgba(255, 99, 132, 0.2)",
+              color.backgroundColor,
           ],
           borderColor: [
-              "rgba(255,99,132,1)",
+              // "rgba(255,99,132,1)",
+              color.borderColor,
+
           ],
           borderWidth: 5,
       }]
   }
   return data;
+}
+function calculate_color(c_level){
+  c_level = c_level * 5;
+  var r = Math.round(127.5-25.5*c_level)
+  var g = Math.round(127.5+25.5*c_level)
+  var b = Math.round(255-51*Math.abs(c_level));
+  var color={
+    backgroundColor: "rgba("+r+","+g+","+b+", 0.2)",
+    borderColor: "rgba("+r+","+g+","+b+",1)"
+  }
+  return color;
 }
 function chart_html(data){
   var ctx = $("#myChart");
