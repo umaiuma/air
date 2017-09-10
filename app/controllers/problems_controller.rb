@@ -4,7 +4,9 @@ class ProblemsController < ApplicationController
   end
 
   def recommend
+    @user = User.find(session[:user_id])
     @exam = @user.exams.find(session[:exam_id])
+
 
 
     @problems =[]
@@ -82,8 +84,8 @@ class ProblemsController < ApplicationController
 
   def mark
 
-    @user = User.find(session[:user_id])
-    @exam = @user.exams.find(session[:exam_id])
+    @user = User.find(params[:user_id])
+    @exam = @user.exams.find(params[:exam_id])
 
 
     @groups = []
@@ -97,25 +99,19 @@ class ProblemsController < ApplicationController
     end
 
 
-    @exam.subjects.each do |subject|
-      subject.chapters.each do |chapter|
-        if chapter.onStudy
-          @groups +=chapter.groups
-        end
-      end
-    end
 
+    @problem =Problem.find(params[:problem_id])
+    result = params[:result]
+    puts result
 
-    diff = 0
-    text = params[:mark][:user_answer]
-    @problem =Problem.find(params[:id])
-
-    if text != @problem.answer
-      diff = -(4-@problem.difficulty)
-
-    else
+    if result=='1'
       diff = @problem.difficulty
+      puts 'true'
+    else
+      diff = -(4-@problem.difficulty)
+      puts 'false'
     end
+    puts diff
 
     if last_problem = @user.history_problems.find_by(problem_id: @problem.id)
     else
@@ -150,7 +146,7 @@ class ProblemsController < ApplicationController
 
     end
 
-    self.recommend
+    #self.recommend
 
 
 

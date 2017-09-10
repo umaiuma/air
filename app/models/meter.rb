@@ -12,7 +12,7 @@ class Meter < ApplicationRecord
       self.sign =diff
     end
 
-    self.score += 0.07*self.combo*diff
+    self.score += 0.7*self.combo*diff
 
     if(self.score>5)
       self.score =5

@@ -5,6 +5,21 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+pt = Pattern.create(name:'힘')
+pt = Pattern.create(name:'점')
+pt = Pattern.create(name:'전기장')
+pt = Pattern.create(name:'가우스')
+pt = Pattern.create(name:'일')
+pt = Pattern.create(name:'직선')
+pt = Pattern.create(name:'평면')
+pt = Pattern.create(name:'도체')
+pt = Pattern.create(name:'구')
+pt = Pattern.create(name:'진동')
+pt = Pattern.create(name:'에너지밀도')
+pt = Pattern.create(name:'에너지')
+pt = Pattern.create(name:'각운동량')
+pt = Pattern.create(name:'고리')
+pt = Pattern.create(name:'도선')
 
 (1..8).each do |chapter|
   (1..10).each do |pattern|
@@ -14,7 +29,7 @@
   end
 end
 
-total =50
+total =1
 query = []
 
 (0..total).each do |file_num|

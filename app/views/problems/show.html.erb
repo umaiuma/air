@@ -60,6 +60,7 @@
 </div>
 
 <script>
+
 var tried_solving = false;
 function fn_press_han(obj)
 {
@@ -82,26 +83,36 @@ var DynamicMJ = {
 
 function check_answer(){
   var diff =nerdamer($('#textarea').val()+ '-'+'<%=@problem.answer%>');
-  var isCorrect = diff == '0'
+  var isCorrect = diff == '0';
+  var result = false;
   if(isCorrect){
     alert("정답!");
+    result = 1;
+
+
   }
   else{
     alert("틀림 ㅠㅠ");
+    result = 0;
   }
-  // $.ajax({
-  //     url : '<%= exam_update_path %>',
-  //     type: 'post',
-  //     data: {
-  //         update_test_id: 0,
-  //         user_info : current_user
-  //
-  //       },
-  //     success: function(){
-  //       alert("checked answer");
-  //
-  //     }
-  // });
+  if(!tried_solving){
+      $.ajax({
+          url : '<%=mark_path %>',
+          type: 'post',
+          data: {
+              user_id: <%=session[:user_id]%>,
+              exam_id: <%=session[:exam_id]%>,
+
+              problem_id : <%=params[:id]%>,
+              result: result
+          },
+          success: function(){
+              alert("checked answer");
+
+          }
+      });
+  }
+
 }
 $(document).on('keyup','#textarea',function(){
   DynamicMJ.update();
@@ -116,6 +127,10 @@ $(document).on('click','#see_answer', function(){
   if(tried_solving){
     $('#solution').show();
   }
+})
+$(document).on('click','#next_problem', function(){
+    location.href='/recommend';
+
 })
 
 </script>

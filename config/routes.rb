@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   get 'logout' => 'sessions#destroy'
   get 'signup' => 'users#new'
   get 'problemsfront' => 'problems#front'
-  post 'mark/:id' => 'problems#mark', as:'mark'
+  post 'mark' => 'problems#mark', as:'mark'
   get 'list' => 'list#index'
   get 'list2' => 'list#index2'
   get 'list3' => 'list#index3'
@@ -41,6 +41,7 @@ Rails.application.routes.draw do
   post '/exam_destroy' => 'debugs#destroy', as: 'exam_destroy'
   get '/status' => 'debugs#status'
   get '/start/:selected_test_id' =>'problems#set', as: 'exam_start'
+  get '/recommend' =>'problems#recommend'
 
 
 

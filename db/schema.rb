@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 20170901173043) do
   create_table "chapters", force: :cascade do |t|
     t.integer "subject_id"
     t.string "name"
-    t.integer "level"
+    t.float "level"
     t.boolean "onExam"
     t.boolean "onStudy"
     t.datetime "created_at", null: false
