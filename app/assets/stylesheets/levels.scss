@@ -19,15 +19,29 @@ body{
   background-color: rgba(216, 244, 255,0.2);
 }
 .tests{
-  padding-left: 2rem;
+  padding-left: 2vh;
+
 }
+
 .icon{
-  margin-right: 2rem;
-  width: auto;
+  margin-right: 1vh;
+  width: 2vh;
+  position: relative;
+  span{
+    margin: 0;
+  	position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+  }
 }
+
 .subjects{
-  padding-left: 4rem;
+  padding-left: 4vh;
 }
 .chapters{
-  padding-left: 8rem;
+  padding-left: 8vh;
+}
+.hyegun_box{
+  font-size: 2vh;
 }

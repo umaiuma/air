@@ -150,21 +150,6 @@ var fullTestHtml=function(Test,test_cnt){
 
 
 
-
-
-
-
-
-
-
-//editting onStudy Control
-// $('.container').on("click",'.subjects .label text',function(){
-//   if($(this).parents('.show_for_edit').length==0){
-//     $(this).closest('.hyegun_box').toggleClass("selected_for_test");
-//     check_startable();
-//   }
-// })
-
 function get_chapter_id(father){
   var list = father.closest('.chapters');
   var indexer = list.closest('ul').find('.chapters');
@@ -231,9 +216,6 @@ $('#start_study').click(function(){
 
 $('#new_test').click(function(){
   var test_cnt=$(this).nextAll().length;
-  // $(this).parent().append('<li><div class="hyegun_box studies tests"><div class="label"><div class="icon">&#xe800</div> <text>시험&#'+(65+test_cnt)+'</text></div><div class="test_control"><div>수정</div></div></div><ul>\
-  // <ul><li><div class="hyegun_box studies subjects" id="new_subject"><div class="icon_plus">&#xe802</div> 과목 추가하기</div></li>\
-  // </ul></li>');
   create_test();
 });
 
@@ -248,7 +230,6 @@ $('.container').on("click",'.icon',function(){
 
   if(display_check.css("display")=="none"){
     hidden_add_controller($(this));
-
     display_check.slideDown();
     $(this).html('&#xe801');
   }else{
@@ -267,18 +248,22 @@ function hidden_add_controller(father){
     console.log(subject_id);
     var Subject = current_user.tests[test_id].subjects[subject_id];
     if(is_empty_dom(father.closest('.subjects'))){
-      father.closest('li').find('li:last-child').removeClass('hidden_add');
+      father.closest('li').find('li:last-child').show();
+      // father.closest('li').find('li:last-child').removeClass('hidden_add');
     }else{
-      father.closest('li').find('li:last-child').addClass('hidden_add');
+      father.closest('li').find('li:last-child').hide();
+      // father.closest('li').find('li:last-child').addClass('hidden_add');
     }
   }else if(isTest(father)){
     console.log('it isays it is test');
     var test_id = get_test_id(father);
     var Test = current_user.tests[test_id];
     if(is_empty_dom(father.closest('.tests'))){
-      father.closest('li').find('li:last-child').removeClass('hidden_add');
+      father.closest('li').find('li:last-child').show();
+      // father.closest('li').find('li:last-child').removeClass('hidden_add');
     }else{
-      father.closest('li').find('li:last-child').addClass('hidden_add');
+      father.closest('li').find('li:last-child').hide();
+      // father.closest('li').find('li:last-child').addClass('hidden_add');
     }
   }
   else{
@@ -380,6 +365,7 @@ function check_list_array(ul){
     }else{
       result.push(false);
       $(checks[i]).closest('li').addClass('hidden_subject').find('li').addClass('hidden_chapter');
+      $(checks[i]).closest('li').addClass('hidden_subject').find('li:last-child').removeClass('hidden_chapter');
 
     }
   }
@@ -720,9 +706,9 @@ function is_empty_exam(onElements){
   return false;
 }
 function is_empty_dom(father){
-  if(father.siblings('ul').children('li').length == father.siblings('ul').children('.hidden_chapter').length+father.siblings('ul').children('.hidden_add').length){
+  if(father.siblings('ul').children('li').length == father.siblings('ul').children('.hidden_chapter').length+1){
     return true;
-  }else if(father.siblings('ul').children('li').length == father.siblings('ul').children('.hidden_subject').length+father.siblings('ul').children('.hidden_add').length){
+  }else if(father.siblings('ul').children('li').length == father.siblings('ul').children('.hidden_subject').length+1){
     return true;
   }else{
     return false;

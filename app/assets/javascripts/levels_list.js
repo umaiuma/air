@@ -13,11 +13,11 @@ $(document).on("click",'.icon',function(event){
 
   if(display_check.css("display")=="none"){
     display_check.slideDown();
-    $(this).html('&#xe801');
+    $(this).html('<span>&#xe801</span>');
   }else{
 
     display_check.slideUp();
-    $(this).html('&#xe800');
+    $(this).html('<span>&#xe800</span>');
     // something($(this));
 
   }
@@ -59,7 +59,7 @@ var editSubjectHtml=function(Subject,test_cnt,subject_cnt){
   if(!Subject.onExam){
     subject_html += 'class="hidden_subject"';
   }
-  subject_html += ' id="'+subject_id+'"><div class="hyegun_box studies subjects"><div class="label"><div class="icon">&#xe800</div><text>'+Subject.name+'</text></div>';
+  subject_html += ' id="'+subject_id+'"><div class="hyegun_box studies subjects"><div class="label"><div class="icon"><span>&#xe800</span></div><text>'+Subject.name+'</text></div>';
   subject_html +='<div class="subject_control"></div>';
   subject_html+='</div><ul></ul></li>';
   return subject_html;
@@ -72,7 +72,7 @@ var fullSubjectHtml=function(Subject,test_cnt,subject_cnt){
   if(!Subject.onExam){
     subject_html += 'class="hidden_subject"';
   }
-  subject_html += ' id="'+subject_id+'"><div class="hyegun_box studies subjects"><div class="label"><div class="icon">&#xe800</div><text>'+Subject.name+'</text></div>\
+  subject_html += ' id="'+subject_id+'"><div class="hyegun_box studies subjects"><div class="label"><div class="icon"><span>&#xe800</span></div><text>'+Subject.name+'</text></div>\
   </div><ul>';
 
   for(var i =0; i<Subject.chapters.length; i++){
@@ -84,7 +84,7 @@ var fullSubjectHtml=function(Subject,test_cnt,subject_cnt){
 
 
 var fullTestHtml=function(Test,test_cnt){
-  var test_html = '<li id="t'+test_cnt+'"><div class="hyegun_box studies tests"><div class="label"><div class="icon">&#xe800</div> <text>'+Test.name+'</text></div>\
+  var test_html = '<li id="t'+test_cnt+'"><div class="hyegun_box studies tests"><div class="label"><div class="icon"><span>&#xe800</span></div> <text>'+Test.name+'</text></div>\
   </div><ul>';
   for(var i =0; i<Test.subjects.length; i++){
   test_html+=fullSubjectHtml(Test.subjects[i],test_cnt,i);
