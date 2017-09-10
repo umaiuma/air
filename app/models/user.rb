@@ -12,7 +12,10 @@ class User < ApplicationRecord
     new_exam = Exam.new(user: self, name: 'new exam')
 
     self.exams << new_exam
-    (1..2).each do |i|
+    s1 = Subject.new(name: '일반물리학' , exam: new_exam, onStudy:0, onExam:0)
+    s1c1 = Chapter.new(name:'전기장과 전위', subject: s1, onStudy:0, onExam:0 )
+    pt = Gr
+    (2..2).each do |i|
       s = Subject.new(name: 's'+format("%02d",i), exam: new_exam, onStudy: 0, onExam:0)
       (1..4).each do |j|
         chapter_name = 's'+format("%02d",i)+'c'+format("%02d",j)
