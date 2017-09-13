@@ -29,7 +29,7 @@ pt = Pattern.create(name:'도선')
   end
 end
 
-total =1
+total =10
 query = []
 
 (0..total).each do |file_num|

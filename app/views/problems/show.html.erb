@@ -12,8 +12,11 @@
   <div class="col s4 offset-s1">
     <div class="row">
       <div class="image_box box_shadow" id="problem_box">
-        <div class="scroll_problem ">
-          <%=@problem.problem_html%>
+        <div class="scroll_problem " id="problem_text">
+          <p>
+            <%=raw @problem.problem_html%>
+          </p>
+
         </div>
       </div>
     </div>
@@ -69,7 +72,7 @@ function fn_press_han(obj)
     || event.keyCode == 46 ) return;
     //obj.value = obj.value.replace(/[\a-zㄱ-ㅎㅏ-ㅣ가-힣]/g, '');
     obj.value = obj.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, '');
-}
+};
 var DynamicMJ = {
   formula: document.getElementById("answer_converted"),
 
@@ -113,24 +116,23 @@ function check_answer(){
       });
   }
 
-}
+};
 $(document).on('keyup','#textarea',function(){
   DynamicMJ.update();
-})
+});
 $(document).on('click','#submit_button',function(){
   check_answer();
   tried_solving = true;
   $('#see_answer').removeClass('disabled_button');
   $('#next_problem').removeClass('disabled_button');
-})
+});
 $(document).on('click','#see_answer', function(){
   if(tried_solving){
     $('#solution').show();
   }
-})
+});
 $(document).on('click','#next_problem', function(){
     location.href='/recommend';
 
-})
-
+});
 </script>

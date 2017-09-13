@@ -60,24 +60,25 @@ class User < ApplicationRecord
     s1c5.save
 
 
-    (2..2).each do |i|
-      s = Subject.new(name: 's'+format("%02d",i), exam: new_exam, onStudy: 0, onExam:0)
-      (1..4).each do |j|
-        chapter_name = 's'+format("%02d",i)+'c'+format("%02d",j)
 
-        c = Chapter.new(name: chapter_name, subject:s, onStudy: 0, onExam: 0, level: 0)
-        (1..10).each do |k|
-          pattern_name = chapter_name + 'pt'+format("%02d",k)
-          pt = Group.new(name:pattern_name, chapter: c, level: 0)
-          puts pt.name
-          pt.save
-
-        end
-          c.save
-
-      end
-      s.save
-    end
+    # (2..2).each do |i|
+    #   s = Subject.new(name: 's'+format("%02d",i), exam: new_exam, onStudy: 0, onExam:0)
+    #   (1..4).each do |j|
+    #     chapter_name = 's'+format("%02d",i)+'c'+format("%02d",j)
+    #
+    #     c = Chapter.new(name: chapter_name, subject:s, onStudy: 0, onExam: 0, level: 0)
+    #     (1..10).each do |k|
+    #       pattern_name = chapter_name + 'pt'+format("%02d",k)
+    #       pt = Group.new(name:pattern_name, chapter: c, level: 0)
+    #       puts pt.name
+    #       pt.save
+    #
+    #     end
+    #       c.save
+    #
+    #   end
+    #   s.save
+    # end
 
 
 
