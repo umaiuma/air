@@ -132,7 +132,16 @@ $(document).on('click','#see_answer', function(){
   }
 });
 $(document).on('click','#next_problem', function(){
-    location.href='/recommend';
+    var next = '<%=@problem.next_problem%>';
+    if(next =='NaN') {
+        location.href = '/recommend';
+    }
+    else{
+        <% if @problem.next_problem !='NaN'%>
+        location.href = '/problems/'+'<%= Problem.find_by(name: @problem.next_problem).id%>';
+        <%end%>
+
+    }
 
 });
 </script>

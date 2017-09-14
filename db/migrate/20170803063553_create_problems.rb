@@ -8,6 +8,9 @@ class CreateProblems < ActiveRecord::Migration[5.1]
       t.string :solution_html
       t.integer :difficulty
       t.string :answer
+      t.string :prev_problem
+      t.string :next_problem
+      t.string :code
 
       t.timestamps
     end

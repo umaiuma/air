@@ -1,8 +1,11 @@
-﻿p0002
-전기장,힘,일
-1
+﻿p0001-2
+구,가우스,힘
+3
 T
 일반물리학
 전기장과 전위
-전기적으로 절연된 판 위에 반지름 \(R\), 질량 \(m\)인 두 개의 쇠공이 각각 전하량 \(q\)와 \(Q\) (단, \(q>Q\) )로 대전되어 연직거리 \(d\)만큼 떨어져서 평형 상태르 이루고 있다. 이 평형 상태는 불안정한 평형상태이니 쇠공은 수직 방향으로만 운동이 가능하다고 생각하고, 쇠공에 대전된 전하들의 편극 형상도 없어서 항상 쇠공 표면에 균일하게 분포된다고 가정한다. <br>(a) 위의 쇠공에 수직으로 힘을 가하여 아래공과 접촉 시키기 위한 최소 일을 구하라. <br> (b) 이 공들을 접촉시킨 뒤 떼어내서 다시 평형이 되도록 한다고 할 때, 새로 평형을 이루는 높이는 \(d\)보다 멀어질 것인가, 가까워질 것인가, 아니면 변화하지 않을 것인가? 또, 그렇게 생각하는 이유를 설명하라. 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel eleifend nisl, in fringilla mi. Fusce vehicula, velit sit amet scelerisque malesuada, ante urna mattis tortor, ac tempor ante nisi scelerisque dui. Sed dapibus ligula id est pretium, scelerisque consequat mi fringilla. Nullam est mauris, condimentum a dapibus ultricies, ultricies vitae erat. Fusce tincidunt ultrices tempor. Ut ipsum ipsum, vestibulum eu dolor at, maximus bibendum sapien. Morbi egestas velit sit amet eros dapibus, ut consectetur tortor sodales. Praesent efficitur eget libero a posuere. 
+(b) 대전시킨 전하가 풍선에 미치는 압력을 구하라  
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel eleifend nisl, in fringilla mi. Fusce vehicula, velit sit amet scelerisque malesuada, ante urna mattis tortor, ac tempor ante nisi scelerisque dui. Sed dapibus ligula id est pretium, scelerisque consequat mi fringilla. Nullam est mauris, condimentum a dapibus ultricies, ultricies vitae erat. Fusce tincidunt ultrices tempor. Ut ipsum ipsum, vestibulum eu dolor at, maximus bibendum sapien. Morbi egestas velit sit amet eros dapibus, ut consectetur tortor sodales. Praesent efficitur eget libero a posuere.
+p0001-1
+NaN
+p0001-2

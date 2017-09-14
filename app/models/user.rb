@@ -22,6 +22,8 @@ class User < ApplicationRecord
     pt.save
     pt = Group.new(name:'가우스', chapter:s1c1, level:0)
     pt.save
+    pt = Group.new(name:'전위', chapter:s1c1, level:0)
+    pt.save
     pt = Group.new(name:'일', chapter:s1c1, level:0)
     pt.save
     pt = Group.new(name:'직선', chapter:s1c1, level:0)

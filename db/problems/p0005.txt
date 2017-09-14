@@ -1,8 +1,11 @@
 ﻿p0005
-s01c01pt01
+전위,일,구
 1
 T
-s01
-s01c01
-전하 밀도
+일반물리학
+전기장과 전위
+반지름이 \(R\)인 빈 구껍질에 전하 \(Q(=Ne)\)를 고루 저장시킨다고 할 때 필요한 일의 양을 구하라. 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel eleifend nisl, in fringilla mi. Fusce vehicula, velit sit amet scelerisque malesuada, ante urna mattis tortor, ac tempor ante nisi scelerisque dui. Sed dapibus ligula id est pretium, scelerisque consequat mi fringilla. Nullam est mauris, condimentum a dapibus ultricies, ultricies vitae erat. Fusce tincidunt ultrices tempor. Ut ipsum ipsum, vestibulum eu dolor at, maximus bibendum sapien. Morbi egestas velit sit amet eros dapibus, ut consectetur tortor sodales. Praesent efficitur eget libero a posuere. 
+NaN
+NaN
+p0005
