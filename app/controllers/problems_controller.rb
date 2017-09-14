@@ -42,7 +42,7 @@ class ProblemsController < ApplicationController
     recommend_pattern =Pattern.find_by(name: recommend_group.name)
     recommend_problems = recommend_pattern.problems.where(difficulty: recommend_diff)
     recommend_problems.each do |pb|
-      if ! @user.history_problems.find_by(problem_id:pb.id)
+      if ! @user.history_problems.find_by(problem_id:pb.id) && pb.prev_problem =='NaN'
         @recommend_problem = pb
         break
       end
@@ -51,17 +51,31 @@ class ProblemsController < ApplicationController
 
     if !@recommend_problem
       recommend_pattern.problems.each do |pb|
-        if ! @user.history_problems.find_by(problem_id:pb.id)
+        if ! @user.history_problems.find_by(problem_id:pb.id) && pb.prev_problem =='NaN'
           @recommend_problem = pb
           break
         end
       end
     end
 
+    if !@recommend_problem
+       @problems.each do |pb|
+         if ! @user.history_problems.find_by(problem_id:pb.id) && pb.prev_problem =='NaN'
+           @recommend_problem = pb
+           break
+         end
+       end
+    end
+
     if @recommend_problem
-      puts @recommend_problem.name
       redirect_to problem_path(@recommend_problem)
     end
+
+
+
+
+
+
   end
 
   def set
@@ -73,6 +87,11 @@ class ProblemsController < ApplicationController
     self.recommend
 
   end
+  def next
+    @problem = Problem.find(params[:problem_id])
+    redirect_to problem_path(@problem)
+  end
+
 
   def show
     @problem = Problem.find(params[:id])

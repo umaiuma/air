@@ -9,6 +9,7 @@ pt = Pattern.create(name:'힘')
 pt = Pattern.create(name:'점')
 pt = Pattern.create(name:'전기장')
 pt = Pattern.create(name:'가우스')
+pt = Pattern.create(name:'전위')
 pt = Pattern.create(name:'일')
 pt = Pattern.create(name:'직선')
 pt = Pattern.create(name:'평면')
@@ -29,7 +30,7 @@ pt = Pattern.create(name:'도선')
   end
 end
 
-total =10
+total =6
 query = []
 
 (0..total).each do |file_num|
@@ -38,7 +39,7 @@ query = []
   File.open(file_dir,"r").each_line do |line|
     query<< line
   end
-  name = query[0].strip
+  name = query[10].strip
   patterns = query[1].strip.split(',')
   difficulty = query[2].strip
   answer = query[3].strip
@@ -46,8 +47,10 @@ query = []
   chapter_name = query[5].strip
   problem_html = query[6]
   solution_html = query[7]
+  prev_problem = query[8].strip
+  next_problem = query[9].strip
   query =[]
-  pb = Problem.create(name: name, answer: answer, subject_name: subject_name, chapter_name: chapter_name, problem_html: problem_html, solution_html:solution_html, difficulty:difficulty)
+  pb = Problem.create(name: name, answer: answer, subject_name: subject_name, chapter_name: chapter_name, problem_html: problem_html, solution_html:solution_html, difficulty:difficulty, prev_problem: prev_problem, next_problem: next_problem)
   puts pb.name
   patterns.each do |pattern|
     pt = Pattern.find_by(name:pattern)

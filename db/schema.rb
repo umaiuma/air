@@ -84,6 +84,9 @@ ActiveRecord::Schema.define(version: 20170901173043) do
     t.string "solution_html"
     t.integer "difficulty"
     t.string "answer"
+    t.string "prev_problem"
+    t.string "next_problem"
+    t.string "code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
