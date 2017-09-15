@@ -1,4 +1,6 @@
 class ProblemsController < ApplicationController
+  before_action :require_user
+
   def index
     @problems = Problem.all
   end

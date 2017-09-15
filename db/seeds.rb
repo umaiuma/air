@@ -5,30 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-# pt = Pattern.create(name:'힘')
-# pt = Pattern.create(name:'점')
-# pt = Pattern.create(name:'전기장')
-# pt = Pattern.create(name:'가우스')
-# pt = Pattern.create(name:'전위')
-# pt = Pattern.create(name:'일')
-# pt = Pattern.create(name:'직선')
-# pt = Pattern.create(name:'평면')
-# pt = Pattern.create(name:'도체')
-# pt = Pattern.create(name:'구')
-# pt = Pattern.create(name:'진동')
-# pt = Pattern.create(name:'에너지밀도')
-# pt = Pattern.create(name:'에너지')
-# pt = Pattern.create(name:'각운동량')
-# pt = Pattern.create(name:'고리')
-# pt = Pattern.create(name:'도선')
-
-# (1..8).each do |chapter|
-#   (1..10).each do |pattern|
-#     pattern_name ="s01"+"c"+format("%02d",chapter)+"pt"+format("%02d",pattern)
-#     pt = Pattern.create(name: pattern_name)
-#
-#   end
-# end
 
 total =6
 query = []
@@ -51,10 +27,6 @@ query = []
   prev_problem = query[8].strip
   next_problem = query[9].strip
   query =[]
-
-
-
-
   pb = Problem.create(name: name, answer: answer, subject_name: subject_name, chapter_name: chapter_name, problem_html: problem_html, solution_html:solution_html, difficulty:difficulty, prev_problem: prev_problem, next_problem: next_problem)
   puts pb.name
   if(!dic_subject=DicSubject.find_by(name:subject_name))
