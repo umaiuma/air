@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170901173043) do
+ActiveRecord::Schema.define(version: 20170915090457) do
 
   create_table "chapters", force: :cascade do |t|
     t.integer "subject_id"
@@ -21,6 +21,28 @@ ActiveRecord::Schema.define(version: 20170901173043) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["subject_id"], name: "index_chapters_on_subject_id"
+  end
+
+  create_table "dic_chapters", force: :cascade do |t|
+    t.string "name"
+    t.integer "dic_subject_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dic_subject_id"], name: "index_dic_chapters_on_dic_subject_id"
+  end
+
+  create_table "dic_groups", force: :cascade do |t|
+    t.string "name"
+    t.integer "dic_chapter_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dic_chapter_id"], name: "index_dic_groups_on_dic_chapter_id"
+  end
+
+  create_table "dic_subjects", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "exams", force: :cascade do |t|

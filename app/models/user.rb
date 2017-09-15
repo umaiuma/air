@@ -9,57 +9,72 @@ class User < ApplicationRecord
 
   def generate_exam()
 
-    new_exam = Exam.new(user: self, name: 'new exam')
+    new_exam = Exam.new(user: self, name: '새로운 시험')
 
     self.exams << new_exam
-    s1 = Subject.new(name: '일반물리학' , exam: new_exam, onStudy:0, onExam:0)
-    s1c1 = Chapter.new(name:'전기장과 전위', subject: s1, onStudy:0, onExam:0, level:0 )
-    pt = Group.new(name:'힘', chapter:s1c1, level:0)
-    pt.save
-    pt = Group.new(name:'점', chapter:s1c1, level:0)
-    pt.save
-    pt = Group.new(name:'전기장', chapter:s1c1, level:0)
-    pt.save
-    pt = Group.new(name:'가우스', chapter:s1c1, level:0)
-    pt.save
-    pt = Group.new(name:'전위', chapter:s1c1, level:0)
-    pt.save
-    pt = Group.new(name:'일', chapter:s1c1, level:0)
-    pt.save
-    pt = Group.new(name:'직선', chapter:s1c1, level:0)
-    pt.save
-    pt = Group.new(name:'평면', chapter:s1c1, level:0)
-    pt.save
-    pt = Group.new(name:'도체', chapter:s1c1, level:0)
-    pt.save
-    pt = Group.new(name:'구', chapter:s1c1, level:0)
-    pt.save
-    pt = Group.new(name:'진동', chapter:s1c1, level:0)
-    pt.save
-    pt = Group.new(name:'에너지밀도', chapter:s1c1, level:0)
-    pt.save
-    pt = Group.new(name:'에너지', chapter:s1c1, level:0)
-    pt.save
-    pt = Group.new(name:'각운동량', chapter:s1c1, level:0)
-    pt.save
-    pt = Group.new(name:'고리', chapter:s1c1, level:0)
-    pt.save
-    pt = Group.new(name:'도선', chapter:s1c1, level:0)
-    pt.save
-    s1c1.save
-    s1.save
+    dic_subjects=DicSubject.all
+    dic_subjects.each do |dic_subject|
+      subject = Subject.create(name: dic_subject.name, exam: new_exam,onStudy: 0, onExam: 0)
 
-    s1c2= Chapter.new(name:'전기용량과 유전체', subject:s1 , onStudy:0, onExam: 0,level:0)
-    s1c2.save
+      dic_subject.dic_chapters.each do |dic_chapter|
+        chapter = Chapter.create(name:dic_chapter.name, subject: subject, onStudy:0, onExam:0, level:0)
 
-    s1c3= Chapter.new(name:'회로', subject:s1 , onStudy:0, onExam: 0, level:0)
-    s1c3.save
+        dic_chapter.dic_groups.each do |dic_group|
+          group = Group.create(name:dic_group.name, chapter:chapter, level:0)
 
-    s1c4= Chapter.new(name:'자기장', subject:s1 , onStudy:0, onExam: 0, level:0)
-    s1c4.save
+        end
+      end
+    end
 
-    s1c5= Chapter.new(name:'전기역학', subject:s1 , onStudy:0, onExam: 0, level:0)
-    s1c5.save
+
+    # s1 = Subject.new(name: '일반물리학' , exam: new_exam, onStudy:0, onExam:0)
+    # s1c1 = Chapter.new(name:'전기장과 전위', subject: s1, onStudy:0, onExam:0, level:0 )
+    # pt = Group.new(name:'힘', chapter:s1c1, level:0)
+    # pt.save
+    # pt = Group.new(name:'점', chapter:s1c1, level:0)
+    # pt.save
+    # pt = Group.new(name:'전기장', chapter:s1c1, level:0)
+    # pt.save
+    # pt = Group.new(name:'가우스', chapter:s1c1, level:0)
+    # pt.save
+    # pt = Group.new(name:'전위', chapter:s1c1, level:0)
+    # pt.save
+    # pt = Group.new(name:'일', chapter:s1c1, level:0)
+    # pt.save
+    # pt = Group.new(name:'직선', chapter:s1c1, level:0)
+    # pt.save
+    # pt = Group.new(name:'평면', chapter:s1c1, level:0)
+    # pt.save
+    # pt = Group.new(name:'도체', chapter:s1c1, level:0)
+    # pt.save
+    # pt = Group.new(name:'구', chapter:s1c1, level:0)
+    # pt.save
+    # pt = Group.new(name:'진동', chapter:s1c1, level:0)
+    # pt.save
+    # pt = Group.new(name:'에너지밀도', chapter:s1c1, level:0)
+    # pt.save
+    # pt = Group.new(name:'에너지', chapter:s1c1, level:0)
+    # pt.save
+    # pt = Group.new(name:'각운동량', chapter:s1c1, level:0)
+    # pt.save
+    # pt = Group.new(name:'고리', chapter:s1c1, level:0)
+    # pt.save
+    # pt = Group.new(name:'도선', chapter:s1c1, level:0)
+    # pt.save
+    # s1c1.save
+    # s1.save
+    #
+    # s1c2= Chapter.new(name:'전기용량과 유전체', subject:s1 , onStudy:0, onExam: 0,level:0)
+    # s1c2.save
+    #
+    # s1c3= Chapter.new(name:'회로', subject:s1 , onStudy:0, onExam: 0, level:0)
+    # s1c3.save
+    #
+    # s1c4= Chapter.new(name:'자기장', subject:s1 , onStudy:0, onExam: 0, level:0)
+    # s1c4.save
+    #
+    # s1c5= Chapter.new(name:'전기역학', subject:s1 , onStudy:0, onExam: 0, level:0)
+    # s1c5.save
 
 
 
