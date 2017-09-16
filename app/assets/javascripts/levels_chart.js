@@ -106,7 +106,9 @@ function chart_html(data){
                       beginAtZero:false
                   }
               }]
-          }
+          },
+          maintainAspectRatio: false,
+
       }
   });
 
