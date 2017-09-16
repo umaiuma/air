@@ -26,6 +26,8 @@ $(document).on("click",'.subjects',function(){
   console.log("subject box clicked!");
   $(document).find('.show_chart').removeClass('show_chart');
   $(this).addClass('show_chart');
+  $(this).find('.icon').trigger('click');
+  $(this).closest('li').find('.chapters').addClass('show_chart');
   id = get_id($(this));
   // alert(id);
   show_chart(id);
@@ -38,6 +40,8 @@ $(document).on("click",'.subjects',function(){
   // alert(id);
   show_chart(id);
 
+}).on('click','.tests',function(){
+  $(this).find('.icon').trigger('click');
 })
 
 var simpleChapterHtml=function(Chapter,test_cnt,subject_cnt,chapter_cnt){
@@ -200,24 +204,4 @@ function get_chapter_id(father){
   var index = indexer.index(list);
   var id = index;
   return id;
-}
-
-function show_chart(id){
-  var test_id = id.test;
-  var subject_id = id.subject;
-  var chapter_id = id.chapter;
-  if(chapter_id != -1){
-    console.log("chapter chart showing");
-    var patterns = current_user.tests[test_id].subjects[subject_id].chapters[chapter_id].patterns;
-    draw_chart(patterns);
-  }
-  else if (subject_id != -1) {
-    console.log("subject chart showing");
-    var chapters = current_user.tests[test_id].subjects[subject_id].chapters;
-    draw_chart(chapters);
-  }
-  else{
-    chart_default();
-  }
-
 }

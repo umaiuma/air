@@ -18,6 +18,10 @@
   </div>
   <div class="col s9 m8 l9" style = "height: 100%;" id = "content">
     <!-- Teal page content  -->
+    <div id="default_page">
+      <img src="" alt="Three Deers">
+      <p>각 단원을 클릭하여 성취도를 확인하세요!</p>
+    </div>
     <div class="chart_content">
       <canvas id="myChart" width="auto" height="auto"></canvas>
     </div>
@@ -53,7 +57,6 @@
     function User(){
         this.name='' ;
         this.tests =[];
-
     }
     var current_user = new User();
     current_user.name= '<%= @user.username%>';
@@ -83,9 +86,7 @@
             chapter_js.patterns.push(pattern_js);
 
           <% end%>
-
           subject_js.chapters.push(chapter_js);
-
         <%end%>
         test_js.subjects.push(subject_js);
       <% end %>
