@@ -1,9 +1,34 @@
+function show_chart(id){
+  var test_id = id.test;
+  var subject_id = id.subject;
+  var chapter_id = id.chapter;
+  if(chapter_id != -1){
+    console.log("chapter chart showing");
+    var patterns = current_user.tests[test_id].subjects[subject_id].chapters[chapter_id].patterns;
+    draw_chart(patterns);
+  }
+  else if (subject_id != -1) {
+    console.log("subject chart showing");
+    var chapters = current_user.tests[test_id].subjects[subject_id].chapters;
+    draw_chart(chapters);
+  }
+  else{
+    chart_default();
+  }
+}
+
 console.log("levels_chart.js");
 $(document).ready(function(){
-  chart_default();
+  default_page();
 })
-
+function default_page(){
+  $('#default_page img').attr("src",function(){
+    var ran_num=Math.floor((Math.random() * 3) + 1);
+    return "/img/logos/deer3/0"+ran_num+".png";
+  })
+}
 function draw_chart(element){
+  $('#default_page').remove();
   var chart_data = get_data_for_chart(element);
   chart_html(chart_data);
 }
