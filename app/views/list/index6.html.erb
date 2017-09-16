@@ -226,7 +226,7 @@ $(document).on('dblclick','.tests>.label>text',function(){
 })
 
 $('.container').on("click",'.icon',function(){
-
+  alert('.icon clicked');
   var display_check=$(this).closest('li').children('ul');
 
   if(display_check.css("display")=="none"){
@@ -619,7 +619,7 @@ $('.container').on('click','.edit_chapter', function(){
   subject_id = get_subject_id($(this));
   save_edited_chapters(ul,test_id,subject_id);
   return_others(ul,subject_control);
-  ul.prev().find('.icon').css('background-color','red').triggerHandler('click');
+  ul.prev().find('.icon').css('background-color','red').trigger('click');
 
 })
 
