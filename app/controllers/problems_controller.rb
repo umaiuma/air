@@ -103,7 +103,7 @@ class ProblemsController < ApplicationController
     user.save
 
 
-      redirect_to '/recommend'
+    redirect_to '/recommend'
 
   end
   def next
