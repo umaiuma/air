@@ -226,7 +226,6 @@ $(document).on('dblclick','.tests>.label>text',function(){
 })
 
 $('.container').on("click",'.icon',function(){
-  alert('.icon clicked');
   var display_check=$(this).closest('li').children('ul');
 
   if(display_check.css("display")=="none"){
@@ -297,8 +296,6 @@ $('.container').on('click','.edit_subject', function(){
   save_edited_subjects(ul,test_id);
   save_test_name(test_id);
   return_others(ul,test_control);
-  // ul.find('#new_subject').slideUp();
-  // ul.prev().find('.icon').css('background-color','red').trigger('click');
   ul.show();
   console.log(ul);
 })
@@ -411,7 +408,6 @@ function edit_subjects(ul, test_id){
   ul.find('.subject_control').html(check_or_checked(true));
   ul.find(".hidden_subject").addClass('show_for_edit').find('.subject_control').html(check_or_checked(false));
   ul.slideDown();
-  // ul.find('.studies').find('.subject_control').css('background-color','red').html('<div class="check">&#xe803</div>');
 }
 function check_or_checked(checked){
   if(checked){
@@ -619,7 +615,7 @@ $('.container').on('click','.edit_chapter', function(){
   subject_id = get_subject_id($(this));
   save_edited_chapters(ul,test_id,subject_id);
   return_others(ul,subject_control);
-  ul.prev().find('.icon').css('background-color','red').trigger('click');
+  // ul.prev().find('.icon').css('background-color','red').trigger('click');
 
 })
 
