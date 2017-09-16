@@ -298,6 +298,9 @@ $('.container').on('click','.edit_subject', function(){
   save_test_name(test_id);
   return_others(ul,test_control);
   // ul.find('#new_subject').slideUp();
+  // ul.prev().find('.icon').css('background-color','red').trigger('click');
+  ul.show();
+  console.log(ul);
 })
 function save_test_name(test_id){
   var new_test_name = $('#new_test_name').val();
@@ -352,6 +355,7 @@ function save_edited_subjects(ul,test_id){
           // location.reload();
       }
   });
+
 }
 function check_list_array(ul){
   var checks=ul.find('.subject_control').toArray();
@@ -615,6 +619,7 @@ $('.container').on('click','.edit_chapter', function(){
   subject_id = get_subject_id($(this));
   save_edited_chapters(ul,test_id,subject_id);
   return_others(ul,subject_control);
+  ul.prev().find('.icon').css('background-color','red').triggerHandler('click');
 
 })
 
@@ -641,8 +646,11 @@ function save_edited_chapters(ul,test_id,subject_id){
         },
       success: function(){
           // location.reload();
+
       }
   });
+
+  console.log(ul);
 }
 
 function check_list_array2(ul){

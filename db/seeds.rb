@@ -5,30 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-pt = Pattern.create(name:'힘')
-pt = Pattern.create(name:'점')
-pt = Pattern.create(name:'전기장')
-pt = Pattern.create(name:'가우스')
-pt = Pattern.create(name:'전위')
-pt = Pattern.create(name:'일')
-pt = Pattern.create(name:'직선')
-pt = Pattern.create(name:'평면')
-pt = Pattern.create(name:'도체')
-pt = Pattern.create(name:'구')
-pt = Pattern.create(name:'진동')
-pt = Pattern.create(name:'에너지밀도')
-pt = Pattern.create(name:'에너지')
-pt = Pattern.create(name:'각운동량')
-pt = Pattern.create(name:'고리')
-pt = Pattern.create(name:'도선')
-
-(1..8).each do |chapter|
-  (1..10).each do |pattern|
-    pattern_name ="s01"+"c"+format("%02d",chapter)+"pt"+format("%02d",pattern)
-    pt = Pattern.create(name: pattern_name)
-
-  end
-end
 
 total =6
 query = []
@@ -36,10 +12,11 @@ query = []
 (0..total).each do |file_num|
   file_dir = "./db/problems/"+'p'+format('%04d', file_num)+'.txt'
   puts file_dir
+
   File.open(file_dir,"r").each_line do |line|
-    query<< line
+    query<< line.sub("\xEF\xBB\xBF", "").gsub("\r", "")
   end
-  name = query[10].strip
+  name = query[0].strip
   patterns = query[1].strip.split(',')
   difficulty = query[2].strip
   answer = query[3].strip
@@ -52,8 +29,27 @@ query = []
   query =[]
   pb = Problem.create(name: name, answer: answer, subject_name: subject_name, chapter_name: chapter_name, problem_html: problem_html, solution_html:solution_html, difficulty:difficulty, prev_problem: prev_problem, next_problem: next_problem)
   puts pb.name
+  if(!dic_subject=DicSubject.find_by(name:subject_name))
+    dic_subject=DicSubject.create(name:subject_name)
+  end
+  puts dic_subject.name
+
+  if(!dic_chapter = DicChapter.find_by(name:chapter_name))
+    dic_chapter=DicChapter.create(name:chapter_name, dic_subject: dic_subject)
+  end
+
+  puts dic_chapter.name
+
   patterns.each do |pattern|
-    pt = Pattern.find_by(name:pattern)
+    if(!pt = Pattern.find_by(name:pattern))
+      pt =Pattern.create(name:pattern)
+    end
+    puts pt.name
+    if(!dic_group = DicGroup.find_by(name:pattern))
+      dic_group =DicGroup.create(name:pattern, dic_chapter:dic_chapter)
+    end
+    puts dic_group.name
+
     pt.problems << [pb]
 
   end

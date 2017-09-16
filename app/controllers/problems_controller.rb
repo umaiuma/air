@@ -1,80 +1,84 @@
 class ProblemsController < ApplicationController
-  before_action :require_user
 
   def index
     @problems = Problem.all
   end
 
   def recommend
-    @user = User.find(session[:user_id])
-    @exam = @user.exams.find(session[:exam_id])
+    puts !session[:user_id]
+    if(!session[:user_id])
+      puts 'hi'
+      redirect_to '/login'
+    else
+      @user = User.find(session[:user_id])
+      @exam = @user.exams.find(session[:exam_id])
 
 
 
-    @problems =[]
-    @groups = []
+      @problems =[]
+      @groups = []
 
-    @exam.subjects.each do |subject|
-      subject.chapters.each do |chapter|
-        if chapter.onStudy
-          @problems += Problem.all.where( chapter_name: chapter.name )
-          @groups +=chapter.groups
+      @exam.subjects.each do |subject|
+        subject.chapters.each do |chapter|
+          if chapter.onStudy
+            @problems += Problem.all.where( chapter_name: chapter.name )
+            @groups +=chapter.groups
+          end
         end
       end
-    end
 
 
-    score_minimum= @groups[0].level
-    recommend_group =@groups[0]
-    @groups.each do |group|
-      if score_minimum > group.level
-        score_minimum = group.level
-        recommend_group = group
-      end
-    end
-
-    if score_minimum<-2
-      recommend_diff = 1
-    elsif score_minimum < 2
-      recommend_diff =2
-    else
-      recommend_diff =3
-    end
-
-    recommend_pattern =Pattern.find_by(name: recommend_group.name)
-    recommend_problems = recommend_pattern.problems.where(difficulty: recommend_diff)
-    recommend_problems.each do |pb|
-      if ! @user.history_problems.find_by(problem_id:pb.id) && pb.prev_problem =='NaN'
-        @recommend_problem = pb
-        break
+      score_minimum= @groups[0].level
+      recommend_group =@groups[0]
+      @groups.each do |group|
+        if score_minimum > group.level
+          score_minimum = group.level
+          recommend_group = group
+        end
       end
 
-    end
+      if score_minimum<-2
+        recommend_diff = 1
+      elsif score_minimum < 2
+        recommend_diff =2
+      else
+        recommend_diff =3
+      end
 
-    if !@recommend_problem
-      recommend_pattern.problems.each do |pb|
+      recommend_pattern =Pattern.find_by(name: recommend_group.name)
+      recommend_problems = recommend_pattern.problems.where(difficulty: recommend_diff)
+      recommend_problems.each do |pb|
         if ! @user.history_problems.find_by(problem_id:pb.id) && pb.prev_problem =='NaN'
           @recommend_problem = pb
           break
         end
+
       end
+
+      if !@recommend_problem
+        recommend_pattern.problems.each do |pb|
+          if ! @user.history_problems.find_by(problem_id:pb.id) && pb.prev_problem =='NaN'
+            @recommend_problem = pb
+            break
+          end
+        end
+      end
+
+      if !@recommend_problem
+        @problems.each do |pb|
+          if ! @user.history_problems.find_by(problem_id:pb.id) && pb.prev_problem =='NaN'
+            @recommend_problem = pb
+            break
+          end
+        end
+      end
+
+      if @recommend_problem
+        redirect_to problem_path(@recommend_problem)
+      end
+
+
     end
-
-    if !@recommend_problem
-       @problems.each do |pb|
-         if ! @user.history_problems.find_by(problem_id:pb.id) && pb.prev_problem =='NaN'
-           @recommend_problem = pb
-           break
-         end
-       end
-    end
-
-    if @recommend_problem
-      redirect_to problem_path(@recommend_problem)
-    end
-
-
-
 
 
 
