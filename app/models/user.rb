@@ -6,8 +6,17 @@ class User < ApplicationRecord
   has_secure_password
   has_many :meters
   has_many :history_problems
+  has_one :last_exam
+
+
+  def set_last_exam(id)
+    self.last_exam=id
+    self.save
+
+  end
 
   def generate_exam()
+
 
     new_exam = Exam.new(user: self, name: '새로운 시험')
 

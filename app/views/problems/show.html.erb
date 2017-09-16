@@ -114,8 +114,10 @@ function check_answer(){
           url : '<%=mark_path %>',
           type: 'post',
           data: {
-              user_id: <%=session[:user_id]%>,
-              exam_id: <%=session[:exam_id]%>,
+              user_id: <%=@user.id%>,
+              <% if @exam %>
+              exam_id: <%=@exam.id%>,
+              <%end%>
 
               problem_id : <%=params[:id]%>,
               result: result

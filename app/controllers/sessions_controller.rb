@@ -13,6 +13,7 @@ class SessionsController < ActionController::Base
   end
   def destroy
     session[:user_id] = nil
+    session[:exam_id] =nil
     redirect_to '/'
   end
 end

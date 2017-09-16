@@ -9,73 +9,80 @@ class ProblemsController < ApplicationController
     if(!session[:user_id])
       puts 'hi'
       redirect_to '/login'
+
     else
       @user = User.find(session[:user_id])
-      @exam = @user.exams.find(session[:exam_id])
 
+      if(@user.last_exam)
+        @exam = @user.exams.find(@user.last_exam.exam_id)
 
+        @problems =[]
+        @groups = []
 
-      @problems =[]
-      @groups = []
-
-      @exam.subjects.each do |subject|
-        subject.chapters.each do |chapter|
-          if chapter.onStudy
-            @problems += Problem.all.where( chapter_name: chapter.name )
-            @groups +=chapter.groups
+        @exam.subjects.each do |subject|
+          subject.chapters.each do |chapter|
+            if chapter.onStudy
+              @problems += Problem.all.where( chapter_name: chapter.name )
+              @groups +=chapter.groups
+            end
           end
         end
-      end
 
-
-      score_minimum= @groups[0].level
-      recommend_group =@groups[0]
-      @groups.each do |group|
-        if score_minimum > group.level
-          score_minimum = group.level
-          recommend_group = group
+        score_minimum= @groups[0].level
+        recommend_group =@groups[0]
+        @groups.each do |group|
+          if score_minimum > group.level
+            score_minimum = group.level
+            recommend_group = group
+          end
         end
-      end
 
-      if score_minimum<-2
-        recommend_diff = 1
-      elsif score_minimum < 2
-        recommend_diff =2
+        if score_minimum<-2
+          recommend_diff = 1
+        elsif score_minimum < 2
+          recommend_diff =2
+        else
+          recommend_diff =3
+        end
+
+        recommend_pattern =Pattern.find_by(name: recommend_group.name)
+        recommend_problems = recommend_pattern.problems.where(difficulty: recommend_diff)
+        recommend_problems.each do |pb|
+          if ! @user.history_problems.find_by(problem_id:pb.id) && pb.prev_problem =='NaN'
+            @recommend_problem = pb
+            break
+          end
+
+        end
+
+        if !@recommend_problem
+          recommend_pattern.problems.each do |pb|
+            if ! @user.history_problems.find_by(problem_id:pb.id) && pb.prev_problem =='NaN'
+              @recommend_problem = pb
+              break
+            end
+          end
+        end
+
+        if !@recommend_problem
+          @problems.each do |pb|
+            if ! @user.history_problems.find_by(problem_id:pb.id) && pb.prev_problem =='NaN'
+              @recommend_problem = pb
+              break
+            end
+          end
+        end
+
+        if @recommend_problem
+          redirect_to problem_path(@recommend_problem)
+        end
       else
-        recommend_diff =3
-      end
-
-      recommend_pattern =Pattern.find_by(name: recommend_group.name)
-      recommend_problems = recommend_pattern.problems.where(difficulty: recommend_diff)
-      recommend_problems.each do |pb|
-        if ! @user.history_problems.find_by(problem_id:pb.id) && pb.prev_problem =='NaN'
-          @recommend_problem = pb
-          break
-        end
+        redirect_to '/list6'
 
       end
 
-      if !@recommend_problem
-        recommend_pattern.problems.each do |pb|
-          if ! @user.history_problems.find_by(problem_id:pb.id) && pb.prev_problem =='NaN'
-            @recommend_problem = pb
-            break
-          end
-        end
-      end
 
-      if !@recommend_problem
-        @problems.each do |pb|
-          if ! @user.history_problems.find_by(problem_id:pb.id) && pb.prev_problem =='NaN'
-            @recommend_problem = pb
-            break
-          end
-        end
-      end
 
-      if @recommend_problem
-        redirect_to problem_path(@recommend_problem)
-      end
 
 
     end
@@ -86,11 +93,17 @@ class ProblemsController < ApplicationController
 
   def set
     puts "hi"
-    @user = User.find( session[:user_id] )
-    session[:exam_id] = params[:selected_test_id]
+    user = User.find( session[:user_id] )
+    if !last_exam=user.last_exam
+      last_exam = LastExam.create(user: user, exam_id:params[:selected_test_id].to_i)
+    end
+    last_exam.exam_id = params[:selected_test_id].to_i
+    last_exam.save
+
+    user.save
 
 
-    self.recommend
+      redirect_to '/recommend'
 
   end
   def next
@@ -100,8 +113,16 @@ class ProblemsController < ApplicationController
 
 
   def show
-    @problem = Problem.find(params[:id])
-    @patterns = @problem.patterns
+    if(session[:user_id])
+      @problem = Problem.find(params[:id])
+      @patterns = @problem.patterns
+      @user = User.find(session[:user_id])
+      @exam = Exam.find(@user.last_exam.exam_id)
+
+    else
+      redirect_to '/login'
+    end
+
 
 
   end
