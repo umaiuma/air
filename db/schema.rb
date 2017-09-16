@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 20170916111655) do
   end
 
   create_table "meters", force: :cascade do |t|
-    t.integer "user_id"
+    t.integer "exam_id"
     t.string "pattern_name"
     t.string "chapter_name"
     t.float "score"
@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(version: 20170916111655) do
     t.float "sign"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_meters_on_user_id"
+    t.index ["exam_id"], name: "index_meters_on_exam_id"
   end
 
   create_table "parts", force: :cascade do |t|
