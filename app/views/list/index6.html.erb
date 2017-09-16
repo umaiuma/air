@@ -385,17 +385,17 @@ function return_others(ul,control){
   $('.test_control div').show();
   $('.subject_control div').show();
   ul.find('.icon').show();
-  icon_up(control.closest('.hyegun_box').find('.icon'));
+  // icon_up(control.closest('.hyegun_box').find('.icon'));
 
   if(control.hasClass('test_control')){
       console.log('test');
       control.html('<div class="edit_subject">수정</div><div> | </div><div class="delete_test">삭제</div>');
-      control.closest('li').children('ul').slideUp().find('.subject_control').html('<div class="edit_chapter">단원수정</div>');
+      control.closest('li').children('ul').find('.subject_control').html('<div class="edit_chapter">단원수정</div>');
   }
   if(control.hasClass('subject_control')){
     console.log('subject');
     control.html('<div class="edit_chapter">단원수정</div>');
-    control.closest('li').children('ul').slideUp().find('.chapter_control').html('');
+    control.closest('li').children('ul').find('.chapter_control').html('');
   }
   ul.find(".hidden_subject").removeClass('show_for_edit')
   ul.find(".hidden_chapter").removeClass('show_for_edit')
@@ -615,8 +615,11 @@ $('.container').on('click','.edit_chapter', function(){
   subject_id = get_subject_id($(this));
   save_edited_chapters(ul,test_id,subject_id);
   return_others(ul,subject_control);
-  // ul.prev().find('.icon').css('background-color','red').trigger('click');
-
+  var icon = ul.prev().find('.icon');
+// .css('background-color','red').trigger('click');
+  // var display_check=icon.closest('li').children('ul');
+  // hidden_add_controller($(this));
+  // display_check.slideDown();
 })
 
 function save_edited_chapters(ul,test_id,subject_id){
