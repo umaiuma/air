@@ -1,7 +1,8 @@
 /*body{
   background-color: lime;
 }*/
-.check:hover, .subject_control:hover, .test_control:hover{
+
+.check, .subject_control, .test_control{
   cursor: pointer;
 }
 .subject_control, .test_control{
@@ -19,7 +20,7 @@
   display: inherit;
 }
 .unstartable{
-  background-color: gray !important;
+  background-color: #E6E6E6 !important;
 
 }
 .unstartable :hover{
@@ -203,4 +204,13 @@
     float:right;
     margin:auto;
     color: black;
+  }
+
+  #new_test_name{
+    border:none;
+    outline: none;
+    margin:0;
+    font-size: 2rem;
+    height:inherit;
+    width: 30vw;
   }
