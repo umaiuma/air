@@ -1,6 +1,9 @@
 /*body{
   background-color: lime;
 }*/
+.check:hover, .subject_control:hover, .test_control:hover{
+  cursor: pointer;
+}
 .subject_control, .test_control{
   font-weight: normal;
   font-size: 70%;

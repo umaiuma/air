@@ -1,4 +1,3 @@
-<%=@problem.name%>
 <%= stylesheet_link_tag "problems.css" %>
 <script type="text/javascript" async
   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
@@ -8,38 +7,49 @@
 <%= javascript_include_tag "/assets/nerdamer/Calculus" %>
 <%= javascript_include_tag "/assets/nerdamer/Solve" %>
 <%= javascript_include_tag "/assets/nerdamer/Extra" %>
-
-<div class="row" style="margin-top: 10vh;">
-  <div class="col s6" style="width: 35vw;margin-left:10vw;margin-right:3vw;">
+<div class="row" style="margin-top: 3vh;">
+  <div class="col s10" style="margin-left:6.25vw;margin-right:3vw;">
+    <div id = "problem_number">
+      <!-- <ox></ox> -->
+      <text></text>
+      <script type="text/javascript">
+        var problem_number= '<%=@problem.name%>';
+        problem_number=problem_number.slice(1);
+        $('#problem_number text').text(problem_number);
+      </script>
+    </div>
+  </div>
+  <div class="col s6" style="width: 41.67vw;margin-left:6.25vw;margin-right:2.08vw;padding:0;">
     <div class="row">
       <div class="image_box box_shadow" id="problem_box">
         <div class="scroll_problem " id="problem_text">
-          <p>
+          <div>
             <%=raw @problem.problem_html%>
-          </p>
+          </div>
 
         </div>
       </div>
     </div>
 
   </div>
-  <div class="col s6"style="width: 35vw;margin-right:10vw;margin-left:3vw;">
+  <div class="col s6"style="width: 41.67vw;margin-right:0;margin-left:2.08vw;padding:0;">
     <div class="image_box box_shadow" id="answer_box">
 
       <div class="scroll_problem ">
+        <div id = "answer_converted">답안  </div>
         <div id = "solution" style = "display: none;">
           <%= @problem.solution_html%>
 
         </div>
       </div>
     </div>
-    <div class="row">
+    <!-- <div class="row">
       <div class="row">
         <div class="col s12 round_button box_shadow">
           <text id = "answer_converted">답안  </text>
         </div>
       </div>
-    </div>
+    </div> -->
     <%= form_for(:mark, url: mark_path(@problem, ) )do |f| %>
     <div class="row">
       <div class="col s8 round_button box_shadow"id="input_box" >
@@ -52,7 +62,7 @@
       </div>
     </div>
     <% end%>
-    <div class="col s6" style="padding-left:0;"><div class="round_button box_shadow disabled_button" id="see_answer" style="width: 100%;">정  답  보  기</div></div>
+    <div class="col s6" style="padding-left:0;"><div class="round_button box_shadow disabled_button" id="see_answer" style="width: 100%;">풀  이  보  기</div></div>
     <div class="col s6" style="padding-right:0;"><div class="round_button box_shadow disabled_button" id="next_problem"style="width: 100%;">다 음  문 제</div></div>
   </div>
 </div>
@@ -89,14 +99,15 @@ function check_answer(){
   var isCorrect = diff == '0';
   var result = false;
   if(isCorrect){
-    alert("정답!");
-    result = 1;
 
+    result = 1;
+    // $('ox').html()
+    $('#problem_number').prepend('<img id="OX" src="/img/ox/O.png" />')
 
   }
   else{
-    alert("틀림 ㅠㅠ");
     result = 0;
+    $('#problem_number').prepend('<img id="OX" src="/img/ox/X.png" />')
   }
   if(!tried_solving){
       $.ajax({
@@ -119,8 +130,12 @@ function check_answer(){
   }
 
 };
-$(document).on('keyup','#textarea',function(){
-  DynamicMJ.update();
+$(document).on('keyup','#textarea',function(e){
+  console.log(e.keyCode);
+  if(e.keyCode != 37 && e.keyCode != 39){
+    DynamicMJ.update();
+  }
+
 });
 $(document).on('click','#submit_button',function(){
   check_answer();
@@ -131,9 +146,11 @@ $(document).on('click','#submit_button',function(){
 $(document).on('click','#see_answer', function(){
   if(tried_solving){
     $('#solution').show();
+    $('#answer_converted').hide();
   }
 });
 $(document).on('click','#next_problem', function(){
+  if(tried_solving){
     var next = '<%=@problem.next_problem%>';
     if(next =='NaN') {
         location.href = '/recommend';
@@ -144,6 +161,6 @@ $(document).on('click','#next_problem', function(){
         <%end%>
 
     }
-
+  }
 });
 </script>
