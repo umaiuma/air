@@ -103,7 +103,7 @@ class ProblemsController < ApplicationController
     user.save
 
 
-      redirect_to '/recommend'
+    redirect_to '/recommend'
 
   end
   def next
@@ -117,7 +117,11 @@ class ProblemsController < ApplicationController
       @problem = Problem.find(params[:id])
       @patterns = @problem.patterns
       @user = User.find(session[:user_id])
-      @exam = Exam.find(@user.last_exam.exam_id)
+      if(@user.last_exam)
+        @exam = Exam.find(@user.last_exam.exam_id)
+      else
+        redirect_to '/recommend'
+      end
 
     else
       redirect_to '/login'

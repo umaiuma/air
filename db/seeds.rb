@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-total =6
+total =12
 query = []
 
 (0..total).each do |file_num|
@@ -45,7 +45,7 @@ query = []
       pt =Pattern.create(name:pattern)
     end
     puts pt.name
-    if(!dic_group = DicGroup.find_by(name:pattern))
+    if(!dic_group = DicGroup.find_by(name:pattern, dic_chapter: dic_chapter))
       dic_group =DicGroup.create(name:pattern, dic_chapter:dic_chapter)
     end
     puts dic_group.name
