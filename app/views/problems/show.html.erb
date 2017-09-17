@@ -54,7 +54,7 @@
     <div class="row">
       <div class="col s8 round_button box_shadow"id="input_box" >
         <!-- 이렇게하면 영문만(숫자포함) 입력 됨 //이메일 아이디 같은거 입력을 만들때 -->
-        <%= f.text_field :user_answer, :placeholder => '수 식  입 력', id:"textarea", :onchange =>'fn_press_han(this)' %>
+        <%= f.text_field :user_answer, :placeholder => '수 식  입 력', id:"textarea", :onchange =>'fn_press_han(this)', autocomplete:"off" %>
       </div>
       <div class="col s4">
         <span class= "round_button box_shadow" id = "submit_button">제 출</span>
@@ -93,11 +93,18 @@ var DynamicMJ = {
     MathJax.Hub.Queue(["Typeset",MathJax.Hub,this.formula]);
   }
 };
-
+function cheat(answer){
+  if(answer === "T"){
+    return true;
+  }
+}
 function check_answer(){
-  var diff =nerdamer($('#textarea').val()+ '-'+'<%=@problem.answer%>');
-  var isCorrect = diff == '0';
-  var result = false;
+  var answer = $('#textarea').val();
+  var diff =nerdamer(answer+ '-'+'<%=@problem.answer%>');
+  var isCorrect = (diff == '0');
+  isCorrect = cheat(answer);
+  var result = isCorrect ? 1 : 0;
+
 
   if(!tried_solving){
       $.ajax({
@@ -115,21 +122,33 @@ function check_answer(){
           success: function(){
               if(isCorrect){
 
-                  result = 1;
                   // $('ox').html()
                   $('#problem_number').prepend('<img id="OX" src="/img/ox/O.png" />')
 
               }
               else{
-                  result = 0;
                   $('#problem_number').prepend('<img id="OX" src="/img/ox/X.png" />')
               }
               $('#see_answer').removeClass('disabled_button');
               $('#next_problem').removeClass('disabled_button');
+              $('#submit_button').addClass('disabled_button');
 
           }
       });
+  }else{
+    // if(isCorrect){
+    //
+    //     // $('ox').html()
+    //     $('#problem_number').prepend('<img id="OX" src="/img/ox/O.png" />')
+    //
+    // }
+    // else{
+    //     $('#problem_number').prepend('<img id="OX" src="/img/ox/X.png" />')
+    // }
+
+
   }
+
 
 };
 $(document).on('keyup','#textarea',function(e){

@@ -22,12 +22,14 @@ $(document).ready(function(){
   default_page();
 })
 function default_page(){
+  $('#chart_content').hide();
   $('#default_page img').attr("src",function(){
     var ran_num=Math.floor((Math.random() * 3) + 1);
     return "/img/logos/deer3/0"+ran_num+".png";
   })
 }
 function draw_chart(element){
+  $('#chart_content').show();
   $('#default_page').remove();
   var chart_data = get_data_for_chart(element);
   chart_html(chart_data);
@@ -43,7 +45,8 @@ function get_data_for_chart(element){
     level.push(element[i].level);
     level_sum += parseFloat(element[i].level);
   }
-  // level_sum /=element.length;
+  level_sum /=element.length;
+  level_sum *=2;
   console.log(level_sum);
 
   var color = calculate_color(level_sum);
@@ -70,12 +73,12 @@ function get_data_for_chart(element){
   return data;
 }
 function calculate_color(c_level){
-  c_level = c_level * 5;
+  c_level = c_level;
   var r = Math.round(127.5-25.5*c_level)
   var g = Math.round(127.5+25.5*c_level)
   var b = Math.round(255-51*Math.abs(c_level));
   var color={
-    backgroundColor: "rgba("+r+","+g+","+b+", 0.2)",
+    backgroundColor: "rgba("+r+","+g+","+b+", 0.3)",
     pointColor: "rgba("+r+","+g+","+b+",1)"
   }
   return color;
