@@ -1,10 +1,10 @@
 p0018-2
 자기장적분,솔레노이드
 2
-T
+mu_0*n*I
 일반물리학
 자기장
-(b)
-orem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel eleifend nisl, in fringilla mi. Fusce vehicula, velit sit amet scelerisque malesuada, ante urna mattis tortor, ac tempor ante nisi scelerisque dui. Sed dapibus ligula id est pretium, scelerisque consequat mi fringilla. Nullam est mauris, condimentum a dapibus ultricies, ultricies vitae erat. Fusce tincidunt ultrices tempor. Ut ipsum ipsum, vestibulum eu dolor at, maximus bibendum sapien. Morbi egestas velit sit amet eros dapibus, ut consectetur tortor sodales. Praesent efficitur eget libero a posuere. 
+<img src='/img/problems/p0018.png'/> <br>  (a) 단위 길이당 감긴 수가 \(n\)이고, 반지름이 \(a\)이며 길이가 \(l\)인 솔레노이드에 전류 \(I\)가 흐를 때, 중심축 상의 점 P에서 자기장을 구하라. <br> <strong>(b) \(l\rightarrow\infty\)인 경우 (a)의 답은 어떤 값으로 수렴하는가? </strong>
+\(\mu_0nI\)
 p0018-1
 NaN

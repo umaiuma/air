@@ -1,10 +1,10 @@
 p0021
 운동방정식,솔레노이드
 3
-T
+m*g/(2*N*L*B)
 일반물리학
 자기장
-그림은 질량 \(m\)과 길이 \(L\)
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel eleifend nisl, in fringilla mi. Fusce vehicula, velit sit amet scelerisque malesuada, ante urna mattis tortor, ac tempor ante nisi scelerisque dui. Sed dapibus ligula id est pretium, scelerisque consequat mi fringilla. Nullam est mauris, condimentum a dapibus ultricies, ultricies vitae erat. Fusce tincidunt ultrices tempor. Ut ipsum ipsum, vestibulum eu dolor at, maximus bibendum sapien. Morbi egestas velit sit amet eros dapibus, ut consectetur tortor sodales. Praesent efficitur eget libero a posuere. 
+그림은 질량 \(m\)과 길이 \(L\)인 나무원통을 나타낸다. 이 원통 둘레에 도선의 고리면이 원통의 축을 포함하도록 전선을 \(N\)번 감았다. 코일의 전류 \(I\)를 흐르게 하고, 연직 방향의 균일한 자기장 \(B\)속에 놓았을 때 코일 평면이 경사면과 평행한 상태에서 평형을 이루기 위해서는 전류 \(I\)의 값은 얼마이어야 하는가? 단, 수평면과 경사면이 이루는 각은 \(\theta\)이고, 중력 가속도는 \(g\)이다. 
+\(\frac{mg}{2NLB}\)
 NaN
 NaN

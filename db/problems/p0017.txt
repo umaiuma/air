@@ -1,10 +1,10 @@
 p0014-1
 정상상태,RLC복합연결
 3
-T
+epsilon/R
 일반물리학
 회로
-(a)
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel eleifend nisl, in fringilla mi. Fusce vehicula, velit sit amet scelerisque malesuada, ante urna mattis tortor, ac tempor ante nisi scelerisque dui. Sed dapibus ligula id est pretium, scelerisque consequat mi fringilla. Nullam est mauris, condimentum a dapibus ultricies, ultricies vitae erat. Fusce tincidunt ultrices tempor. Ut ipsum ipsum, vestibulum eu dolor at, maximus bibendum sapien. Morbi egestas velit sit amet eros dapibus, ut consectetur tortor sodales. Praesent efficitur eget libero a posuere.
+다음 그림의 회로를 고려하자. <br> <img src='/img/problems/p0014.png'/> <br> <strong> (a) 스위치 \(S\)를 닫고 충분한 시간이 지났을 때 전지로부터 흐르는 전류를 구하라. </strong>
+\(\frac{\epsilon}{R}\)
 NaN
 p0014-2 

@@ -1,10 +1,10 @@
 p0019
 홀효과
 2
-T
+B/(n*e*rho)
 일반물리학
 자기장
-전류가 흐르는
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel eleifend nisl, in fringilla mi. Fusce vehicula, velit sit amet scelerisque malesuada, ante urna mattis tortor, ac tempor ante nisi scelerisque dui. Sed dapibus ligula id est pretium, scelerisque consequat mi fringilla. Nullam est mauris, condimentum a dapibus ultricies, ultricies vitae erat. Fusce tincidunt ultrices tempor. Ut ipsum ipsum, vestibulum eu dolor at, maximus bibendum sapien. Morbi egestas velit sit amet eros dapibus, ut consectetur tortor sodales. Praesent efficitur eget libero a posuere. 
+전류가 흐르는 도선에 수직하게 자기장 \(B\)를 걸어서 도선양단에 Hall 전기장 \(E_H\)가 생겼다. 도선의 길이 방향으로 전류를 흐르게 하는 전기장을 \(E_C\), 도선의 단위 부피당 자유전자의 개수를 \(n\), 도선의 비저항을 \(\rho\), 전자 전하량을 \(e\)라 할 때 \(\frac{E_H}{E_C}\)를 구하라. 
+\(\frac{B}{ne\rho}\)
 NaN
 NaN

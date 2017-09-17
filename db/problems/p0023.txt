@@ -1,10 +1,10 @@
 p0017
 앙페르
 1
-T
+(-d+sqrt(d^2+4*b^2))/2
 일반물리학
 자기장
-그림과 같이
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel eleifend nisl, in fringilla mi. Fusce vehicula, velit sit amet scelerisque malesuada, ante urna mattis tortor, ac tempor ante nisi scelerisque dui. Sed dapibus ligula id est pretium, scelerisque consequat mi fringilla. Nullam est mauris, condimentum a dapibus ultricies, ultricies vitae erat. Fusce tincidunt ultrices tempor. Ut ipsum ipsum, vestibulum eu dolor at, maximus bibendum sapien. Morbi egestas velit sit amet eros dapibus, ut consectetur tortor sodales. Praesent efficitur eget libero a posuere. 
+그림과 같이 반지름이 \(a\)인 원통형 도체 안에 거리 \(d\) 떨어진 곳에 반지름이 \(b\)인 원통형 공간이 나 있다. 이 도체에 전류 \(I\)가 고르게 흐른다고 한다. 자기장이 0이 되는 위치와 원점으로부터의 거리는 얼마인가? <br> <img src ='/img/problems/p0017.png'/>
+\(\frac{-d+\sqrt{d^2+4b^2}}{2}\)
 NaN
 NaN

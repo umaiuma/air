@@ -1,10 +1,10 @@
 p0020
 운동방정식,자기장,전기장
 3
-T
+sqrt(2*V/(q*m))/B
 일반물리학
 자기장
-같은 전하 \(q\)를 가졌으나
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel eleifend nisl, in fringilla mi. Fusce vehicula, velit sit amet scelerisque malesuada, ante urna mattis tortor, ac tempor ante nisi scelerisque dui. Sed dapibus ligula id est pretium, scelerisque consequat mi fringilla. Nullam est mauris, condimentum a dapibus ultricies, ultricies vitae erat. Fusce tincidunt ultrices tempor. Ut ipsum ipsum, vestibulum eu dolor at, maximus bibendum sapien. Morbi egestas velit sit amet eros dapibus, ut consectetur tortor sodales. Praesent efficitur eget libero a posuere. 
+같은 전하 \(q\)를 가졌으나 질량이 \(m\)과 \(m+\bigtriangleup{m}\)으로 다른 두 동위 원소가 그림과 같이 전위차 \(V\)에 의해 가속되어 자기장 \(B\)에 걸린 질량 분석기에 입사한다. 자기장에 입사한 지점으로부터 오른쪽 감광판에 부딪히는 지점까지의 거리를 \(x\)라 할 때 두 동위원소가 부딪히는 지점사이의 거리를 \(\bigtriangleup{x}\)라 하자. \(\frac{\bigtriangleup{x}}{\bigtriangleup{m}}\)을 구하라. 
+\(\sqrt{\frac{2V}{B^2qm}}\)
 NaN
 NaN

@@ -1,10 +1,10 @@
 p0015-1
 RR직렬연결,RR병렬연결
 1
-T
+1/9
 일반물리학
 회로
-(a)
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel eleifend nisl, in fringilla mi. Fusce vehicula, velit sit amet scelerisque malesuada, ante urna mattis tortor, ac tempor ante nisi scelerisque dui. Sed dapibus ligula id est pretium, scelerisque consequat mi fringilla. Nullam est mauris, condimentum a dapibus ultricies, ultricies vitae erat. Fusce tincidunt ultrices tempor. Ut ipsum ipsum, vestibulum eu dolor at, maximus bibendum sapien. Morbi egestas velit sit amet eros dapibus, ut consectetur tortor sodales. Praesent efficitur eget libero a posuere. 
+<strong> (a) 내부 저항이 1\(\Omega\)이고 최대 측정 전류의 크기가 100\(\mu\)A인 전류계가 있다. 이 전류계를 사용하여 최대 측정 저류가 1mA인 전류계로 만들려면 분류기 저항은 몇 \(\Omega\)여야 하는가? </strong>
+\(\frac{1}{9}\)
 NaN
 p0015-2
