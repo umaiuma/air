@@ -64,11 +64,11 @@ ActiveRecord::Schema.define(version: 20170916111655) do
 
   create_table "history_problems", force: :cascade do |t|
     t.integer "problem_id"
-    t.integer "user_id"
+    t.integer "exam_id"
     t.boolean "correct"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_history_problems_on_user_id"
+    t.index ["exam_id"], name: "index_history_problems_on_exam_id"
   end
 
   create_table "last_exams", force: :cascade do |t|

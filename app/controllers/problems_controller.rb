@@ -48,7 +48,7 @@ class ProblemsController < ApplicationController
         recommend_pattern =Pattern.find_by(name: recommend_group.name)
         recommend_problems = recommend_pattern.problems.where(difficulty: recommend_diff)
         recommend_problems.each do |pb|
-          if ! @user.history_problems.find_by(problem_id:pb.id) && pb.prev_problem =='NaN'
+          if ! @exam.history_problems.find_by(problem_id:pb.id) && pb.prev_problem =='NaN'
             @recommend_problem = pb
             break
           end
@@ -57,7 +57,7 @@ class ProblemsController < ApplicationController
 
         if !@recommend_problem
           recommend_pattern.problems.each do |pb|
-            if ! @user.history_problems.find_by(problem_id:pb.id) && pb.prev_problem =='NaN'
+            if ! @exam.history_problems.find_by(problem_id:pb.id) && pb.prev_problem =='NaN'
               @recommend_problem = pb
               break
             end
@@ -66,7 +66,7 @@ class ProblemsController < ApplicationController
 
         if !@recommend_problem
           @problems.each do |pb|
-            if ! @user.history_problems.find_by(problem_id:pb.id) && pb.prev_problem =='NaN'
+            if ! @exam.history_problems.find_by(problem_id:pb.id) && pb.prev_problem =='NaN'
               @recommend_problem = pb
               break
             end
@@ -163,9 +163,27 @@ class ProblemsController < ApplicationController
     end
     puts diff
 
-    if last_problem = @user.history_problems.find_by(problem_id: @problem.id)
+    if last_problem = @exam.history_problems.find_by(problem_id: @problem.id)
     else
-      last_problem = HistoryProblem.new(user: @user, problem_id: @problem.id, correct: false)
+      last_problem = HistoryProblem.new(exam: @exam, problem_id: @problem.id, correct: false)
+      @problem.patterns.each do |pattern|
+        if meter = @exam.meters.find_by(pattern_name:pattern.name)
+        else
+          meter = Meter.new(score: 0, combo:1, sign:0, pattern_name: pattern.name, exam: @exam)
+          meter.save
+          @exam.save
+        end
+        meter.set_score(diff)
+
+        @groups.each do |group|
+          if group.name == pattern.name
+            group.level = meter.score
+            group.save
+          end
+        end
+
+      end
+
     end
 
     if diff>0
@@ -175,26 +193,9 @@ class ProblemsController < ApplicationController
     end
 
     last_problem.save
-    last_problem.user.save
+    last_problem.exam.save
 
 
-    @problem.patterns.each do |pattern|
-      if meter = @exam.meters.find_by(pattern_name:pattern.name)
-      else
-        meter = Meter.new(score: 0, combo:1, sign:0, pattern_name: pattern.name, exam: @exam)
-        meter.save
-        @exam.save
-      end
-      meter.set_score(diff)
-
-      @groups.each do |group|
-        if group.name == pattern.name
-          group.level = meter.score
-          group.save
-        end
-      end
-
-    end
 
     #self.recommend
 
