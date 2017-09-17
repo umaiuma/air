@@ -56,18 +56,19 @@
         </div>
       </div>
     </div> -->
-    <%= form_for(:mark, url: mark_path(@problem, ) )do |f| %>
+    <!-- <%= form_for(:mark, url: mark_path(@problem, ) )do |f| %> -->
     <div class="row">
       <div class="col s8 round_button box_shadow"id="input_box" >
         <!-- 이렇게하면 영문만(숫자포함) 입력 됨 //이메일 아이디 같은거 입력을 만들때 -->
-        <%= f.text_field :user_answer, :placeholder => '수 식  입 력', id:"textarea", :onchange =>'fn_press_han(this)', autocomplete:"off" %>
+        <!-- <%= f.text_field :user_answer, :placeholder => '수 식  입 력', id:"textarea", :onchange =>'fn_press_han(this)', autocomplete:"off" %> -->
+        <input type="text" id="textarea" autocomplete="off" placeholder="수 식  입 력" onchange="fn_press_han(this)">
       </div>
       <div class="col s4">
         <span class= "round_button box_shadow" id = "submit_button">제 출</span>
           <!-- <%= f.submit '제  출', class:" round_button box_shadow", id:"submit_button" %> -->
       </div>
     </div>
-    <% end%>
+    <!-- <% end%> -->
     <div class="col s6" style="padding-left:0;"><div class="round_button box_shadow brownish_box_shadow disabled_button" id="see_answer" style="width: 100%;">풀  이  보  기</div></div>
     <div class="col s6" style="padding-right:0;"><div class="round_button box_shadow brownish_box_shadow disabled_button" id="next_problem"style="width: 100%;">다 음  문 제</div></div>
   </div>

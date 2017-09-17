@@ -5,7 +5,8 @@ $hyegun_brown: #A27A58;
 $hyegun_shadow: 5px 5px $hyegun_brown;
 
 #new_test_name{
-  background-color: red;
+  background-color: black;
+  color: white;
   letter-spacing: 1rem;
 
 }
@@ -76,7 +77,7 @@ $hyegun_shadow: 5px 5px $hyegun_brown;
 .hyegun_box{
   height: 6vh;
   border-radius: 10px;
-  box-shadow:5px 5px #999 ;
+  box-shadow:$hyegun_shadow;
   display: flex;  justify-content: center;align-items:center;
   font-size: 2rem;
   letter-spacing: 1rem;
@@ -98,7 +99,7 @@ $hyegun_shadow: 5px 5px $hyegun_brown;
   background-color: #02aad1;
   font-weight: bold;
   color: white;
-  box-shadow: 5px 5px #999 ;
+  box-shadow: $hyegun_shadow ;
   margin-top: 3vh;
 
 }
@@ -166,7 +167,7 @@ $hyegun_shadow: 5px 5px $hyegun_brown;
   }
   .box_shadow{
     border-radius: 10px;
-    box-shadow: 5px 5px #999 ;
+    box-shadow:$hyegun_shadow ;
   }
   .round_button{
     height:6.25vh;

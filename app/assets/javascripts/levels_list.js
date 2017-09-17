@@ -26,7 +26,14 @@ $(document).on("click",'.subjects',function(){
   console.log("subject box clicked!");
   $(document).find('.show_chart').removeClass('show_chart');
   $(this).addClass('show_chart');
-  $(this).find('.icon').trigger('click');
+  // $(this).find('.icon').trigger('click');
+  //
+  var display_check=$(this).closest('li').children('ul');
+  display_check.slideDown();
+  $(this).find('.icon').html('<span>&#xe801</span>');
+
+
+  //
   $(this).closest('li').find('.chapters').addClass('show_chart');
   id = get_id($(this));
   // alert(id);
