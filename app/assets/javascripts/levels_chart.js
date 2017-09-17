@@ -20,16 +20,17 @@ function show_chart(id){
 console.log("levels_chart.js");
 $(document).ready(function(){
   default_page();
+
 })
 function default_page(){
-  $('#chart_content').hide();
+  $('.chart_content').hide();
   $('#default_page img').attr("src",function(){
     var ran_num=Math.floor((Math.random() * 3) + 1);
     return "/img/logos/deer3/0"+ran_num+".png";
   })
 }
 function draw_chart(element){
-  $('#chart_content').show();
+  $('.chart_content').show();
   $('#default_page').remove();
   var chart_data = get_data_for_chart(element);
   chart_html(chart_data);

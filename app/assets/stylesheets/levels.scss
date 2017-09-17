@@ -4,6 +4,9 @@
 text{
   cursor: default;
 }
+html, body{
+  height: 100%;
+}
 .chart_content{
   margin-top:7vh;
   height: 80vh;
