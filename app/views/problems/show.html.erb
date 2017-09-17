@@ -98,17 +98,7 @@ function check_answer(){
   var diff =nerdamer($('#textarea').val()+ '-'+'<%=@problem.answer%>');
   var isCorrect = diff == '0';
   var result = false;
-  if(isCorrect){
 
-    result = 1;
-    // $('ox').html()
-    $('#problem_number').prepend('<img id="OX" src="/img/ox/O.png" />')
-
-  }
-  else{
-    result = 0;
-    $('#problem_number').prepend('<img id="OX" src="/img/ox/X.png" />')
-  }
   if(!tried_solving){
       $.ajax({
           url : '<%=mark_path %>',
@@ -123,7 +113,19 @@ function check_answer(){
               result: result
           },
           success: function(){
-              alert('check');
+              if(isCorrect){
+
+                  result = 1;
+                  // $('ox').html()
+                  $('#problem_number').prepend('<img id="OX" src="/img/ox/O.png" />')
+
+              }
+              else{
+                  result = 0;
+                  $('#problem_number').prepend('<img id="OX" src="/img/ox/X.png" />')
+              }
+              $('#see_answer').removeClass('disabled_button');
+              $('#next_problem').removeClass('disabled_button');
 
           }
       });
@@ -140,8 +142,7 @@ $(document).on('keyup','#textarea',function(e){
 $(document).on('click','#submit_button',function(){
   check_answer();
   tried_solving = true;
-  $('#see_answer').removeClass('disabled_button');
-  $('#next_problem').removeClass('disabled_button');
+
 });
 $(document).on('click','#see_answer', function(){
   if(tried_solving){
