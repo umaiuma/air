@@ -1,10 +1,10 @@
 p0012-2
 RC직렬연결,평균일률
 2
-T
+V_B^2/(2*R*C)
 일반물리학
 회로
-(b)
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel eleifend nisl, in fringilla mi. Fusce vehicula, velit sit amet scelerisque malesuada, ante urna mattis tortor, ac tempor ante nisi scelerisque dui. Sed dapibus ligula id est pretium, scelerisque consequat mi fringilla. Nullam est mauris, condimentum a dapibus ultricies, ultricies vitae erat. Fusce tincidunt ultrices tempor. Ut ipsum ipsum, vestibulum eu dolor at, maximus bibendum sapien. Morbi egestas velit sit amet eros dapibus, ut consectetur tortor sodales. Praesent efficitur eget libero a posuere.
+그림과 같이 방전 불꽃 전등이 스위치 \(S\)를 통해 기전력 \(\epsilon\)의 전지에 연결할 수 있게 되어 있다. 이 전구는 전극 사이의 퍼텐셜차가 \((V_B<\epsilon)\)에 도달해야만 전류가 흘러 불이 켜지며 이 때 전구의 전기 저항은 순식간에 거의 0으로 작아진다고 한다. <br> <img src='/img/problems/p0012.png'/> <br> (a) 전기 용량 \(C\)의 축전기가 완전히 방전된 상태에서 스위치 \(S\)를 닫을 때 방전 직전까지 충전기에 대전되는 전하량과 걸리는 시간을 구하라. <strong> (b) 전구가 소모하는 평균 일률을 구하라. </strong>
+\(\frac{V_B^2}{2RC}\)
 p0012-1
 NaN

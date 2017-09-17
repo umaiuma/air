@@ -1,10 +1,10 @@
 p0011
 구형전하,가우스,운동방정식
 3
-T
+sqrt(32*pi^2*epsilon_0*p_0*R(R^3-R_0^3))
 일반물리학
 전기용량과 유전체
 반지름 \(R_0\)의 비누 방울에 전하 \(q\)를 천천히 주었더니 반지름은 \(R\)로 약간 증가하였다. 비누 방울의 표면 장력은 무시하고 처음 비누 방울의 압력은 대기압과 같은 \(p_0\)였다. 전하량 \(q\)를 구하라.
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel eleifend nisl, in fringilla mi. Fusce vehicula, velit sit amet scelerisque malesuada, ante urna mattis tortor, ac tempor ante nisi scelerisque dui. Sed dapibus ligula id est pretium, scelerisque consequat mi fringilla. Nullam est mauris, condimentum a dapibus ultricies, ultricies vitae erat. Fusce tincidunt ultrices tempor. Ut ipsum ipsum, vestibulum eu dolor at, maximus bibendum sapien. Morbi egestas velit sit amet eros dapibus, ut consectetur tortor sodales. Praesent efficitur eget libero a posuere. 
+\(\sqrt{32\pi^2\epsilon_{0}p_0R(R^3-R_0^3)}\)
 NaN
 NaN
