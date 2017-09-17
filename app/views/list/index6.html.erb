@@ -173,8 +173,9 @@ $('.container').on("click",'.chapters', function(){
   var chapter_id = get_chapter_id($(this));
   var box = $(this).closest('.hyegun_box');
   var Chapter = current_user.tests[test_id].subjects[subject_id].chapters[chapter_id];
+  if(!being_editted($(this))){
 
-  if($(this).parents('.show_for_edit').length==0){
+  // if($(this).parents('.show_for_edit').length==0){
     if(isSelectedForTest($(this))){
       box.removeClass('selected_for_test');
       Chapter.onStudy=false;
@@ -327,7 +328,7 @@ function make_test_name_adjustable(father){
   var test_text = test_label.children('text');
   var prev_name = test_text.text();
   test_text.hide();
-  test_label.append('<input id="new_test_name" autofocus="autofocus">');
+  test_label.append('<input id="new_test_name" autofocus="autofocus" maxlength="15">');
   $('#new_test_name').val(prev_name);
 }
 
@@ -735,6 +736,13 @@ function arraysEqual(a, b) {
 $(document).ready(function(){
   // is_empty([false,false,false]);
 });
+
+function being_editted(div){
+  if(div.find('.checked').length+div.find('.check').length){
+    return true;
+  }
+  return false;
+}
 
 
 </script>

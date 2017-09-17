@@ -1,11 +1,16 @@
 // Place all the styles related to the problems controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-  .mjx-mfrac{
-    font-size: 130%;
-  }
-  #answer_converted{
-    font-size: 150%;
+
+// .mjx-chtml, .MathJax_CHTML{
+//   font-size: 200%;
+// }
+// .mjx-numerator, .mjx-denominator{
+//   font-size: 100% !important;
+// }
+  #answer_converted, #solution{
+    font-size: 2em !important;
+    //  font-size: 100% !important;
   }
   #answer{
     display: none !important;
