@@ -1,11 +1,12 @@
 ﻿p0001-2
 구형전하,가우스,운동방정식
 3
-Q^2/(32*pi^2*epsilon_0*R^4)
+T
 일반물리학
 전기장과 전위
 반지름 \(R\)인 구형의 풍선이 있다. 이제 풍선의 표면에 면 전하밀도 \(\sigma\)로 고르게 전하를 대전시킨다고 하자. <br> (a) 대전시키기 전에 비해 풍선이 커지겠는가? 아니면 작아지겠는가? 커지면 big 작아지면 small<br> <strong> (b) 대전시킨 전하가 풍선에 미치는 압력을 구하라 </strong>
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel eleifend nisl, in fringilla mi. Fusce vehicula, velit sit amet scelerisque malesuada, ante urna mattis tortor, ac tempor ante nisi scelerisque dui. Sed dapibus ligula id est pretium, scelerisque consequat mi fringilla. Nullam est mauris, condimentum a dapibus ultricies, ultricies vitae erat. Fusce tincidunt ultrices tempor. Ut ipsum ipsum, vestibulum eu dolor at, maximus bibendum sapien. Morbi egestas velit sit amet eros dapibus, ut consectetur tortor sodales. Praesent efficitur eget libero a posuere.
 p0001-1
 NaN
-p0001-2
+Q^2/(32*pi^2*epsilon_0*R^4)
+

@@ -1,5 +1,5 @@
 class Meter < ApplicationRecord
-  belongs_to :user
+  belongs_to :exam
 
   def set_score(diff)
     if(self.sign == 0 )
@@ -20,7 +20,7 @@ class Meter < ApplicationRecord
       self.score = -5
     end
     self.save
-    self.user.save
+    self.exam.save
 
 
   end

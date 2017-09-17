@@ -142,7 +142,7 @@ class ProblemsController < ApplicationController
 
     @exam.subjects.each do |subject|
       subject.chapters.each do |chapter|
-        if chapter.onStudy
+        if chapter.onExam
           @groups +=chapter.groups
         end
       end
@@ -179,11 +179,11 @@ class ProblemsController < ApplicationController
 
 
     @problem.patterns.each do |pattern|
-      if meter = @user.meters.find_by(pattern_name:pattern.name)
+      if meter = @exam.meters.find_by(pattern_name:pattern.name)
       else
-        meter = Meter.new(score: 0, combo:1, sign:0, pattern_name: pattern.name, user: @user)
+        meter = Meter.new(score: 0, combo:1, sign:0, pattern_name: pattern.name, exam: @exam)
         meter.save
-        @user.save
+        @exam.save
       end
       meter.set_score(diff)
 
