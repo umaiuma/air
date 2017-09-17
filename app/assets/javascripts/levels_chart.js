@@ -13,7 +13,7 @@ function show_chart(id){
     draw_chart(chapters);
   }
   else{
-    chart_default();
+    default_page();
   }
 }
 
@@ -57,11 +57,14 @@ function get_data_for_chart(element){
               color.backgroundColor,
           ],
           borderColor: [
-              // "rgba(255,99,132,1)",
-              color.borderColor,
-
+              // // "rgba(255,99,132,1)",
+              // // color.borderColor,
+              // "rgba(200,100,30,0)",
           ],
-          borderWidth: 5,
+          pointBackgroundColor: color.pointColor,
+          pointBorderColor:color.pointColor,
+          pointRadius: 4,
+          borderWidth:-1,
       }]
   }
   return data;
@@ -73,7 +76,7 @@ function calculate_color(c_level){
   var b = Math.round(255-51*Math.abs(c_level));
   var color={
     backgroundColor: "rgba("+r+","+g+","+b+", 0.2)",
-    borderColor: "rgba("+r+","+g+","+b+",1)"
+    pointColor: "rgba("+r+","+g+","+b+",1)"
   }
   return color;
 }
@@ -89,7 +92,7 @@ function chart_html(data){
           elements: {
             line: {
               tension: 0,
-              backgroundColor: "rgba(100,20,300,0.1)",
+              backgroundColor: "rgba(100,20,300,0)",
               fill: 'zero',
             }
           },
@@ -113,51 +116,51 @@ function chart_html(data){
   });
 
 }
-
-function chart_default(){
-  var ctx = $("#myChart");
-  var data ={
-      labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-      datasets: [{
-          label: "유형",
-          data: [5, 2, -1, 3, 2, -4],
-          backgroundColor: [
-              "rgba(255, 99, 132, 0.2)",
-          ],
-          borderColor: [
-              "rgba(255,99,132,1)",
-          ],
-          borderWidth: 5,
-      }]
-  }
-  var myChart = new Chart(ctx, {
-      type: "line",
-      data: data,
-      options: {
-          legend:{
-            display: false,
-          },
-          elements: {
-            line: {
-              tension: 0,
-              backgroundColor: "rgba(100,20,300,0.1)",
-              fill: 'zero',
-            }
-          },
-          title: {
-            display: true,
-            text: 'Test Chart!!'
-          },
-          responsive: true,
-          scales: {
-              yAxes: [{
-                  ticks: {
-                      min: -6,
-                      beginAtZero:false
-                  }
-              }]
-          }
-      }
-  });
-
-}
+//
+// function chart_default(){
+//   var ctx = $("#myChart");
+//   var data ={
+//       labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+//       datasets: [{
+//           label: "유형",
+//           data: [5, 2, -1, 3, 2, -4],
+//           // backgroundColor: [
+//           //     "rgba(255, 99, 132, 0.2)",
+//           // ],
+//           // borderColor: [
+//           //     "rgba(255,99,132,)",
+//           // ],
+//           borderWidth: 0,
+//       }]
+//   }
+//   var myChart = new Chart(ctx, {
+//       type: "line",
+//       data: data,
+//       options: {
+//           legend:{
+//             display: false,
+//           },
+//           elements: {
+//             line: {
+//               tension: 0,
+//               backgroundColor: "rgba(100,20,300,0.1)",
+//               fill: 'zero',
+//             }
+//           },
+//           title: {
+//             display: true,
+//             text: 'Test Chart!!'
+//           },
+//           responsive: true,
+//           scales: {
+//               yAxes: [{
+//                   ticks: {
+//                       min: -6,
+//                       beginAtZero:false
+//                   }
+//               }]
+//           }
+//       }
+//   });
+//
+// }
