@@ -2632,10 +2632,10 @@ var nerdamer = (function(imports) {
             bin = {},
             constants = this.constants = {
                 PI: Math.PI,
-               // E:  Math.E
+                E:  Math.E
             },
             subs = {
-               // e:  Math.E,
+                e:  Math.E,
                 pi: Math.PI
             };
         //list all the supported operators
@@ -2982,7 +2982,7 @@ var nerdamer = (function(imports) {
             
             //link e and pi
             if(Settings.PARSE2NUMBER) {
-             //   subs.e = new Symbol(Math.E);
+                subs.e = new Symbol(Math.E);
                 subs.pi = new Symbol(Math.PI);
             }
 

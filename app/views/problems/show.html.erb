@@ -7,6 +7,12 @@
 <%= javascript_include_tag "/assets/nerdamer/Calculus" %>
 <%= javascript_include_tag "/assets/nerdamer/Solve" %>
 <%= javascript_include_tag "/assets/nerdamer/Extra" %>
+<script type="text/javascript" charset="utf-8">
+    nerdamer.getCore().PARSER.constants['E'] = 'E';
+
+
+
+</script>
 <div class="row" style="margin-top: 3vh;">
   <div class="col s10" style="margin-left:6.25vw;margin-right:3vw;">
     <div id = "problem_number">
@@ -88,7 +94,12 @@ var DynamicMJ = {
 
   update: function () {
     var user_answer = document.getElementById("textarea").value;
-    var tex = '\\( '+ nerdamer(user_answer).toTeX()+' \\)';
+    var make = nerdamer(user_answer).toTeX();
+    make=make.replace('epsilon_0','\\epsilon_0');
+    make=make.replace('mu_0','\\mu_0')
+
+
+      var tex = '\\( '+ make+' \\)';
     this.formula.innerHTML = tex;
     MathJax.Hub.Queue(["Typeset",MathJax.Hub,this.formula]);
   }
