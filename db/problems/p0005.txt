@@ -1,11 +1,11 @@
 ﻿p0005
 전위,일,구형전하
 1
-T
+Q^2/(8*pi*epsilon_0)*(1-1/N)
 일반물리학
 전기장과 전위
 반지름이 \(R\)인 빈 구껍질에 전하 \(Q(=Ne)\)를 고루 저장시킨다고 할 때 필요한 일의 양을 구하라. 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel eleifend nisl, in fringilla mi. Fusce vehicula, velit sit amet scelerisque malesuada, ante urna mattis tortor, ac tempor ante nisi scelerisque dui. Sed dapibus ligula id est pretium, scelerisque consequat mi fringilla. Nullam est mauris, condimentum a dapibus ultricies, ultricies vitae erat. Fusce tincidunt ultrices tempor. Ut ipsum ipsum, vestibulum eu dolor at, maximus bibendum sapien. Morbi egestas velit sit amet eros dapibus, ut consectetur tortor sodales. Praesent efficitur eget libero a posuere. 
+$$ \frac{Q^2}{8\pi\epsilon_0}(1-frac{1]{N}) $$
 NaN
 NaN
-p0005
+
