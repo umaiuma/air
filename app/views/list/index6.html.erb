@@ -327,7 +327,7 @@ function make_test_name_adjustable(father){
   var test_text = test_label.children('text');
   var prev_name = test_text.text();
   test_text.hide();
-  test_label.append('<input id="new_test_name">');
+  test_label.append('<input id="new_test_name" autofocus="autofocus">');
   $('#new_test_name').val(prev_name);
 }
 
