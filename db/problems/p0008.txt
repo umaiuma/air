@@ -1,10 +1,10 @@
 p0007-2
 가우스,평행판축전기,에너지미분
 2
-T
+Q^2/(2*epsilon_0*A)
 일반물리학
 전기용량과 유전체
-평행판 축전기의 면적이 \(A\), 간격이 \(d\) 떨어진 두 전극이 각각 전하 \(+q\)와 \(-q\)로 대전되어 있다. 이 두 전극판 사이에 미치는 전기력을 다음의 방법으로 구해보자. <br> (a) 전극판 사이의 전기장을 구한 다음 저기장에 의해서 대전된 전극이 받는 전기력을 구한다. <br> <strong> (b) 축전기에 저장되는 전기 퍼텐셜 에너지를 구한 다음 전극판 사이의 간격에 따라 변화율로부터 전극이 받는 전기력을 구한다. </strong>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel eleifend nisl, in fringilla mi. Fusce vehicula, velit sit amet scelerisque malesuada, ante urna mattis tortor, ac tempor ante nisi scelerisque dui. Sed dapibus ligula id est pretium, scelerisque consequat mi fringilla. Nullam est mauris, condimentum a dapibus ultricies, ultricies vitae erat. Fusce tincidunt ultrices tempor. Ut ipsum ipsum, vestibulum eu dolor at, maximus bibendum sapien. Morbi egestas velit sit amet eros dapibus, ut consectetur tortor sodales. Praesent efficitur eget libero a posuere. 
+평행판 축전기의 면적이 \(A\), 간격이 \(d\) 떨어진 두 전극이 각각 전하 \(+q\)와 \(-q\)로 대전되어 있다. 이 두 전극판 사이에 미치는 전기 력을 다음의 방법으로 구해보자. <br> (a) 전극판 사이의 전기장을 구한 다음 저기장에 의해서 대전된 전극이 받는 전기력을 구한다. <br> <strong> (b) 축전기에 저장되는 전기 퍼텐셜 에너지를 구한 다음 전극판 사이의 간격에 따라 변화율로부터 전극이 받는 전기력을 구한다. </strong>
+\(\frac{Q^2}{2\epsilon_{0}A}\)
 NaN
 NaN

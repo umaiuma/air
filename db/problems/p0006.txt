@@ -1,11 +1,10 @@
 ﻿p0006
 전기장,직선전하
 1
-T
+45
 일반물리학
 전기장과 전위
 그림에서 반무한대와 막대가 단위길이당 전하량로 대전되어 있다. 점 \(P\)에서 전기장의 방향은 \(R\)과 상관없이 막대와 이루는 각이 일정하다. 이 각을 구하라. 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel eleifend nisl, in fringilla mi. Fusce vehicula, velit sit amet scelerisque malesuada, ante urna mattis tortor, ac tempor ante nisi scelerisque dui. Sed dapibus ligula id est pretium, scelerisque consequat mi fringilla. Nullam est mauris, condimentum a dapibus ultricies, ultricies vitae erat. Fusce tincidunt ultrices tempor. Ut ipsum ipsum, vestibulum eu dolor at, maximus bibendum sapien. Morbi egestas velit sit amet eros dapibus, ut consectetur tortor sodales. Praesent efficitur eget libero a posuere. 
+45
 NaN
 NaN
-p0006
