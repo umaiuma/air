@@ -2,6 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+  #answer_converted{
+    font-size: 150%;
+  }
   #answer{
     display: none !important;
     background-color: yellow;
@@ -10,7 +13,7 @@
   #textarea {
     border-bottom: none !important;
     margin: 0 ;
-    font-size: 1.5rem;
+    font-size: 2rem;
 
   }
   #textarea::placeholder {
@@ -61,17 +64,19 @@
   }
   .box_shadow{
     border-radius: 10px;
-    box-shadow: 5px 5px #999 ;
+    box-shadow: 5px 5px #02aad1 ;
   }
   .round_button{
     height:6.25vh;
     margin-top: 3.25vh;
-    font-size: 1.5em;
+    font-size: 2em;
     /*cursor: pointer;*/
 
   }
 
-
+  // .problem_button{
+  //   font-size:
+  // }
   #input_box{
     display: flex;align-items:center;
     color: gray;
@@ -89,24 +94,29 @@
   }
   .disabled_button{
     color: white;
-    background-color: grey !important;
-    box-shadow: 5px 5px #999 !important;
+    background-color: #E6E6E6 !important;
+    box-shadow: 5px 5px #A27A58 !important;
+  }
+  .brownish_box_shadow{
+    box-shadow: 5px 5px #A27A58;
   }
 
   #see_answer{
     margin-left: 0;
     display: flex;justify-content: center;align-items:center;
     color: white;
-    background-color: red;
+    background-color: #FF1D25;
   }
   #next_problem{
     margin-left: 0;
     display: flex;justify-content: center;align-items:center;
     color: white;
-    background-color: blue;
+    background-color: #02AAD1;
   }
 #problem_number{
+  margin-top: 3vh;
   font-size: 3em;
+  font-weight: bold;
   height: 7vh;
 }
   #input_box:hover {box-shadow: 5px 5px #00008B;}
