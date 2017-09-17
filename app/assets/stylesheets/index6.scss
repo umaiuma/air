@@ -1,6 +1,9 @@
 /*body{
   background-color: lime;
 }*/
+$hyegun_brown: #A27A58;
+$hyegun_shadow 5px 5px $hyegun_brown;
+
 #new_test_name{
   background-color: red;
   letter-spacing: 1rem;
@@ -28,7 +31,7 @@
 
 }
 .unstartable :hover{
-  box-shadow: 5px 5px #999 !important;
+  box-shadow:$hyegun_shadow;
 }
 
 .selected_for_test{
