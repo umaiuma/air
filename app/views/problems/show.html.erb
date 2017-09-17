@@ -99,7 +99,7 @@ var DynamicMJ = {
     make=make.replace('mu_0','\\mu_0')
 
 
-      var tex = '\\( '+ make+' \\)';
+      var tex = '$$ '+ make+' $$';
     this.formula.innerHTML = tex;
     MathJax.Hub.Queue(["Typeset",MathJax.Hub,this.formula]);
   }

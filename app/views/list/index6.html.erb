@@ -156,6 +156,16 @@ function get_chapter_id(father){
 }
 
 
+$('.container').on("click",'#new_chapter',function(){
+  event.stopPropagation();
+  var trigger = $(this).closest('ul').prev().find('.edit_chapter');
+  trigger.trigger('click');
+});
+$('.container').on("click",'#new_subject',function(){
+  var trigger = $(this).closest('ul').prev().find('.edit_subject');
+  trigger.trigger('click');
+});
+
 
 $('.container').on("click",'.chapters', function(){
   var subject_id = get_subject_id($(this));
@@ -528,34 +538,12 @@ function check_startable(){
 
 //dialog control
 
-$('.container').on("click",'#new_chapter',function(){
-  var trigger = $(this).closest('ul').prev().find('.edit_chapter');
-  trigger.trigger('click');
-});
-$('.container').on("click",'#new_subject',function(){
-  var trigger = $(this).closest('ul').prev().find('.edit_subject');
-  trigger.trigger('click');
-});
 
 $(window).resize(function(){
   $('.dialog').dialog('option','position',{my: "center", at: "center", of: window});
 });
 
 
-$( ".dialog" ).dialog({
-   autoOpen: false,
-});
-
-var dialog_checked = function(){
-  var checked_list=[]
-  var checks= $( ".dialog ul li div" );
-  checks.each(function(i){
-    if($(this).hasClass('checked')==true){
-      checked_list.push(i);
-    }
-  });
-  return checked_list;
-}
 $(document).on("click",'.check',(function(){
   $(this).html('&#xe804').addClass('checked').removeClass('check');
 }))
