@@ -62,6 +62,9 @@ class DebugsController < ApplicationController
 
 
   end
+  def solution
+    @problems = Problem.all
+  end
 
 
 end

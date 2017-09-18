@@ -42,6 +42,7 @@ Rails.application.routes.draw do
   get '/status' => 'debugs#status'
   get '/start/:selected_test_id' =>'problems#set', as: 'exam_start'
   get '/recommend' =>'problems#recommend'
+  get '/solution' =>'debugs#solution'
 
 
 
