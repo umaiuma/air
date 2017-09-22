@@ -74,8 +74,8 @@
     margin-left: 0;
   }
   .box_shadow{
-    border-radius: 10px;
-    box-shadow: 5px 5px #02aad1 ;
+    border-radius: 1vh;
+    box-shadow: 0.5vw 0.5vw #02aad1 ;
   }
   .round_button{
     height:6.25vh;
@@ -91,7 +91,7 @@
   #input_box{
     display: flex;align-items:center;
     color: gray;
-    box-shadow: 5px 5px #02aad1;
+    box-shadow: 0.5vw 0.5vw #02aad1;
     cursor: text;
     border:1px solid gray;
   }
@@ -100,16 +100,16 @@
     color: white;
     background-color: yellowgreen;
     border: none;
-    box-shadow: 5px 5px #02aad1 ;
+    box-shadow: 0.5vw 0.5vw #02aad1 ;
     width: 100%;
   }
   .disabled_button{
     color: white;
     background-color: #E6E6E6 !important;
-    box-shadow: 5px 5px #A27A58 !important;
+    box-shadow: 0.5vw 0.5vw #A27A58 !important;
   }
   .brownish_box_shadow{
-    box-shadow: 5px 5px #A27A58;
+    box-shadow: 0.5vw 0.5vw #A27A58;
   }
 
   #see_answer{
@@ -130,6 +130,6 @@
   font-weight: bold;
   height: 7vh;
 }
-  #input_box:hover {box-shadow: 5px 5px #00008B;}
-  #submit_button:hover {background-color: green;box-shadow: 5px 5px #00008B;}
-  #see_answer:hover, #next_problem:hover {background-color: black;box-shadow: 5px 5px #02aad1;}
+  #input_box:hover {box-shadow: 0.5vw 0.5vw #00008B;}
+  #submit_button:hover {background-color: green;box-shadow: 0.5vw 0.5vw #00008B;}
+  #see_answer:hover, #next_problem:hover {background-color: black;box-shadow: 0.5vw 0.5vw #02aad1;}

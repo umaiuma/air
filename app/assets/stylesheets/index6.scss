@@ -101,26 +101,32 @@ $hyegun_shadow: 5px 5px $hyegun_brown;
   color: white;
   box-shadow: $hyegun_shadow ;
   margin-top: 3vh;
-
+  .label{
+    width:100%;
+    span{
+      padding-right: 10vw;
+      width: 100%;
+    }
+  }
 }
 .studies{
   margin-top: 2vh;
   box-shadow: 5px 5px #02aad1;
 }
 .tests{
-  padding-left:4rem;
+  padding-left:5vw;
   font-weight: bold;
 
 }
 .subjects{
-  padding-left:12rem;
+  padding-left:10vw;
   font-weight: normal;
   justify-content: left;
 
 }
 
 .chapters{
-  padding-left:20rem;
+  padding-left:20vw;
   font-weight: normal;
   justify-content: left;
   left: 2rem;
