@@ -157,7 +157,7 @@ function get_chapter_id(father){
 
 
 $('.container').on("click",'#new_chapter',function(){
-  event.stopPropagation();
+  // event.stopPropagation();
   var trigger = $(this).closest('ul').prev().find('.edit_chapter');
   trigger.trigger('click');
 });
@@ -168,6 +168,10 @@ $('.container').on("click",'#new_subject',function(){
 
 
 $('.container').on("click",'.chapters', function(){
+  if($(this).attr("id")==='new_chapter'){
+    alert("this is new_chapter test");
+    return;
+  }
   var subject_id = get_subject_id($(this));
   var test_id = get_test_id($(this));
   var chapter_id = get_chapter_id($(this));
