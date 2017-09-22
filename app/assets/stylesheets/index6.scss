@@ -66,9 +66,9 @@ $hyegun_shadow: 5px 5px $hyegun_brown;
   display: none;
 }
 .icon , .icon_plus{
-  width: 5rem;
+  width: 3vw;
   cursor:pointer;
-  margin-right: 4rem;
+  margin-right: 3vw;
 }
 *{
   font-family: fontello;
@@ -79,7 +79,7 @@ $hyegun_shadow: 5px 5px $hyegun_brown;
   border-radius: 10px;
   box-shadow:$hyegun_shadow;
   display: flex;  justify-content: center;align-items:center;
-  font-size: 2rem;
+  font-size: 4vh;
   letter-spacing: 1rem;
 
 }
